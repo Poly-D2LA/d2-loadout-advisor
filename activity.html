@@ -84,163 +84,183 @@
   </footer>
 
 
-  <!-- JavaScript -->
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const type = params.get("type");
-    const name = params.get("name");
-    let currentLoadouts = {};
-    let currentDifficulty = "Normal";
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const type = params.get("type");
+  const name = params.get("name");
+  let currentLoadouts = {};
+  let currentDifficulty = "Normal";
 
-    function setDifficulty(level) {
-      const openDiv = document.querySelector("#encounter-container > div > div:not(.hidden)");
-      const openId = openDiv?.id;
-      currentDifficulty = level;
-      renderEncounters();
+  function setDifficulty(level) {
+    const masterBtn = document.getElementById("masterBtn");
 
-      if (openId) {
-        const el = document.getElementById(openId);
-        if (el) {
-          el.classList.remove("hidden");
-          const arrow = el.previousElementSibling.querySelector(".toggle-arrow");
-          if (arrow) arrow.textContent = "▲";
-        }
+    // ⛔ Block switching to Master if it's a dungeon
+    if (type === "dungeon" && level === "Master") return;
+
+    currentDifficulty = level;
+    renderEncounters();
+
+    // Restore previously open encounter
+    const openDiv = document.querySelector("#encounter-container > div > div:not(.hidden)");
+    const openId = openDiv?.id;
+    if (openId) {
+      const el = document.getElementById(openId);
+      if (el) {
+        el.classList.remove("hidden");
+        const arrow = el.previousElementSibling.querySelector(".toggle-arrow");
+        if (arrow) arrow.textContent = "▲";
       }
-
-      document.getElementById("normalBtn").classList.toggle("opacity-60", level !== "Normal");
-      document.getElementById("masterBtn").classList.toggle("opacity-60", level !== "Master");
     }
 
-    function renderEncounters() {
-      const container = document.getElementById("encounter-container");
-      container.innerHTML = "";
+    document.getElementById("normalBtn").classList.toggle("opacity-60", level !== "Normal");
 
-      Object.entries(currentLoadouts).forEach(([key, encounter]) => {
-        const loadoutData = encounter.loadouts?.[currentDifficulty];
-        if (!loadoutData) return;
+    if (masterBtn) {
+      if (type === "dungeon") {
+        masterBtn.style.display = "none";
+      } else {
+        masterBtn.style.display = "";
+        masterBtn.classList.toggle("opacity-60", level !== "Master");
+      }
+    }
+  }
 
-        const collapseId = `encounter-${key}`;
-        const section = document.createElement("div");
+  function renderEncounters() {
+    const container = document.getElementById("encounter-container");
+    container.innerHTML = "";
 
-        const classColors = {
-          Hunter: "text-blue-400",
-          Titan: "text-red-400",
-          Warlock: "text-yellow-300"
-        };
+    Object.entries(currentLoadouts).forEach(([key, encounter]) => {
+      const loadoutData = encounter.loadouts?.[currentDifficulty];
+      if (!loadoutData) return;
 
-        const badgeColors = {
-          "Exotic Armour": "bg-yellow-600",
-          "Primary": "bg-blue-700",
-          "Energy": "bg-indigo-700",
-          "Heavy": "bg-red-700"
-        };
+      const collapseId = `encounter-${key}`;
+      const section = document.createElement("div");
 
-        section.innerHTML = `
-          <div class="bg-gray-800 rounded-lg shadow overflow-hidden">
-            <button onclick="toggleEncounter('${collapseId}')" class="w-full text-left px-4 py-3 flex justify-between items-center hover:bg-gray-700 transition">
-              <h2 class="text-lg font-bold flex items-center gap-2">
-                <span class="text-2xl">${encounter.icon || "📌"}</span> ${encounter.displayName}
-              </h2>
-              <span class="text-gray-400 text-sm toggle-arrow">▼</span>
-            </button>
-            <div id="${collapseId}" class="px-4 pb-4 hidden">
-              ${encounter.image ? `<img src="${encounter.image}" alt="${encounter.displayName}" class="w-full h-40 object-cover rounded mb-4" />` : ""}
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                ${["Hunter", "Warlock", "Titan"].map(cls => {
-                  const items = loadoutData?.[cls];
-                  if (!items) return `<div><h3 class="text-lg font-bold ${classColors[cls]} mb-2">${cls}</h3><p class="text-gray-500 italic">No data</p></div>`;
-                  
-                  const renderedItems = items.map(({ label, item }) => {
-                    const badge = badgeColors[label] || "bg-gray-600";
-                    return `
-                      <li>
-                        <span class="inline-block px-2 py-0.5 text-xs font-semibold rounded ${badge} text-white mr-2">${label}</span>
-                        ${item}
-                      </li>`;
-                  }).join("");
+      const classColors = {
+        Hunter: "text-blue-400",
+        Titan: "text-red-400",
+        Warlock: "text-yellow-300"
+      };
 
+      const badgeColors = {
+        "Exotic Armour": "bg-yellow-600",
+        "Primary": "bg-blue-700",
+        "Energy": "bg-indigo-700",
+        "Heavy": "bg-red-700"
+      };
+
+      section.innerHTML = `
+        <div class="bg-gray-800 rounded-lg shadow overflow-hidden">
+          <button onclick="toggleEncounter('${collapseId}')" class="w-full text-left px-4 py-3 flex justify-between items-center hover:bg-gray-700 transition">
+            <h2 class="text-lg font-bold flex items-center gap-2">
+              <span class="text-2xl">${encounter.icon || "📌"}</span> ${encounter.displayName}
+            </h2>
+            <span class="text-gray-400 text-sm toggle-arrow">▼</span>
+          </button>
+          <div id="${collapseId}" class="px-4 pb-4 hidden">
+            ${encounter.image ? `<img src="${encounter.image}" alt="${encounter.displayName}" class="w-full h-40 object-cover rounded mb-4" />` : ""}
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              ${["Hunter", "Warlock", "Titan"].map(cls => {
+                const items = loadoutData?.[cls];
+                if (!items) return `<div><h3 class="text-lg font-bold ${classColors[cls]} mb-2">${cls}</h3><p class="text-gray-500 italic">No data</p></div>`;
+
+                const renderedItems = items.map(({ label, item }) => {
+                  const badge = badgeColors[label] || "bg-gray-600";
                   return `
-                    <div>
-                      <h3 class="text-lg font-bold ${classColors[cls]} mb-2 flex items-center gap-2">
-                        ${cls}
-                        <span class="px-2 py-1 text-xs rounded ${currentDifficulty === "Normal" ? "bg-blue-700" : "bg-red-700"} text-white">
-                          ${currentDifficulty}
-                        </span>
-                      </h3>
-                      <ul class="list-none ml-2 space-y-1 text-gray-300">
-                        ${renderedItems}
-                      </ul>
-                    </div>
-                  `;
-                }).join("")}
-              </div>
+                    <li>
+                      <span class="inline-block px-2 py-0.5 text-xs font-semibold rounded ${badge} text-white mr-2">${label}</span>
+                      ${item}
+                    </li>`;
+                }).join("");
+
+                return `
+                  <div>
+                    <h3 class="text-lg font-bold ${classColors[cls]} mb-2 flex items-center gap-2">
+                      ${cls}
+                      <span class="px-2 py-1 text-xs rounded ${currentDifficulty === "Normal" ? "bg-blue-700" : "bg-red-700"} text-white">
+                        ${currentDifficulty}
+                      </span>
+                    </h3>
+                    <ul class="list-none ml-2 space-y-1 text-gray-300">
+                      ${renderedItems}
+                    </ul>
+                  </div>
+                `;
+              }).join("")}
             </div>
           </div>
-        `;
-        container.appendChild(section);
-      });
-    }
+        </div>
+      `;
+      container.appendChild(section);
+    });
+  }
 
-    function toggleEncounter(id) {
-      const el = document.getElementById(id);
-      const arrow = el.previousElementSibling.querySelector(".toggle-arrow");
-      const isHidden = el.classList.contains("hidden");
-      el.classList.toggle("hidden");
-      arrow.textContent = isHidden ? "▲" : "▼";
-    }
-    
-function updateMeta(activity) {
-  const title = activity.displayName || activity.name || "Activity";
-  const description = activity.description || "Curated Destiny 2 loadouts for this activity.";
+  function toggleEncounter(id) {
+    const el = document.getElementById(id);
+    const arrow = el.previousElementSibling.querySelector(".toggle-arrow");
+    const isHidden = el.classList.contains("hidden");
+    el.classList.toggle("hidden");
+    arrow.textContent = isHidden ? "▲" : "▼";
+  }
 
-  document.title = `${title} | D2LA`;
+  function updateMeta(activity) {
+    const title = activity.displayName || activity.name || "Activity";
+    const description = activity.description || "Curated Destiny 2 loadouts for this activity.";
 
-  const descTag = document.querySelector('meta[name="description"]');
-  if (descTag) descTag.setAttribute('content', description);
+    document.title = `${title} | D2LA`;
 
-  const ogTitle = document.querySelector('meta[property="og:title"]');
-  if (ogTitle) ogTitle.setAttribute('content', `${title} | D2LA`);
+    const descTag = document.querySelector('meta[name="description"]');
+    if (descTag) descTag.setAttribute('content', description);
 
-  const ogDesc = document.querySelector('meta[property="og:description"]');
-  if (ogDesc) ogDesc.setAttribute('content', description);
-}
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', `${title} | D2LA`);
 
-    fetch("data.json")
-      .then(res => res.json())
-      .then(data => {
-        const activity = data?.[type + "s"]?.[name];
-        if (!activity) {
-          document.getElementById("activity-title").textContent = "Activity Not Found";
-          return;
-        }
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', description);
+  }
+
+  fetch("data.json")
+    .then(res => res.json())
+    .then(data => {
+      const activity = data?.[type + "s"]?.[name];
+      if (!activity) {
+        document.getElementById("activity-title").textContent = "Activity Not Found";
+        return;
+      }
+
       updateMeta(activity);
 
-        document.getElementById("activity-title").textContent = activity.displayName;
-        document.getElementById("activity-image").innerHTML =
-          `<img src="${activity.image}" alt="${activity.displayName}" class="w-full h-full object-cover" />`;
+      document.getElementById("activity-title").textContent = activity.displayName;
+      document.getElementById("activity-image").innerHTML =
+        `<img src="${activity.image}" alt="${activity.displayName}" class="w-full h-full object-cover" />`;
 
-        currentLoadouts = activity.encounters;
-        renderEncounters();
-      })
-      .catch(err => {
-        console.error(err);
-        document.getElementById("activity-title").textContent = "Error loading data";
-      });
+      currentLoadouts = activity.encounters;
+      renderEncounters();
 
-    const path = window.location.pathname;
-    const navMap = {
-      'index':    { id: 'nav-home',     bg: 'bg-blue-600',   text: 'text-white' },
-      'raids':    { id: 'nav-raids',    bg: 'bg-purple-600', text: 'text-white' },
-      'dungeons': { id: 'nav-dungeons', bg: 'bg-teal-600',   text: 'text-white' }
-    };
-
-    for (const key in navMap) {
-      if (path.includes(key)) {
-        const { id, bg, text } = navMap[key];
-        const el = document.getElementById(id);
-        if (el) el.classList.add(bg, text);
+      // ✅ Hide Master button immediately for dungeons
+      if (type === "dungeon") {
+        const masterBtn = document.getElementById("masterBtn");
+        if (masterBtn) masterBtn.style.display = "none";
       }
+    })
+    .catch(err => {
+      console.error(err);
+      document.getElementById("activity-title").textContent = "Error loading data";
+    });
+
+  const path = window.location.pathname;
+  const navMap = {
+    'index':    { id: 'nav-home',     bg: 'bg-blue-600',   text: 'text-white' },
+    'raids':    { id: 'nav-raids',    bg: 'bg-purple-600', text: 'text-white' },
+    'dungeons': { id: 'nav-dungeons', bg: 'bg-teal-600',   text: 'text-white' }
+  };
+
+  for (const key in navMap) {
+    if (path.includes(key)) {
+      const { id, bg, text } = navMap[key];
+      const el = document.getElementById(id);
+      if (el) el.classList.add(bg, text);
     }
-  </script>
+  }
+</script>
 </body>
 </html>
