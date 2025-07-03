@@ -124,75 +124,94 @@
     }
   }
 
-  function renderEncounters() {
-    const container = document.getElementById("encounter-container");
-    container.innerHTML = "";
+function renderEncounters() {
+  const container = document.getElementById("encounter-container");
+  container.innerHTML = "";
 
-    Object.entries(currentLoadouts).forEach(([key, encounter]) => {
-      const loadoutData = encounter.loadouts?.[currentDifficulty];
-      if (!loadoutData) return;
+  const classColors = {
+    Hunter: "text-blue-400",
+    Titan: "text-red-400",
+    Warlock: "text-yellow-300"
+  };
 
-      const collapseId = `encounter-${key}`;
-      const section = document.createElement("div");
+  const classBackgrounds = {
+    Hunter: "bg-blue-900/50",
+    Titan: "bg-red-900/50",
+    Warlock: "bg-yellow-900/40"
+  };
 
-      const classColors = {
-        Hunter: "text-blue-400",
-        Titan: "text-red-400",
-        Warlock: "text-yellow-300"
-      };
+  const classIcons = {
+    Hunter: "images/icons/hunter.svg",
+    Titan: "images/icons/titan.svg",
+    Warlock: "images/icons/warlock.svg"
+  };
 
-      const badgeColors = {
-        "Exotic Armour": "bg-yellow-600",
-        "Primary": "bg-blue-700",
-        "Energy": "bg-indigo-700",
-        "Heavy": "bg-red-700"
-      };
+  const badgeColors = {
+    "Exotic Armour": "bg-yellow-600",
+    "Primary": "bg-blue-700",
+    "Energy": "bg-indigo-700",
+    "Heavy": "bg-red-700"
+  };
 
-      section.innerHTML = `
-        <div class="bg-gray-800 rounded-lg shadow overflow-hidden">
-          <button onclick="toggleEncounter('${collapseId}')" class="w-full text-left px-4 py-3 flex justify-between items-center hover:bg-gray-700 transition">
-            <h2 class="text-lg font-bold flex items-center gap-2">
-              <span class="text-2xl">${encounter.icon || "📌"}</span> ${encounter.displayName}
-            </h2>
-            <span class="text-gray-400 text-sm toggle-arrow">▼</span>
-          </button>
-          <div id="${collapseId}" class="px-4 pb-4 hidden">
-            ${encounter.image ? `<img src="${encounter.image}" alt="${encounter.displayName}" class="w-full h-40 object-cover rounded mb-4" />` : ""}
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-              ${["Hunter", "Warlock", "Titan"].map(cls => {
-                const items = loadoutData?.[cls];
-                if (!items) return `<div><h3 class="text-lg font-bold ${classColors[cls]} mb-2">${cls}</h3><p class="text-gray-500 italic">No data</p></div>`;
+  Object.entries(currentLoadouts).forEach(([key, encounter]) => {
+    const loadoutData = encounter.loadouts?.[currentDifficulty];
+    if (!loadoutData) return;
 
-                const renderedItems = items.map(({ label, item }) => {
-                  const badge = badgeColors[label] || "bg-gray-600";
-                  return `
-                    <li>
-                      <span class="inline-block px-2 py-0.5 text-xs font-semibold rounded ${badge} text-white mr-2">${label}</span>
-                      ${item}
-                    </li>`;
-                }).join("");
+    const collapseId = `encounter-${key}`;
+    const section = document.createElement("div");
 
+    section.innerHTML = `
+      <div class="bg-gray-800 rounded-lg shadow overflow-hidden">
+        <button onclick="toggleEncounter('${collapseId}')" class="w-full text-left px-4 py-3 flex justify-between items-center hover:bg-gray-700 transition">
+          <h2 class="text-lg font-bold flex items-center gap-2">
+            <span class="text-2xl">${encounter.icon || "📌"}</span> ${encounter.displayName}
+          </h2>
+          <span class="text-gray-400 text-sm toggle-arrow">▼</span>
+        </button>
+        <div id="${collapseId}" class="px-4 pb-4 hidden">
+          ${encounter.image ? `<img src="${encounter.image}" alt="${encounter.displayName}" class="w-full h-40 object-cover rounded mb-4" />` : ""}
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            ${["Hunter", "Warlock", "Titan"].map(cls => {
+              const items = loadoutData?.[cls];
+              if (!items) {
                 return `
-                  <div>
-                    <h3 class="text-lg font-bold ${classColors[cls]} mb-2 flex items-center gap-2">
-                      ${cls}
-                      <span class="px-2 py-1 text-xs rounded ${currentDifficulty === "Normal" ? "bg-blue-700" : "bg-red-700"} text-white">
-                        ${currentDifficulty}
-                      </span>
-                    </h3>
-                    <ul class="list-none ml-2 space-y-1 text-gray-300">
-                      ${renderedItems}
-                    </ul>
-                  </div>
-                `;
-              }).join("")}
-            </div>
+                  <div class="p-4 rounded-md ${classBackgrounds[cls]} border border-gray-700 shadow-sm">
+                    <h3 class="text-lg font-bold ${classColors[cls]} mb-2">${cls}</h3>
+                    <p class="text-gray-500 italic">No data</p>
+                  </div>`;
+              }
+
+              const renderedItems = items.map(({ label, item }) => {
+                const badge = badgeColors[label] || "bg-gray-600";
+                return `
+                  <li>
+                    <span class="inline-block px-2 py-0.5 text-xs font-semibold rounded ${badge} text-white mr-2">${label}</span>
+                    ${item}
+                  </li>`;
+              }).join("");
+
+              return `
+                <div class="p-4 rounded-md ${classBackgrounds[cls]} border border-gray-700 shadow-sm">
+                  <h3 class="text-lg font-bold ${classColors[cls]} mb-2 flex items-center gap-2">
+                    <img src="${classIcons[cls]}" alt="${cls} icon" class="h-5 w-5 inline-block" />
+                    ${cls}
+                    <span class="px-2 py-1 text-xs rounded ${currentDifficulty === "Normal" ? "bg-blue-700" : "bg-red-700"} text-white">
+                      ${currentDifficulty}
+                    </span>
+                  </h3>
+                  <ul class="list-none ml-2 space-y-1 text-gray-300">
+                    ${renderedItems}
+                  </ul>
+                </div>`;
+            }).join("")}
           </div>
         </div>
-      `;
-      container.appendChild(section);
-    });
-  }
+      </div>
+    `;
+
+    container.appendChild(section);
+  });
+}
 
   function toggleEncounter(id) {
     const el = document.getElementById(id);
