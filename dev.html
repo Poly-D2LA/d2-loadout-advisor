@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>D2 Loadout Advisor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="text-white min-h-screen flex flex-col p-6 pb-24 md:pb-20 lg:pb-16 bg-gradient-to-br from-gray-800 via-gray-900 to-pink-950">
+
+<!-- Navigation Bar -->
+<nav class="w-full bg-gradient-to-b from-black/80 via-gray-900/60 to-transparent text-white shadow backdrop-blur-sm border-b border-gray-700">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="text-lg font-bold tracking-wide">D2 Loadout Advisor</div>
+    <div class="space-x-2 text-sm md:text-base">
+      <a href="index.html" id="nav-home" class="hover:text-blue-300 transition font-semibold px-2 py-1 rounded">💠 Home</a>
+      <a href="raids.html" id="nav-raids" class="hover:text-purple-300 transition font-semibold px-2 py-1 rounded">🛡️ Raids</a>
+      <a href="dungeons.html" id="nav-dungeons" class="hover:text-teal-300 transition font-semibold px-2 py-1 rounded">🕳️ Dungeons</a>
+    </div>
+  </div>
+</nav>
+
+  <!-- Main Content -->
+  <main class="flex-grow flex flex-col items-center p-6">
+    <div class="text-center space-y-6 my-12">
+      <h1 class="text-4xl font-bold">Destiny 2 ⚔️ Loadout Advisor</h1>
+      <p class="text-gray-400">Choose your activity</p>
+    </div>
+
+    <div class="flex flex-col gap-6 w-full items-center px-4">
+      <a href="raids.html"
+         class="w-full sm:w-[32rem] md:w-[36rem] lg:w-[44rem] h-40 rounded-xl bg-cover bg-center shadow-lg transform hover:scale-[1.03] transition duration-300 ease-out"
+         style="background-image: url('images/raidbannerhome.png');">
+        <div class="bg-black bg-opacity-50 rounded-xl h-full flex items-center justify-center">
+          <span class="text-white text-3xl font-bold tracking-wide drop-shadow-[0_0_3px_black]">
+          Raids
+          </span>
+        </div>
+      </a>
+
+      <a href="dungeons.html"
+         class="w-full sm:w-[32rem] md:w-[36rem] lg:w-[44rem] h-40 rounded-xl bg-cover bg-center shadow-lg transform hover:scale-[1.03] transition duration-300 ease-out"
+         style="background-image: url('images/dungeonbannerhome.jpg');">
+        <div class="bg-black bg-opacity-50 rounded-xl h-full flex items-center justify-center">
+          <span class="text-white text-3xl font-bold tracking-wide drop-shadow-[0_0_3px_black]">
+           Dungeons
+          </span>
+        </div>
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+<footer class="fixed bottom-0 left-0 w-full text-gray-300 text-center text-xs py-2 border-t border-gray-700 bg-gradient-to-t from-black/70 via-gray-900/50 to-transparent backdrop-blur-sm">
+  Guardian loadouts compiled by Poly. Eyes up, Guardian! ☝️
+</footer>
+
+  <!-- Highlight Active Nav Link -->
+  <script>
+    const path = window.location.pathname;
+
+const navMap = {
+  'index':    { id: 'nav-home',     bg: 'bg-blue-600',     text: 'text-white' },
+  'raids':    { id: 'nav-raids',    bg: 'bg-purple-600',   text: 'text-white' },
+  'dungeons': { id: 'nav-dungeons', bg: 'bg-teal-600',     text: 'text-white' }
+};
+
+    for (const key in navMap) {
+      if (path.includes(key)) {
+        const { id, bg, text } = navMap[key];
+        const el = document.getElementById(id);
+        if (el) el.classList.add(bg, text);
+      }
+    }
+  </script>
+
+</body>
+</html>
