@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raids | D2 Loadout Advisor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="text-white min-h-screen flex flex-col p-6 pb-24 md:pb-20 lg:pb-16 bg-gradient-to-br from-gray-800 via-gray-900 to-pink-950">
+
+  <!-- Navigation Bar -->
+<!-- Navigation Bar -->
+<nav class="w-full bg-gradient-to-b from-black/80 via-gray-900/60 to-transparent text-white shadow backdrop-blur-sm border-b border-gray-700">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="text-lg font-bold tracking-wide">D2 Loadout Advisor</div>
+    <div class="space-x-2 text-sm md:text-base">
+      <a href="index.html" id="nav-home" class="hover:text-blue-300 transition font-semibold px-2 py-1 rounded">💠 Home</a>
+      <a href="raids.html" id="nav-raids" class="hover:text-purple-300 transition font-semibold px-2 py-1 rounded">🛡️ Raids</a>
+      <a href="dungeons.html" id="nav-dungeons" class="hover:text-teal-300 transition font-semibold px-2 py-1 rounded">🕳️ Dungeons</a>
+    </div>
+  </div>
+</nav>
+
+<h1 class="text-3xl font-bold text-center mb-8">Choose a Raid</h1>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl w-full mx-auto">
+
+  <a href="activity.html?type=raid&name=vault-of-glass"
+     class="block w-full h-40 rounded-lg overflow-hidden shadow-lg group bg-gray-900 border border-gray-700 relative">
+    <div class="w-full h-full bg-gray-800 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+         style="background-image: url('images/vault-of-glass/banner.jpg');"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-center">
+      <h2 class="text-white text-xl font-bold tracking-wide">
+        Vault of Glass<br><span class="text-sm font-normal opacity-75">(Banner missing)</span>
+      </h2>
+    </div>
+  </a>
+
+  <a href="activity.html?type=raid&name=crota"
+     class="block w-full h-40 rounded-lg overflow-hidden shadow-lg group bg-gray-900 border border-gray-700 relative">
+    <div class="w-full h-full bg-gray-800 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+         style="background-image: url('images/crota/banner.jpg');"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-center">
+      <h2 class="text-white text-xl font-bold tracking-wide">
+        Crota's End<br><span class="text-sm font-normal opacity-75">(Banner missing)</span>
+      </h2>
+    </div>
+  </a>
+
+  <a href="activity.html?type=raid&name=kings-fall"
+     class="block w-full h-40 rounded-lg overflow-hidden shadow-lg group bg-gray-900 border border-gray-700 relative">
+    <div class="w-full h-full bg-gray-800 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+         style="background-image: url('images/kings-fall/banner.jpg');"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-center">
+      <h2 class="text-white text-xl font-bold tracking-wide">
+        King's Fall<br><span class="text-sm font-normal opacity-75">(Banner missing)</span>
+      </h2>
+    </div>
+  </a>
+
+  <a href="activity.html?type=raid&name=last-wish"
+     class="block w-full h-40 rounded-lg overflow-hidden shadow-lg group bg-gray-900 border border-gray-700 relative">
+    <div class="w-full h-full bg-gray-800 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+         style="background-image: url('images/last-wish/banner.jpg');"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-center">
+      <h2 class="text-white text-xl font-bold tracking-wide">
+        Last Wish<br><span class="text-sm font-normal opacity-75">(Banner missing)</span>
+      </h2>
+    </div>
+  </a>
+
+  <a href="activity.html?type=raid&name=garden-of-salvation"
+     class="block w-full h-40 rounded-lg overflow-hidden shadow-lg group bg-gray-900 border border-gray-700 relative">
+    <div class="w-full h-full bg-gray-800 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+         style="background-image: url('images/garden-of-salvation/banner.jpg');"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-center">
+      <h2 class="text-white text-xl font-bold tracking-wide">
+        Garden of Salvation<br><span class="text-sm font-normal opacity-75">(Banner missing)</span>
+      </h2>
+    </div>
+  </a>
+
+  <a href="activity.html?type=raid&name=deep-stone-crypt"
+     class="block w-full h-40 rounded-lg overflow-hidden shadow-lg group bg-gray-900 border border-gray-700 relative">
+    <div class="w-full h-full bg-gray-800 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+         style="background-image: url('images/deep-stone-crypt/banner.jpg');"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-center">
+      <h2 class="text-white text-xl font-bold tracking-wide">
+        Deep Stone Crypt<br><span class="text-sm font-normal opacity-75">(Banner missing)</span>
+      </h2>
+    </div>
+  </a>
+
+  <a href="activity.html?type=raid&name=vow-of-the-disciple"
+     class="block w-full h-40 rounded-lg overflow-hidden shadow-lg group bg-gray-900 border border-gray-700 relative">
+    <div class="w-full h-full bg-gray-800 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+         style="background-image: url('images/vow-of-the-disciple/banner.jpg');"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-center">
+      <h2 class="text-white text-xl font-bold tracking-wide">
+        Vow of the Disciple<br><span class="text-sm font-normal opacity-75">(Banner missing)</span>
+      </h2>
+    </div>
+  </a>
+
+  <a href="activity.html?type=raid&name=root-of-nightmares"
+     class="block w-full h-40 rounded-lg overflow-hidden shadow-lg group bg-gray-900 border border-gray-700 relative">
+    <div class="w-full h-full bg-gray-800 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+         style="background-image: url('images/root-of-nightmares/banner.jpg');"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-center">
+      <h2 class="text-white text-xl font-bold tracking-wide">
+        Root of Nightmares<br><span class="text-sm font-normal opacity-75">(Banner missing)</span>
+      </h2>
+    </div>
+  </a>
+
+  <a href="activity.html?type=raid&name=salvations-edge"
+     class="block w-full h-40 rounded-lg overflow-hidden shadow-lg group bg-gray-900 border border-gray-700 relative">
+    <div class="w-full h-full bg-gray-800 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+         style="background-image: url('images/salvations-edge/banner.jpg');"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-center">
+      <h2 class="text-white text-xl font-bold tracking-wide">
+        Salvation's Edge<br><span class="text-sm font-normal opacity-75">(Banner missing)</span>
+      </h2>
+    </div>
+  </a>
+
+</div>
+
+  <!-- Footer -->
+  <footer class="fixed bottom-0 left-0 w-full bg-gray-900 text-gray-500 text-center text-xs py-2 border-t border-gray-700">
+    Guardian loadouts compiled by Poly. Eyes up, Guardian! ☝️
+  </footer>
+
+  <!-- Highlight Active Nav -->
+  <script>
+    const path = window.location.pathname;
+
+    const navMap = {
+      'index':    { id: 'nav-home',     bg: 'bg-blue-600',   text: 'text-white' },
+      'raids':    { id: 'nav-raids',    bg: 'bg-purple-600', text: 'text-white' },
+      'dungeons': { id: 'nav-dungeons', bg: 'bg-teal-600',   text: 'text-white' }
+    };
+
+    for (const key in navMap) {
+      if (path.includes(key)) {
+        const { id, bg, text } = navMap[key];
+        const el = document.getElementById(id);
+        if (el) el.classList.add(bg, text);
+      }
+    }
+  </script>
+
+</body>
+</html>
