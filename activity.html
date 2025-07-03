@@ -3,7 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Activity Loadout</title>
+  <title>Activity Loadout | D2LA</title>
+<meta id="meta-description" name="description" content="Default loadout description for Destiny 2 activities." />
+
+    <!-- Essential OG tags -->
+<meta property="og:title" content="D2LA - Destiny 2 Loadout Advisor" />
+<meta property="og:description" content="D2LA is a Destiny 2 Loadout Advisor that helps Guardians discover curated PvE loadouts, tiered by activity and subclass." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://poly-d2la.github.io/d2-loadout-advisor/" />
+<meta property="og:image" content="images/websnap.png" />
+  <!-- Twitter OG tags -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="D2LA - Destiny 2 Loadout Advisor" />
+<meta name="twitter:description" content="Your curated PvE builds and activity-specific loadouts, assembled for endgame glory." />
+<meta name="twitter:image" content="images/websnap.png" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
@@ -175,6 +188,22 @@
       el.classList.toggle("hidden");
       arrow.textContent = isHidden ? "▲" : "▼";
     }
+    
+function updateMeta(activity) {
+  const title = activity.displayName || activity.name || "Activity";
+  const description = activity.description || "Curated Destiny 2 loadouts for this activity.";
+
+  document.title = `${title} | D2LA`;
+
+  const descTag = document.querySelector('meta[name="description"]');
+  if (descTag) descTag.setAttribute('content', description);
+
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) ogTitle.setAttribute('content', `${title} | D2LA`);
+
+  const ogDesc = document.querySelector('meta[property="og:description"]');
+  if (ogDesc) ogDesc.setAttribute('content', description);
+}
 
     fetch("data.json")
       .then(res => res.json())
@@ -184,6 +213,7 @@
           document.getElementById("activity-title").textContent = "Activity Not Found";
           return;
         }
+      updateMeta(activity);
 
         document.getElementById("activity-title").textContent = activity.displayName;
         document.getElementById("activity-image").innerHTML =
