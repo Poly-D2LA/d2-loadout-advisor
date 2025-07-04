@@ -23,21 +23,67 @@
 
 <main class="flex-grow p-6">
 
-  <!-- Navbar -->
-<nav class="w-full bg-gradient-to-b from-black/80 via-gray-900/60 to-transparent text-white shadow backdrop-blur-sm border-b border-gray-700" x-data="{ open: false }">
-  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+<!-- Navbar -->
+<nav class="relative z-50 w-full bg-gradient-to-b from-black/80 via-gray-900/60 to-transparent text-white shadow backdrop-blur-sm border-b border-gray-700" x-data="{ open: false }">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-start space-x-8">
     <!-- Logo -->
     <div class="text-lg font-bold tracking-wide">D2 Loadout Advisor</div>
 
     <!-- Desktop Nav -->
-    <div class="hidden md:flex space-x-4 text-sm md:text-base">
-      <a href="index.html" class="hover:text-blue-300 transition font-semibold">💠 Home</a>
-      <a href="raids.html" class="hover:text-purple-300 transition font-semibold">🛡️ Raids</a>
-      <a href="dungeons.html" class="hover:text-teal-300 transition font-semibold">🕳️ Dungeons</a>
+    <div class="hidden md:flex space-x-4 text-sm md:text-base items-center relative">
+      <a href="index.html" class="hover:text-blue-300 transition font-semibold" id="nav-home">💠 Home</a>
+
+      <!-- Raids Dropdown -->
+      <div class="group relative" x-data="{ open: false }">
+        <button
+          class="hover:text-purple-300 transition font-semibold inline-flex items-center gap-1"
+          @click="open = !open"
+          @click.away="open = false"
+        >
+          🛡️ Raids
+          <svg class="w-4 h-4 mt-0.5 transform transition-transform duration-200"
+               :class="{ 'rotate-180': open }"
+               fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div
+          id="raidDropdown"
+          class="absolute top-full left-2 hidden md:group-hover:block bg-gray-800 rounded shadow-lg z-50 w-max text-left pr-4 p-2"
+          :class="{ 'block': open }"
+        >
+          <a href="raids.html" class="block px-4 py-2 hover:bg-gray-700 rounded text-purple-300 font-semibold">Overview</a>
+          <!-- Raid links injected here -->
+        </div>
+      </div>
+
+      <!-- Dungeons Dropdown -->
+      <div class="group relative" x-data="{ open: false }">
+        <button
+          class="hover:text-teal-300 transition font-semibold inline-flex items-center gap-1"
+          @click="open = !open"
+          @click.away="open = false"
+        >
+          🕳️ Dungeons
+          <svg class="w-4 h-4 mt-0.5 transform transition-transform duration-200"
+               :class="{ 'rotate-180': open }"
+               fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div
+          id="dungeonDropdown"
+          class="absolute top-full left-9 -translate-x-1/2 hidden md:group-hover:block bg-gray-800 rounded shadow-lg z-[9999] w-max text-left pr-4 p-2"
+          :class="{ 'block': open }"
+        >
+          <a href="dungeons.html" class="block px-4 py-2 pr-4 hover:bg-gray-700 rounded text-teal-300 font-semibold text-left">Overview</a>
+          <!-- Dungeon links injected here -->
+        </div>
+      </div>
     </div>
 
     <!-- Hamburger Button (Mobile) -->
-    <button @click="open = !open" class="md:hidden focus:outline-none">
+    <button @click="open = !open" class="md:hidden focus:outline-none ml-auto">
       <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
@@ -47,12 +93,32 @@
     </button>
   </div>
 
-  <!-- Mobile Dropdown -->
-  <div x-show="open" class="md:hidden px-4 pb-4 space-y-2 text-sm">
-    <a href="index.html" class="block hover:text-blue-300 font-semibold">💠 Home</a>
-    <a href="raids.html" class="block hover:text-purple-300 font-semibold">🛡️ Raids</a>
-    <a href="dungeons.html" class="block hover:text-teal-300 font-semibold">🕳️ Dungeons</a>
+<!-- Mobile Dropdown -->
+<div x-show="open" class="md:hidden px-4 pb-4 space-y-4 text-sm">
+  <a href="index.html" class="block hover:text-blue-300 font-semibold">💠 Home</a>
+
+  <!-- Raids Section -->
+  <div>
+    <div class="text-purple-300 font-semibold uppercase tracking-wide text-xs mb-1 border-b border-purple-500 pb-1">
+      🛡️ Raids
+    </div>
+    <div id="raidDropdownMobile" class="space-y-1 pl-3 border-l border-purple-500">
+      <a href="raids.html" class="block hover:text-purple-200 font-semibold">Overview</a>
+      <!-- Raid links injected here -->
+    </div>
   </div>
+
+  <!-- Dungeons Section -->
+  <div>
+    <div class="text-teal-300 font-semibold uppercase tracking-wide text-xs mb-1 border-b border-teal-500 pb-1">
+      🕳️ Dungeons
+    </div>
+    <div id="dungeonDropdownMobile" class="space-y-1 pl-3 border-l border-teal-500">
+      <a href="dungeons.html" class="block hover:text-teal-200 font-semibold">Overview</a>
+      <!-- Dungeon links injected here -->
+    </div>
+  </div>
+</div>
 </nav>
 
 <h1 class="text-3xl font-bold text-center mb-8 my-5">Choose a Raid</h1>
@@ -170,14 +236,14 @@
     <a href="https://docs.google.com/spreadsheets/d/1JM-0SlxVDAi-C6rGVlLxa-J1WGewEeL8Qvq4htWZHhY/edit?gid=1087089423#gid=1087089423" target="_blank" class="text-blue-400 hover:underline">📊 Endgame Tierlist</a>.
   </footer>
 
-  <!-- Highlight Active Nav -->
-  <script>
+ <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // 🔹 Highlight active nav link
     const path = window.location.pathname;
-
     const navMap = {
-      'index':    { id: 'nav-home',     bg: 'bg-blue-600',   text: 'text-white' },
-      'raids':    { id: 'nav-raids',    bg: 'bg-purple-600', text: 'text-white' },
-      'dungeons': { id: 'nav-dungeons', bg: 'bg-teal-600',   text: 'text-white' }
+      'index':    { id: 'nav-home',     bg: 'bg-blue-600',     text: 'text-white' },
+      'raids':    { id: 'nav-raids',    bg: 'bg-purple-600',   text: 'text-white' },
+      'dungeons': { id: 'nav-dungeons', bg: 'bg-teal-600',     text: 'text-white' }
     };
 
     for (const key in navMap) {
@@ -187,7 +253,37 @@
         if (el) el.classList.add(bg, text);
       }
     }
-  </script>
+
+    // 🔹 Fetch and populate dropdowns
+    fetch("data.json")
+      .then(res => res.json())
+      .then(data => {
+        const raidDesktop = document.getElementById("raidDropdown");
+        const dungeonDesktop = document.getElementById("dungeonDropdown");
+        const raidMobile = document.getElementById("raidDropdownMobile");
+        const dungeonMobile = document.getElementById("dungeonDropdownMobile");
+
+        const createLink = (type, key, name) =>
+          `<a href="activity.html?type=${type}&name=${key}" class="block px-4 py-2 hover:bg-gray-700">${name}</a>`;
+
+        const createMobileLink = (type, key, name) =>
+          `<a href="activity.html?type=${type}&name=${key}" class="block hover:text-gray-300">${name}</a>`;
+
+        for (const [key, raid] of Object.entries(data.raids || {})) {
+          raidDesktop.innerHTML += createLink("raid", key, raid.displayName);
+          raidMobile.innerHTML += createMobileLink("raid", key, raid.displayName);
+        }
+
+        for (const [key, dungeon] of Object.entries(data.dungeons || {})) {
+          dungeonDesktop.innerHTML += createLink("dungeon", key, dungeon.displayName);
+          dungeonMobile.innerHTML += createMobileLink("dungeon", key, dungeon.displayName);
+        }
+      })
+      .catch(err => {
+        console.error("Failed to load dropdown data:", err);
+      });
+  });
+</script>
 
 </body>
 </html>
