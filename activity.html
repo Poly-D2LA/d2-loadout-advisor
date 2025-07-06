@@ -26,7 +26,7 @@
   </style>
 </head>
 <body class="text-white min-h-screen flex flex-col bg-gradient-to-br from-gray-800 via-gray-900 to-pink-950">
-<main class="flex-grow p-6">
+
   
 <!-- Navbar -->
 <nav class="relative z-50 w-full bg-gradient-to-b from-black/80 via-gray-900/60 to-transparent text-white shadow backdrop-blur-sm border-b border-gray-700" x-data="{ open: false }">
@@ -35,7 +35,7 @@
     <div class="text-lg font-bold tracking-wide">D2 Loadout Advisor</div>
 
    <!-- Desktop Nav -->
-<div class="hidden md:flex space-x-4 text-sm md:text-base items-center relative">
+<div class="hidden md:flex space-x-3 text-sm md:text-base items-center relative">
   <a href="index.html" id="nav-home" class="transition font-semibold px-2 py-1 rounded hover:!text-blue-300">💠 Home</a>
   <a href="about.html" id="nav-about" class="transition font-semibold px-2 py-1 rounded hover:!text-yellow-300">❔ About</a>
 
@@ -56,7 +56,7 @@
     </button>
     <div
       id="raidDropdown"
-      class="absolute top-full left-2 hidden md:group-hover:block bg-gray-800 rounded shadow-lg z-50 w-max text-left pr-4 p-2"
+      class="absolute top-full left-2 min-w-full hidden md:group-hover:block bg-gray-800 rounded shadow-lg z-[100] w-max text-left pr-4 p-2"
       :class="{ 'block': open }"
     >
       <a href="raids.html" class="block px-4 py-2 hover:bg-gray-700 rounded text-purple-300 font-semibold">Overview</a>
@@ -64,23 +64,25 @@
   </div>
 
   <!-- Dungeons Dropdown -->
-  <div class="group relative" x-data="{ open: false }">
-    <button
-      id="nav-dungeons"
-      class="transition font-semibold px-2 py-1 rounded hover:text-teal-300 inline-flex items-center gap-1"
-      @click="open = !open"
-      @click.away="open = false"
-    >
-      🗝️ Dungeons
-      <svg class="w-4 h-4 mt-0.5 transform transition-transform duration-200"
-           :class="{ 'rotate-180': open }"
-           fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-      </svg>
-    </button>
+ 
+<div class="group relative" x-data="{ open: false }">
+<button
+  id="nav-dungeons"
+  class="transition font-semibold px-2 py-1 rounded hover:text-teal-300 inline-flex items-center gap-1"
+  @click="open = !open"
+  @click.away="open = false"
+>
+  <span class="text-lg">🗝️</span> Dungeons
+  <svg class="w-4 h-4 mt-0.5 ml-1 transform transition-transform duration-200"
+       :class="{ 'rotate-180': open }"
+       fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+  </svg>
+</button>
+
     <div
       id="dungeonDropdown"
-      class="absolute top-full left-9 -translate-x-1/2 hidden md:group-hover:block bg-gray-800 rounded shadow-lg z-[9999] w-max text-left pr-4 p-2"
+      class="absolute top-full left-0 min-w-full hidden md:group-hover:block bg-gray-800 rounded shadow-lg z-[100] w-max text-left pr-4 p-2"
       :class="{ 'block': open }"
     >
       <a href="dungeons.html" class="block px-4 py-2 pr-4 hover:bg-gray-700 rounded text-teal-300 font-semibold text-left">Overview</a>
@@ -101,33 +103,33 @@
   </div>
 
 <!-- Mobile Dropdown -->
-<div x-show="open" class="md:hidden px-4 pb-4 space-y-4 text-sm">
+<div x-show="open" class="md:hidden px-4 pb-4 space-y-4 text-lg">
   <!-- General Links -->
   <div class="pl-3 space-y-1 border-l border-gray-600">
-<a href="index.html" class="flex items-center gap-0 hover:text-blue-300 font-semibold">
-  <span class="text-lg w-6 text-center">💠</span><span>Home</span>
+<a href="index.html" class="flex items-center gap-0 hover:text-blue-300 font-semibold ">
+  <span class="text-lg w-6 text-center">💠</span> <span>Home</span>
 </a>
-<a href="about.html" class="flex items-center gap-0 hover:text-yellow-300 font-semibold">
-  <span class="text-lg w-6 text-center">❔</span> <span>About</span>
+<a href="about.html" class="flex items-center gap-0 hover:text-yellow-300 font-semibold ">
+  <span class="text-base w-6 text-center">❔</span><span>About</span>
 </a>
   </div>
 
 
   <!-- Raids Section -->
   <div>
-    <div class="flex items-center gap-0 text-purple-300 font-semibold uppercase tracking-wide text-xs mb-1 border-b border-purple-500 pb-1">
-      <span class="w-6 text-center">🛡️</span> <span>Raids</span>
+    <div class="flex items-center gap-0 text-purple-300 font-semibold uppercase tracking-wide text-s mb-1 border-b border-purple-500 pb-1">
+      <span class="text-xl w-6 text-center">🛡️</span> <span>Raids</span>
     </div>
     <div id="raidDropdownMobile" class="space-y-1 pl-3 border-l border-purple-500">
-      <a href="raids.html" class="block hover:text-purple-200 font-semibold">Overview</a>
+      <a href="raids.html" class="block hover:text-purple-200 font-semibold text-lg">Overview</a>
       <!-- Raid links injected here -->
     </div>
   </div>
 
   <!-- Dungeons Section -->
   <div>
-    <div class="flex items-center gap-0 text-teal-300 font-semibold uppercase tracking-wide text-xs mb-1 border-b border-teal-500 pb-1">
-      <span class="w-6 text-center">🗝️</span> <span>Dungeons</span>
+    <div class="flex items-center gap-0 text-teal-300 font-semibold uppercase tracking-wide text-s mb-1 border-b border-teal-500 pb-1">
+      <span class="text-xl w-6 text-center">🗝️</span> <span>Dungeons</span>
     </div>
     <div id="dungeonDropdownMobile" class="space-y-1 pl-3 border-l border-teal-500">
       <a href="dungeons.html" class="block hover:text-teal-200 font-semibold">Overview</a>
@@ -137,12 +139,7 @@
 </div>
 </nav>
 
-
-
-
-
-
-
+<main class="flex-grow p-6">
   <h1 id="activity-title" class="text-3xl md:text-5xl font-bold text-center mb-4 my-5">Loading...</h1>
 
   <!-- Activity Image -->
@@ -153,7 +150,7 @@
   </div>
 
 <!-- Difficulty Toggle (moved outside scroll zone) -->
-<div id="difficulty-controls" class="sticky top-0 z-40 bg-gray-900/80 backdrop-blur-sm py-4 mb-4">
+<div id="difficulty-controls" class="sticky top-0 z-40 backdrop-blur-sm py-4 mb-4">
   <div class="flex justify-center gap-4">
     <button onclick="setDifficulty('Normal', this)" id="normalBtn" class="px-4 py-2 rounded bg-blue-600 hover:bg-blue-500 transition">Normal</button>
     <button onclick="setDifficulty('Master', this)" id="masterBtn" class="px-4 py-2 rounded bg-red-600 hover:bg-red-500 transition">Master</button>
@@ -190,6 +187,41 @@
 
 
 <script>
+      //  Modal Encounter tips area
+  const encounterTips = {
+  "substratum": "Use a Well of Radiance during the damage phase to stay alive.",
+  "herald-of-finality": "Watch for the overload champions near the second plate.",
+  "repository": "Clear adds quickly to avoid being overwhelmed.",
+  "verity": "Coordinate supers for burst damage.",
+  "the-witness": "Use Divinity and Well of Radiance for boss DPS."
+  // Add more keyed by encounter ID
+};
+
+function openTipModal(encounterKey) {
+  const modal = document.getElementById("tipModal");
+  const content = document.getElementById("tipModalContent");
+  content.innerText = encounterTips[encounterKey] || "No tips available for this encounter.";
+  modal.classList.remove("hidden");
+}
+
+function closeTipModal() {
+  document.getElementById("tipModal").classList.add("hidden");
+}
+    // 🔑 Escape key closes modal
+    document.addEventListener("keydown", (e) => {
+    const modal = document.getElementById("tipModal");
+    if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+    closeTipModal();
+  }
+});
+    // 🔲 Click outside the modal box to close
+document.getElementById("tipModal").addEventListener("click", (e) => {
+  const modalBox = document.getElementById("tipModalBox");
+  if (!modalBox.contains(e.target)) {
+    closeTipModal();
+  }
+});
+  
   const params = new URLSearchParams(window.location.search);
   const type = params.get("type");
   const name = params.get("name");
@@ -296,7 +328,7 @@ section.innerHTML = `
     </button>
     <div id="${collapseId}" class="px-4 pb-4 hidden">
 ${encounter.image ? `
-  <div class="relative w-full aspect-[3/1] sm:aspect-[5/2] lg:aspect-[16/5] overflow-hidden rounded mb-4 bg-gray-700">
+  <div class="relative w-full aspect-[3/1] sm:aspect-[5/2] lg:aspect-[16/5] overflow-hidden rounded mt-4 mb-4 bg-gray-700">
     <img src="${encounter.image}" alt="${encounter.displayName}" class="w-full h-full object-cover object-center" loading="lazy" />
     
     <button onclick="openTipModal('${key}')" 
@@ -497,42 +529,8 @@ fetch("data.json")
       if (el) el.classList.add(bg, text);
     }
    
-    //  Modal Encounter tips area
-  const encounterTips = {
-  "encounter-1": "Use a Well of Radiance during the damage phase to stay alive.",
-  "encounter-2": "Watch for the overload champions near the second plate.",
-  // Add more keyed by encounter ID
-};
-
-function openTipModal(encounterKey) {
-  const modal = document.getElementById("tipModal");
-  const content = document.getElementById("tipModalContent");
-  content.innerText = encounterTips[encounterKey] || "No tips available for this encounter.";
-  modal.classList.remove("hidden");
-}
-
-function closeTipModal() {
-  document.getElementById("tipModal").classList.add("hidden");
-}
-    // 🔑 Escape key closes modal
-    document.addEventListener("keydown", (e) => {
-    const modal = document.getElementById("tipModal");
-    if (e.key === "Escape" && !modal.classList.contains("hidden")) {
-    closeTipModal();
   }
-});
-    // 🔲 Click outside the modal box to close
-document.getElementById("tipModal").addEventListener("click", (e) => {
-  const modalBox = document.getElementById("tipModalBox");
-  if (!modalBox.contains(e.target)) {
-    closeTipModal();
-  }
-});
 
-  }
-</script>
-
-<script>
   document.addEventListener("DOMContentLoaded", () => {
     const path = window.location.pathname;
     const filename = path.split("/").pop().split(".")[0]; // e.g. "about"

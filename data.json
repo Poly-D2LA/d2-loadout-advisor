@@ -948,7 +948,1357 @@
       }
     }
   }
+},
+    
+    "salvations-edge": {
+  "displayName": "Salvation's Edge",
+  "image": "images/salvations-edge/banner.jpg",
+  "encounters": {
+    "substratum": {
+      "displayName": "Substratum",
+      "icon": "🌀",
+      "image": "images/salvations-edge/substratum.jpg",
+      "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wolftone Draw", "alt": "Arbalest" },
+            { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Sword", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Golden Gun", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Heart of Inmost Light", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Sword", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Sentinel Shield", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Verity's Brow", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Trinity Ghoul", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Null Composure", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Omnioculus", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wish-Ender", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Super", "item": "Shadowshot", "alt": "Silence and Squall" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Loreley Splendor", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Hammer of Sol", "alt": "Glacial Quake" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Controverse Hold", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Forbearance", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Chaos Reach" }
+          ]
+        }
+      }
+    },
+    "herald-of-finality": {
+      "displayName": "Herald of Finality",
+      "icon": "🪨",
+      "image": "images/salvations-edge/herald.jpg",
+      "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Star-Eater Scales", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Submission", "alt": "Riptide" },
+            { "label": "Super", "item": "Blade Barrage", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Helm of Saint-14", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Divinity", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Ward of Dawn", "alt": "Thundercrash" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Lunafaction Boots", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Thunderlord", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Zaouli's Bane", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Chaos Reach" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Gyrfalcon’s Hauberk", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Izanagi’s Burden", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Tractor Cannon", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Shadowshot", "alt": "Golden Gun" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Cuirass of the Falling Star", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Witherhoard", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Thundercrash", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Boots of the Assembler", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Divinity", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Wendigo GL3", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Well of Radiance" }
+          ]
+        }
+      }
+    },
+    "repository": {
+      "displayName": "Repository",
+      "icon": "📚",
+      "image": "images/salvations-edge/repository.jpg",
+            "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Star-Eater Scales", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Submission", "alt": "Riptide" },
+            { "label": "Super", "item": "Blade Barrage", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Helm of Saint-14", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Divinity", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Ward of Dawn", "alt": "Thundercrash" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Lunafaction Boots", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Thunderlord", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Zaouli's Bane", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Chaos Reach" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Gyrfalcon’s Hauberk", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Izanagi’s Burden", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Tractor Cannon", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Shadowshot", "alt": "Golden Gun" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Cuirass of the Falling Star", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Witherhoard", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Thundercrash", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Boots of the Assembler", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Divinity", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Wendigo GL3", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Well of Radiance" }
+          ]
+        }
+      }
+    },
+    "verity": {
+      "displayName": "Verity",
+      "icon": "👁️",
+      "image": "images/salvations-edge/verity.jpg",
+            "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Star-Eater Scales", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Submission", "alt": "Riptide" },
+            { "label": "Super", "item": "Blade Barrage", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Helm of Saint-14", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Divinity", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Ward of Dawn", "alt": "Thundercrash" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Lunafaction Boots", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Thunderlord", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Zaouli's Bane", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Chaos Reach" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Gyrfalcon’s Hauberk", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Izanagi’s Burden", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Tractor Cannon", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Shadowshot", "alt": "Golden Gun" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Cuirass of the Falling Star", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Witherhoard", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Thundercrash", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Boots of the Assembler", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Divinity", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Wendigo GL3", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Well of Radiance" }
+          ]
+        }
+      }
+    },
+    "the-witness": {
+      "displayName": "The Witness",
+      "icon": "👑",
+      "image": "images/salvations-edge/the-witness.jpg",
+            "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Star-Eater Scales", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Submission", "alt": "Riptide" },
+            { "label": "Super", "item": "Blade Barrage", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Helm of Saint-14", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Divinity", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Ward of Dawn", "alt": "Thundercrash" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Lunafaction Boots", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Thunderlord", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Zaouli's Bane", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Chaos Reach" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Gyrfalcon’s Hauberk", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Izanagi’s Burden", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Tractor Cannon", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Shadowshot", "alt": "Golden Gun" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Cuirass of the Falling Star", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Witherhoard", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Thundercrash", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Boots of the Assembler", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Divinity", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Wendigo GL3", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Well of Radiance" }
+          ]
+        }
+      }
+    }
+  }
+},
+    
+    "last-wish": {
+  "displayName": "Last Wish",
+  "image": "images/last-wish/banner.jpg",
+  "encounters": {
+    "kalli": {
+      "displayName": "Kalli, the Corrupted",
+      "icon": "🕯️",
+      "image": "images/last-wish/kalli.jpg",
+      "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Wish-Ender" },
+            { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Blade Barrage", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Heart of Inmost Light", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Sword", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Sentinel Shield", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Verity's Brow", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Trinity Ghoul", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Null Composure", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Omnioculus", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wish-Ender", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Super", "item": "Silence and Squall", "alt": "Shadowshot" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Loreley Splendor", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Hammer of Sol", "alt": "Glacial Quake" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Controverse Hold", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Forbearance", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Chaos Reach" }
+          ]
+        }
+      }
+    },
+    "shuro-chi": {
+      "displayName": "Shuro Chi, the Corrupted",
+      "icon": "🎼",
+      "image": "images/last-wish/shuro-chi.jpg",
+       "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Wish-Ender" },
+            { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Blade Barrage", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Heart of Inmost Light", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Sword", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Sentinel Shield", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Verity's Brow", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Trinity Ghoul", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Null Composure", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Omnioculus", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wish-Ender", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Super", "item": "Silence and Squall", "alt": "Shadowshot" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Loreley Splendor", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Hammer of Sol", "alt": "Glacial Quake" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Controverse Hold", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Forbearance", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Chaos Reach" }
+          ]
+        }
+      }
+    },
+    "morgeth": {
+      "displayName": "Morgeth, the Spirekeeper",
+      "icon": "🪨",
+      "image": "images/last-wish/morgeth.jpg",
+       "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Wish-Ender" },
+            { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Blade Barrage", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Heart of Inmost Light", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Sword", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Sentinel Shield", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Verity's Brow", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Trinity Ghoul", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Null Composure", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Omnioculus", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wish-Ender", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Super", "item": "Silence and Squall", "alt": "Shadowshot" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Loreley Splendor", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Hammer of Sol", "alt": "Glacial Quake" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Controverse Hold", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Forbearance", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Chaos Reach" }
+          ]
+        }
+      }
+    },
+    "vault": {
+      "displayName": "The Vault",
+      "icon": "🔐",
+      "image": "images/last-wish/vault.jpg",
+       "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Wish-Ender" },
+            { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Blade Barrage", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Heart of Inmost Light", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Sword", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Sentinel Shield", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Verity's Brow", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Trinity Ghoul", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Null Composure", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Omnioculus", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wish-Ender", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Super", "item": "Silence and Squall", "alt": "Shadowshot" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Loreley Splendor", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Hammer of Sol", "alt": "Glacial Quake" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Controverse Hold", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Forbearance", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Chaos Reach" }
+          ]
+        }
+      }
+    },
+    "riven": {
+      "displayName": "Riven of a Thousand Voices",
+      "icon": "🐉",
+      "image": "images/last-wish/riven.jpg",
+       "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Wish-Ender" },
+            { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Blade Barrage", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Heart of Inmost Light", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Sword", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Sentinel Shield", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Verity's Brow", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Trinity Ghoul", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Null Composure", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Omnioculus", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wish-Ender", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Super", "item": "Silence and Squall", "alt": "Shadowshot" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Loreley Splendor", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Hammer of Sol", "alt": "Glacial Quake" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Controverse Hold", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Forbearance", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Chaos Reach" }
+          ]
+        }
+      }
+    },
+    "queenswalk": {
+      "displayName": "Queenswalk",
+      "icon": "👑",
+      "image": "images/last-wish/queenswalk.jpg",
+       "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Wish-Ender" },
+            { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Blade Barrage", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Heart of Inmost Light", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Sword", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Sentinel Shield", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Verity's Brow", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Trinity Ghoul", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Null Composure", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Omnioculus", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wish-Ender", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Super", "item": "Silence and Squall", "alt": "Shadowshot" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Loreley Splendor", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Hammer of Sol", "alt": "Glacial Quake" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Controverse Hold", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Forbearance", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Chaos Reach" }
+          ]
+        }
+      }
+    }
+  }
+},  
+    
+  "garden-of-salvation": {
+  "displayName": "Garden of Salvation",
+  "image": "images/garden-of-salvation/banner.jpg",
+  "encounters": {
+    "evade-consecrated-mind": {
+      "displayName": "Evade Consecrated Mind",
+      "icon": "🌿",
+      "image": "images/garden-of-salvation/evade.jpg",
+      "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Wish-Ender" },
+            { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Blade Barrage", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Heart of Inmost Light", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Sword", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Sentinel Shield", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Verity's Brow", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Trinity Ghoul", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Null Composure", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Omnioculus", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wish-Ender", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Super", "item": "Silence and Squall", "alt": "Shadowshot" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Loreley Splendor", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Hammer of Sol", "alt": "Glacial Quake" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Controverse Hold", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Forbearance", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Chaos Reach" }
+          ]
+        }
+      }
+    },
+    "defend-conflux": {
+      "displayName": "Defend the Conflux",
+      "icon": "🌀",
+      "image": "images/garden-of-salvation/conflux.jpg",
+      "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Star-Eater Scales", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Wish-Ender" },
+            { "label": "Energy", "item": "Funnelweb", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Thunderlord", "alt": "Falling Guillotine" },
+            { "label": "Super", "item": "Golden Gun", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Cuirass of the Falling Star", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Rocket Launcher", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Thundercrash", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Lunafaction Boots", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Vex Mythoclast", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Deliverance", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Gyrfalcon’s Hauberk", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wish-Ender", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Super", "item": "Shadowshot", "alt": "Silence and Squall" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Ursa Furiosa", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Auto Rifle" },
+            { "label": "Heavy", "item": "Commemoration", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Sentinel Shield", "alt": "Glacial Quake" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Secant Filaments", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Deliverance" },
+            { "label": "Heavy", "item": "Wendigo GL3", "alt": "Cataclysmic" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Chaos Reach" }
+          ]
+        }
+      }
+    },
+    "consecrated-mind-dps": {
+      "displayName": "Consecrated Mind DPS",
+      "icon": "🧠",
+      "image": "images/garden-of-salvation/consecrated.jpg",
+      "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Star-Eater Scales", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Succession", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Submission", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Blade Barrage", "alt": "Golden Gun" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Cuirass of the Falling Star", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Succession", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Rocket Launcher", "alt": "Retrofit Escapade" },
+            { "label": "Super", "item": "Thundercrash", "alt": "Hammer of Sol" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Lunafaction Boots", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Deliverance" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Star-Eater Scales", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Succession", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Blade Barrage", "alt": "Golden Gun" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Cuirass of the Falling Star", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Succession", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Rocket Launcher", "alt": "Retrofit Escapade" },
+            { "label": "Super", "item": "Thundercrash", "alt": "Hammer of Sol" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Lunafaction Boots", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Deliverance" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        }
+      }
+    },
+    "sanctified-mind": {
+      "displayName": "Sanctified Mind",
+      "icon": "🕸️",
+      "image": "images/garden-of-salvation/sanctified.jpg",
+      "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Star-Eater Scales", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Succession", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Submission", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Blade Barrage", "alt": "Golden Gun" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Cuirass of the Falling Star", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Succession", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Rocket Launcher", "alt": "Retrofit Escapade" },
+            { "label": "Super", "item": "Thundercrash", "alt": "Hammer of Sol" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Lunafaction Boots", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Deliverance" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Gyrfalcon’s Hauberk", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Succession", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Shadowshot", "alt": "Silence and Squall" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Loreley Splendor", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Succession", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Hammer of Sol", "alt": "Glacial Quake" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Controverse Hold", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Forbearance", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Chaos Reach" }
+          ]
+        }
+      }
+    }
+  }
+},
+    
+    "deep-stone-crypt": {
+  "displayName": "Deep Stone Crypt",
+  "image": "images/deep-stone-crypt/banner.jpg",
+  "encounters": {
+    "crypt-security": {
+      "displayName": "Crypt Security",
+      "icon": "🧊",
+      "image": "images/deep-stone-crypt/crypt-security.jpg",
+      "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Omnioculus", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Wish-Ender" },
+            { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Shadowshot", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Heart of Inmost Light", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Sword", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Sentinel Shield", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Verity's Brow", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Trinity Ghoul", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Null Composure", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Gyrfalcon’s Hauberk", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wish-Ender", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Silence and Squall", "alt": "Blade Barrage" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Loreley Splendor", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Hammer of Sol", "alt": "Glacial Quake" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Controverse Hold", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Forbearance", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Chaos Reach" }
+          ]
+        }
+      }
+    },
+    "atraks-1": {
+      "displayName": "Atraks-1, Fallen Exo",
+      "icon": "🧬",
+      "image": "images/deep-stone-crypt/atraks.jpg",
+            "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Omnioculus", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Wish-Ender" },
+            { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Shadowshot", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Heart of Inmost Light", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Sword", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Sentinel Shield", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Verity's Brow", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Trinity Ghoul", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Null Composure", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Gyrfalcon’s Hauberk", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wish-Ender", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Silence and Squall", "alt": "Blade Barrage" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Loreley Splendor", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Hammer of Sol", "alt": "Glacial Quake" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Controverse Hold", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Forbearance", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Chaos Reach" }
+          ]
+        }
+      }
+    },
+    "descent": {
+      "displayName": "Descent",
+      "icon": "🚀",
+      "image": "images/deep-stone-crypt/descent.jpg",
+            "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Omnioculus", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Wish-Ender" },
+            { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Shadowshot", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Heart of Inmost Light", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Sword", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Sentinel Shield", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Verity's Brow", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Trinity Ghoul", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Null Composure", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Gyrfalcon’s Hauberk", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wish-Ender", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Silence and Squall", "alt": "Blade Barrage" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Loreley Splendor", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Hammer of Sol", "alt": "Glacial Quake" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Controverse Hold", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Forbearance", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Chaos Reach" }
+          ]
+        }
+      }
+    },
+    "taniks": {
+      "displayName": "Taniks, the Abomination",
+      "icon": "💀",
+      "image": "images/deep-stone-crypt/taniks.jpg",
+            "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Omnioculus", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Wish-Ender" },
+            { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Shadowshot", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Heart of Inmost Light", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Sword", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Sentinel Shield", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Verity's Brow", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Trinity Ghoul", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Null Composure", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Gyrfalcon’s Hauberk", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wish-Ender", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Silence and Squall", "alt": "Blade Barrage" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Loreley Splendor", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Hammer of Sol", "alt": "Glacial Quake" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Controverse Hold", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Forbearance", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Chaos Reach" }
+          ]
+        }
+      }
+    }
+  }
+},
+    
+    "vow-of-the-disciple": {
+  "displayName": "Vow of the Disciple",
+  "image": "images/vow-of-the-disciple/banner.jpg",
+  "encounters": {
+    "acquisition": {
+      "displayName": "Acquisition",
+      "icon": "📜",
+      "image": "images/vow-of-the-disciple/acquisition.jpg",
+      "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Wish-Ender" },
+            { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Blade Barrage", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Heart of Inmost Light", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Sword", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Sentinel Shield", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Verity's Brow", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Trinity Ghoul", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Null Composure", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Omnioculus", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wish-Ender", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Super", "item": "Silence and Squall", "alt": "Shadowshot" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Loreley Splendor", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Hammer of Sol", "alt": "Glacial Quake" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Controverse Hold", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Forbearance", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Chaos Reach" }
+          ]
+        }
+      }
+    },
+    "collection": {
+      "displayName": "Collection",
+      "icon": "📦",
+      "image": "images/vow-of-the-disciple/collection.jpg",
+            "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Wish-Ender" },
+            { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Blade Barrage", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Heart of Inmost Light", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Sword", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Sentinel Shield", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Verity's Brow", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Trinity Ghoul", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Null Composure", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Omnioculus", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wish-Ender", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Super", "item": "Silence and Squall", "alt": "Shadowshot" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Loreley Splendor", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Hammer of Sol", "alt": "Glacial Quake" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Controverse Hold", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Forbearance", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Chaos Reach" }
+          ]
+        }
+      }
+    },
+    "exhibition": {
+      "displayName": "Exhibition",
+      "icon": "🖼️",
+      "image": "images/vow-of-the-disciple/exhibition.jpg",
+            "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Wish-Ender" },
+            { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Blade Barrage", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Heart of Inmost Light", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Sword", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Sentinel Shield", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Verity's Brow", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Trinity Ghoul", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Null Composure", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Omnioculus", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wish-Ender", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Super", "item": "Silence and Squall", "alt": "Shadowshot" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Loreley Splendor", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Hammer of Sol", "alt": "Glacial Quake" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Controverse Hold", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Forbearance", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Chaos Reach" }
+          ]
+        }
+      }
+    },
+    "rhulk": {
+      "displayName": "Rhulk, Disciple of the Witness",
+      "icon": "🦿",
+      "image": "images/vow-of-the-disciple/rhulk.jpg",
+            "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Wish-Ender" },
+            { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Blade Barrage", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Heart of Inmost Light", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Sword", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Sentinel Shield", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Verity's Brow", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Trinity Ghoul", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Null Composure", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Omnioculus", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wish-Ender", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Super", "item": "Silence and Squall", "alt": "Shadowshot" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Loreley Splendor", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Hammer of Sol", "alt": "Glacial Quake" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Controverse Hold", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Forbearance", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Chaos Reach" }
+          ]
+        }
+      }
+    }
+  }
+},
+    
+    "root-of-nightmares": {
+  "displayName": "Root of Nightmares",
+  "image": "images/root-of-nightmares/banner.jpg",
+  "encounters": {
+    "cataclysm": {
+      "displayName": "Cataclysm",
+      "icon": "🌌",
+      "image": "images/root-of-nightmares/cataclysm.jpg",
+      "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Star-Eater Scales", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Wish-Ender" },
+            { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Blade Barrage", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Heart of Inmost Light", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Sword", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Sentinel Shield", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Lunafaction Boots", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Trinity Ghoul", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Null Composure", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Gyrfalcon’s Hauberk", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wish-Ender", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Silence and Squall", "alt": "Shadowshot" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Loreley Splendor", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Hammer of Sol", "alt": "Glacial Quake" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Controverse Hold", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Forbearance", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Chaos Reach" }
+          ]
+        }
+      }
+    },
+    "scission": {
+      "displayName": "Scission",
+      "icon": "⚔️",
+      "image": "images/root-of-nightmares/scission.jpg",
+            "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Star-Eater Scales", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Wish-Ender" },
+            { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Blade Barrage", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Heart of Inmost Light", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Sword", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Sentinel Shield", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Lunafaction Boots", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Trinity Ghoul", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Null Composure", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Gyrfalcon’s Hauberk", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wish-Ender", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Silence and Squall", "alt": "Shadowshot" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Loreley Splendor", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Hammer of Sol", "alt": "Glacial Quake" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Controverse Hold", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Forbearance", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Chaos Reach" }
+          ]
+        }
+      }
+    },
+    "macrocosm": {
+      "displayName": "Macrocosm",
+      "icon": "🌠",
+      "image": "images/root-of-nightmares/macrocosm.jpg",
+            "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Star-Eater Scales", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Wish-Ender" },
+            { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Blade Barrage", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Heart of Inmost Light", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Sword", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Sentinel Shield", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Lunafaction Boots", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Trinity Ghoul", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Null Composure", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Gyrfalcon’s Hauberk", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wish-Ender", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Silence and Squall", "alt": "Shadowshot" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Loreley Splendor", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Hammer of Sol", "alt": "Glacial Quake" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Controverse Hold", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Forbearance", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Chaos Reach" }
+          ]
+        }
+      }
+    },
+    "nezarec": {
+      "displayName": "Nezarec, Final God of Pain",
+      "icon": "🕱",
+      "image": "images/root-of-nightmares/nezarec.jpg",
+            "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Star-Eater Scales", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Wish-Ender" },
+            { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Blade Barrage", "alt": "Arc Staff" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Heart of Inmost Light", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Sword", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Sentinel Shield", "alt": "Burning Maul" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Lunafaction Boots", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Trinity Ghoul", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Null Composure", "alt": "Riptide" },
+            { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Gyrfalcon’s Hauberk", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wish-Ender", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Witherhoard", "alt": "Riptide" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Silence and Squall", "alt": "Shadowshot" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Loreley Splendor", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Gjallarhorn", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Hammer of Sol", "alt": "Glacial Quake" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Controverse Hold", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Forbearance", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" },
+            { "label": "Super", "item": "Nova Bomb", "alt": "Chaos Reach" }
+          ]
+        }
+      }
+    }
+  }
 }
+
+
+
+
+  
+
 
 },
   
