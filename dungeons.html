@@ -18,6 +18,11 @@
   <title>Dungeons | D2LA</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+     <style>
+    html {
+      background-color: #1f2937; /* Tailwind's gray-800 */
+    }
+  </style>
 </head>
 <body class="text-white min-h-screen flex flex-col bg-gradient-to-br from-gray-800 via-gray-900 to-pink-950">
 
@@ -29,58 +34,64 @@
     <!-- Logo -->
     <div class="text-lg font-bold tracking-wide">D2 Loadout Advisor</div>
 
-    <!-- Desktop Nav -->
-    <div class="hidden md:flex space-x-4 text-sm md:text-base items-center relative">
-      <a href="index.html" class="hover:text-blue-300 transition font-semibold" id="nav-home">💠 Home</a>
+   <!-- Desktop Nav -->
+<div class="hidden md:flex space-x-4 text-sm md:text-base items-center relative">
+  <a href="index.html" id="nav-home" class="transition font-semibold px-2 py-1 rounded hover:!text-blue-300">💠 Home</a>
+  <a href="about.html" id="nav-about" class="transition font-semibold px-2 py-1 rounded hover:!text-yellow-300">❔ About</a>
 
-      <!-- Raids Dropdown -->
-      <div class="group relative" x-data="{ open: false }">
-        <button
-          class="hover:text-purple-300 transition font-semibold inline-flex items-center gap-1"
-          @click="open = !open"
-          @click.away="open = false"
-        >
-          🛡️ Raids
-          <svg class="w-4 h-4 mt-0.5 transform transition-transform duration-200"
-               :class="{ 'rotate-180': open }"
-               fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-        <div
-          id="raidDropdown"
-          class="absolute top-full left-2 hidden md:group-hover:block bg-gray-800 rounded shadow-lg z-50 w-max text-left pr-4 p-2"
-          :class="{ 'block': open }"
-        >
-          <a href="raids.html" class="block px-4 py-2 hover:bg-gray-700 rounded text-purple-300 font-semibold">Overview</a>
-          <!-- Raid links injected here -->
-        </div>
-      </div>
+  <!-- Raids Dropdown -->
+  <div class="group relative" x-data="{ open: false }">
+    <button
+      id="nav-raids"
+      class="transition font-semibold px-2 py-1 rounded hover:text-purple-300 inline-flex items-center gap-1"
+      @click="open = !open"
+      @click.away="open = false"
+    >
+      🛡️ Raids
+      <svg class="w-4 h-4 mt-0.5 transform transition-transform duration-200"
+           :class="{ 'rotate-180': open }"
+           fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+<div
+  id="raidDropdown"
+  x-show="open"
+  x-transition
+  class="absolute top-full left-2 bg-gray-800 rounded shadow-lg z-50 w-max text-left pr-4 p-2"
+>
 
-      <!-- Dungeons Dropdown -->
-      <div class="group relative" x-data="{ open: false }">
-        <button
-          class="hover:text-teal-300 transition font-semibold inline-flex items-center gap-1"
-          @click="open = !open"
-          @click.away="open = false"
-        >
-          🕳️ Dungeons
-          <svg class="w-4 h-4 mt-0.5 transform transition-transform duration-200"
-               :class="{ 'rotate-180': open }"
-               fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-        <div
-          id="dungeonDropdown"
-          class="absolute top-full left-9 -translate-x-1/2 hidden md:group-hover:block bg-gray-800 rounded shadow-lg z-[9999] w-max text-left pr-4 p-2"
-          :class="{ 'block': open }"
-        >
-          <a href="dungeons.html" class="block px-4 py-2 pr-4 hover:bg-gray-700 rounded text-teal-300 font-semibold text-left">Overview</a>
-          <!-- Dungeon links injected here -->
-        </div>
-      </div>
+      <a href="raids.html" class="block px-4 py-2 hover:bg-gray-700 rounded text-purple-300 font-semibold">Overview</a>
     </div>
+  </div>
+
+  <!-- Dungeons Dropdown -->
+  <div class="group relative" x-data="{ open: false }">
+    <button
+      id="nav-dungeons"
+      class="transition font-semibold px-2 py-1 rounded hover:text-teal-300 inline-flex items-center gap-1"
+      @click="open = !open"
+      @click.away="open = false"
+    >
+      🗝️ Dungeons
+      <svg class="w-4 h-4 mt-0.5 transform transition-transform duration-200"
+           :class="{ 'rotate-180': open }"
+           fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+<div
+  id="dungeonDropdown"
+  x-show="open"
+  x-transition
+  class="absolute top-full left-2 bg-gray-800 rounded shadow-lg z-50 w-max text-left pr-4 p-2"
+>
+
+      <a href="dungeons.html" class="block px-4 py-2 pr-4 hover:bg-gray-700 rounded text-teal-300 font-semibold text-left">Overview</a>
+    </div>
+  </div>
+</div>
+
 
     <!-- Hamburger Button (Mobile) -->
     <button @click="open = !open" class="md:hidden focus:outline-none ml-auto">
@@ -95,12 +106,21 @@
 
 <!-- Mobile Dropdown -->
 <div x-show="open" class="md:hidden px-4 pb-4 space-y-4 text-sm">
-  <a href="index.html" class="block hover:text-blue-300 font-semibold">💠 Home</a>
+  <!-- General Links -->
+  <div class="pl-3 space-y-1 border-l border-gray-600">
+<a href="index.html" class="flex items-center gap-0 hover:text-blue-300 font-semibold">
+  <span class="text-lg w-6 text-center">💠</span><span>Home</span>
+</a>
+<a href="about.html" class="flex items-center gap-0 hover:text-yellow-300 font-semibold">
+  <span class="text-lg w-6 text-center">❔</span> <span>About</span>
+</a>
+  </div>
+
 
   <!-- Raids Section -->
   <div>
-    <div class="text-purple-300 font-semibold uppercase tracking-wide text-xs mb-1 border-b border-purple-500 pb-1">
-      🛡️ Raids
+    <div class="flex items-center gap-0 text-purple-300 font-semibold uppercase tracking-wide text-xs mb-1 border-b border-purple-500 pb-1">
+      <span class="w-6 text-center">🛡️</span> <span>Raids</span>
     </div>
     <div id="raidDropdownMobile" class="space-y-1 pl-3 border-l border-purple-500">
       <a href="raids.html" class="block hover:text-purple-200 font-semibold">Overview</a>
@@ -110,8 +130,8 @@
 
   <!-- Dungeons Section -->
   <div>
-    <div class="text-teal-300 font-semibold uppercase tracking-wide text-xs mb-1 border-b border-teal-500 pb-1">
-      🕳️ Dungeons
+    <div class="flex items-center gap-0 text-teal-300 font-semibold uppercase tracking-wide text-xs mb-1 border-b border-teal-500 pb-1">
+      <span class="w-6 text-center">🗝️</span> <span>Dungeons</span>
     </div>
     <div id="dungeonDropdownMobile" class="space-y-1 pl-3 border-l border-teal-500">
       <a href="dungeons.html" class="block hover:text-teal-200 font-semibold">Overview</a>
@@ -122,6 +142,7 @@
 </nav>
 
 
+
 <h1 class="text-3xl font-bold text-center mb-8 my-5">Choose a Dungeon</h1>
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl w-full mx-auto">
 
@@ -130,7 +151,7 @@
     <div class="w-full h-full bg-gray-800 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
          style="background-image: url('images/shattered-throne/banner.jpg');"></div>
     <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-center">
-      <h2 class="text-white text-xl font-bold tracking-wide">
+      <h2 class="text-white text-4xl font-bold tracking-wide max-w-xs sm:max-w-sm md:max-w-md">
         The Shattered Throne<br><span class="text-sm font-normal opacity-75">(Banner missing)</span>
       </h2>
     </div>
@@ -141,7 +162,7 @@
     <div class="w-full h-full bg-gray-800 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
          style="background-image: url('images/pit-of-heresy/banner.jpg');"></div>
     <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-center">
-      <h2 class="text-white text-xl font-bold tracking-wide">
+      <h2 class="text-white text-4xl font-bold tracking-wide max-w-xs sm:max-w-sm md:max-w-md">
         Pit of Heresy<br><span class="text-sm font-normal opacity-75">(Banner missing)</span>
       </h2>
     </div>
@@ -151,9 +172,9 @@
      class="block w-full h-40 rounded-lg overflow-hidden shadow-lg group bg-gray-900 border border-gray-700 relative">
     <div class="w-full h-full bg-gray-800 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
          style="background-image: url('images/prophecy/banner.jpg');"></div>
-    <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-center">
-      <h2 class="text-white text-xl font-bold tracking-wide">
-        Prophecy<br><span class="text-sm font-normal opacity-75">(Banner missing)</span>
+    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center text-center">
+      <h2 class="text-white text-4xl font-bold tracking-wide max-w-xs sm:max-w-sm md:max-w-md">
+        Prophecy<br><!--<span class="text-sm font-normal opacity-75">(Banner missing)</span>-->
       </h2>
     </div>
   </a>
@@ -163,7 +184,7 @@
     <div class="w-full h-full bg-gray-800 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
          style="background-image: url('images/grasp-of-avarice/banner.jpg');"></div>
     <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-center">
-      <h2 class="text-white text-xl font-bold tracking-wide">
+      <h2 class="text-white text-4xl font-bold tracking-wide max-w-xs sm:max-w-sm md:max-w-md">
         Grasp of Avarice<br><span class="text-sm font-normal opacity-75">(Banner missing)</span>
       </h2>
     </div>
@@ -174,7 +195,7 @@
     <div class="w-full h-full bg-gray-800 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
          style="background-image: url('images/duality/banner.jpg');"></div>
     <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-center">
-      <h2 class="text-white text-xl font-bold tracking-wide">
+      <h2 class="text-white text-4xl font-bold tracking-wide max-w-xs sm:max-w-sm md:max-w-md">
         Duality<br><span class="text-sm font-normal opacity-75">(Banner missing)</span>
       </h2>
     </div>
@@ -185,8 +206,8 @@
     <div class="w-full h-full bg-gray-800 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
          style="background-image: url('images/spire-of-the-watcher/banner.jpg');"></div>
     <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-center">
-      <h2 class="text-white text-xl font-bold tracking-wide">
-        Spire of the Watcher<br><span class="text-sm font-normal opacity-75">(Banner missing)</span>
+      <h2 class="text-white text-4xl font-bold tracking-wide max-w-xs sm:max-w-sm md:max-w-md">
+        Spire of the <br> Watcher<br><span class="text-sm font-normal opacity-75">(Banner missing)</span>
       </h2>
     </div>
   </a>
@@ -196,7 +217,7 @@
     <div class="w-full h-full bg-gray-800 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
          style="background-image: url('images/ghosts-of-the-deep/banner.jpg');"></div>
     <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-center">
-      <h2 class="text-white text-xl font-bold tracking-wide">
+      <h2 class="text-white text-4xl font-bold tracking-wide max-w-xs sm:max-w-sm md:max-w-md">
         Ghosts of the Deep<br><span class="text-sm font-normal opacity-75">(Banner missing)</span>
       </h2>
     </div>
@@ -207,7 +228,7 @@
     <div class="w-full h-full bg-gray-800 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
          style="background-image: url('images/warlords-ruin/banner.jpg');"></div>
     <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-center">
-      <h2 class="text-white text-xl font-bold tracking-wide">
+      <h2 class="text-white text-4xl font-bold tracking-wide max-w-xs sm:max-w-sm md:max-w-md">
         Warlord’s Ruin<br><span class="text-sm font-normal opacity-75">(Banner missing)</span>
       </h2>
     </div>
@@ -227,23 +248,9 @@
 
 
 
- <script>
+<script>
   document.addEventListener("DOMContentLoaded", () => {
-    // 🔹 Highlight active nav link
-    const path = window.location.pathname;
-    const navMap = {
-      'index':    { id: 'nav-home',     bg: 'bg-blue-600',     text: 'text-white' },
-      'raids':    { id: 'nav-raids',    bg: 'bg-purple-600',   text: 'text-white' },
-      'dungeons': { id: 'nav-dungeons', bg: 'bg-teal-600',     text: 'text-white' }
-    };
 
-    for (const key in navMap) {
-      if (path.includes(key)) {
-        const { id, bg, text } = navMap[key];
-        const el = document.getElementById(id);
-        if (el) el.classList.add(bg, text);
-      }
-    }
 
     // 🔹 Fetch and populate dropdowns
     fetch("data.json")
@@ -273,6 +280,41 @@
       .catch(err => {
         console.error("Failed to load dropdown data:", err);
       });
+  });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const path = window.location.pathname;
+    const filename = path.split("/").pop().split(".")[0]; // e.g. "about"
+    const params = new URLSearchParams(window.location.search);
+    const type = params.get("type"); // e.g. "raid"
+
+    const navMap = {
+      index:    { id: "nav-home",     bg: "bg-blue-600",   text: "text-white" },
+      raids:    { id: "nav-raids",    bg: "bg-purple-600", text: "text-white" },
+      dungeons: { id: "nav-dungeons", bg: "bg-teal-600",   text: "text-white" },
+      about:    { id: "nav-about",    bg: "bg-yellow-600", text: "text-white" }
+    };
+
+    // Highlight based on filename
+    if (navMap[filename]) {
+      const { id, bg, text } = navMap[filename];
+      const el = document.getElementById(id);
+      if (el) el.classList.add(bg, text);
+    }
+
+    // Highlight based on activity type (for activity.html?type=raid)
+    if (type === "raid" && navMap.raids) {
+      const { id, bg, text } = navMap.raids;
+      const el = document.getElementById(id);
+      if (el) el.classList.add(bg, text);
+    }
+
+    if (type === "dungeon" && navMap.dungeons) {
+      const { id, bg, text } = navMap.dungeons;
+      const el = document.getElementById(id);
+      if (el) el.classList.add(bg, text);
+    }
   });
 </script>
 </body>

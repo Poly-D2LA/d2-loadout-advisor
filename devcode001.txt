@@ -35,7 +35,7 @@
     <!-- Desktop Nav -->
 <div class="hidden md:flex space-x-4 text-sm md:text-base items-center relative">
   <a href="index.html" id="nav-home" class="transition font-semibold px-2 py-1 rounded">💠 Home</a>
-  <a href="about.html" id="nav-about" class="transition font-semibold px-2 py-1 rounded hover:!text-yellow-300">❔ About</a>
+  <a href="about.html" id="nav-about" class="transition font-semibold px-2 py-1 rounded">❔ About</a>
 
   <!-- Raids Dropdown -->
   <div class="group relative" x-data="{ open: false }">
@@ -210,40 +210,38 @@
 </script>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-  const path = window.location.pathname;
-  let filename = path.split("/").pop().split(".")[0];
-  if (!filename || filename === "dev") filename = "index";
+    const path = window.location.pathname;
+    const filename = path.split("/").pop().split(".")[0]; // e.g. "about"
+    const params = new URLSearchParams(window.location.search);
+    const type = params.get("type"); // e.g. "raid"
 
-  const params = new URLSearchParams(window.location.search);
-  const type = params.get("type");
+    const navMap = {
+      index:    { id: "nav-home",     bg: "bg-blue-600",   text: "text-white" },
+      raids:    { id: "nav-raids",    bg: "bg-purple-600", text: "text-white" },
+      dungeons: { id: "nav-dungeons", bg: "bg-teal-600",   text: "text-white" },
+      about:    { id: "nav-about",    bg: "bg-yellow-600", text: "text-white" }
+    };
 
-  const navMap = {
-    index:    { id: "nav-home",     bg: "bg-blue-600",   text: "text-white" },
-    raids:    { id: "nav-raids",    bg: "bg-purple-600", text: "text-white" },
-    dungeons: { id: "nav-dungeons", bg: "bg-teal-600",   text: "text-white" },
-    about:    { id: "nav-about",    bg: "bg-yellow-600", text: "text-white" }
-  };
+    // Highlight based on filename
+    if (navMap[filename]) {
+      const { id, bg, text } = navMap[filename];
+      const el = document.getElementById(id);
+      if (el) el.classList.add(bg, text);
+    }
 
-  // Highlight based on filename
-  if (navMap[filename]) {
-    const { id, bg, text } = navMap[filename];
-    const el = document.getElementById(id);
-    if (el) el.classList.add(bg, text);
-  }
+    // Highlight based on activity type (for activity.html?type=raid)
+    if (type === "raid" && navMap.raids) {
+      const { id, bg, text } = navMap.raids;
+      const el = document.getElementById(id);
+      if (el) el.classList.add(bg, text);
+    }
 
-  // Highlight based on activity type
-  if (type === "raid" && navMap.raids) {
-    const { id, bg, text } = navMap.raids;
-    const el = document.getElementById(id);
-    if (el) el.classList.add(bg, text);
-  }
-
-  if (type === "dungeon" && navMap.dungeons) {
-    const { id, bg, text } = navMap.dungeons;
-    const el = document.getElementById(id);
-    if (el) el.classList.add(bg, text);
-  }
-});
+    if (type === "dungeon" && navMap.dungeons) {
+      const { id, bg, text } = navMap.dungeons;
+      const el = document.getElementById(id);
+      if (el) el.classList.add(bg, text);
+    }
+  });
 </script>
 
 </body>

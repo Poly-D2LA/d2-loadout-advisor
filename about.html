@@ -3,24 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="D2LA is a Destiny 2 Loadout Advisor that helps Guardians discover curated PvE loadouts, tiered by activity and subclass." />
-  <!-- Essential OG tags -->
-<meta property="og:title" content="D2LA - Destiny 2 Loadout Advisor" />
-<meta property="og:description" content="D2LA is a Destiny 2 Loadout Advisor that helps Guardians discover curated PvE loadouts, tiered by activity and subclass." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://poly-d2la.github.io/d2-loadout-advisor/" />
-<meta property="og:image" content="images/websnap.png" />
-  <!-- Twitter OG tags -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="D2LA - Destiny 2 Loadout Advisor" />
-<meta name="twitter:description" content="Your curated PvE builds and activity-specific loadouts, assembled for endgame glory." />
-<meta name="twitter:image" content="images/websnap.png" />
-  <title>D2LA — Destiny 2 Loadout Advisor</title>
+  <meta name="description" content="Learn what D2LA is — and what it isn’t." />
+  <title>About | D2LA — Destiny 2 Loadout Advisor</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-   <style>
+  <style>
     html {
-      background-color: #1f2937; /* Tailwind's gray-800 */
+      background-color: #1f2937;
     }
   </style>
 </head>
@@ -34,8 +23,8 @@
 
     <!-- Desktop Nav -->
 <div class="hidden md:flex space-x-4 text-sm md:text-base items-center relative">
-  <a href="index.html" id="nav-home" class="transition font-semibold px-2 py-1 rounded">💠 Home</a>
-  <a href="about.html" id="nav-about" class="transition font-semibold px-2 py-1 rounded hover:!text-yellow-300">❔ About</a>
+  <a href="index.html" id="nav-home" class="transition font-semibold px-2 py-1 rounded hover:!text-blue-300">💠 Home</a>
+  <a href="about.html" id="nav-about" class="transition font-semibold px-2 py-1 rounded">❔ About</a>
 
   <!-- Raids Dropdown -->
   <div class="group relative" x-data="{ open: false }">
@@ -136,45 +125,28 @@
 
 
   <!-- Main Content -->
-  <main class="flex-grow flex flex-col items-center p-6">
-    <div class="text-center space-y-6 my-5">
-      <h1 class="text-4xl font-bold">Destiny 2<br>Loadout Advisor<br>⚔️</h1>
-      <p class="text-gray-400">Choose your activity</p>
-    </div>
+  <main class="flex-grow max-w-4xl mx-auto px-6 py-12 space-y-10">
+    <section>
+      <h1 class="text-3xl md:text-4xl font-bold text-yellow-300 mb-4">What is D2LA?</h1>
+      <p class="text-lg text-gray-200 leading-relaxed">
+        D2LA (Destiny 2 Loadout Advisor) is a curated PvE loadout guide designed to help Guardians quickly find effective builds for raids and dungeons. Whether you're a returning player or a seasoned fireteam leader. Loadouts are organized by activity and class, with recommendations for both standard and alternative gear.
+      </p>
+    </section>
 
-    <div class="flex flex-col gap-6 w-full items-center px-4">
-      <a href="raids.html"
-         class="w-full sm:w-[32rem] md:w-[36rem] lg:w-[44rem] h-40 rounded-xl bg-cover bg-center shadow-lg transform hover:scale-[1.03] transition duration-300 ease-out"
-         style="background-image: url('images/raidbannerhome.png');">
-        <div class="bg-black bg-opacity-50 rounded-xl h-full flex items-center justify-center">
-          <span class="text-white text-3xl font-bold tracking-wide drop-shadow-[0_0_3px_black]">
-          Raids
-          </span>
-        </div>
-      </a>
-
-      <a href="dungeons.html"
-         class="w-full sm:w-[32rem] md:w-[36rem] lg:w-[44rem] h-40 rounded-xl bg-cover bg-center shadow-lg transform hover:scale-[1.03] transition duration-300 ease-out"
-         style="background-image: url('images/dungeonbannerhome.jpg');">
-        <div class="bg-black bg-opacity-50 rounded-xl h-full flex items-center justify-center">
-          <span class="text-white text-3xl font-bold tracking-wide drop-shadow-[0_0_3px_black]">
-           Dungeons
-          </span>
-        </div>
-      </a>
-    </div>
+    <section>
+      <h2 class="text-2xl md:text-3xl font-bold text-pink-300 mb-4">What D2LA isn’t.</h2>
+      <p class="text-lg text-gray-400 leading-relaxed">
+        D2LA isn’t a build simulator, a stat calculator, or a replacement for your favourite Destiny content creators. It doesn’t track your inventory or loadouts. While the loadouts have been curated via community concensus, it still remains an opinion and thus should be taken as so. It’s a fast, focused tool to help you get raid-ready without scrolling through spreadsheets or watching 30-minute videos. This tool is merely an assistant but as always, run whatever loadout you want to run. If it helps you get the clear, great!
+      </p>
+    </section>
   </main>
 
-  <!-- Sticky Footer -->
-  <footer class="w-full text-gray-500 text-[0.6rem] text-center py-1 border-t border-gray-800 bg-gradient-to-t from-black/70 via-gray-900/50 to-transparent backdrop-blur-sm leading-tight">
-    Site created by Poly.<br />
-    Loadout info is curated, compiled, and tested by 
-    <a href="https://www.youtube.com/@TheAegisRelic" target="_blank" class="text-blue-400 hover:underline">📺 TheAegisRelic</a>. 
-    View their 
-    <a href="https://docs.google.com/spreadsheets/d/1JM-0SlxVDAi-C6rGVlLxa-J1WGewEeL8Qvq4htWZHhY/edit?gid=1087089423#gid=1087089423" target="_blank" class="text-blue-400 hover:underline">📊 Endgame Tierlist</a>.
+  <!-- Footer -->
+  <footer class="text-center text-sm text-gray-500 py-6">
+    © ${new Date().getFullYear()} D2LA. Not affiliated with Bungie.
   </footer>
 
-  <script>
+<script>
   document.addEventListener("DOMContentLoaded", () => {
 
 
@@ -207,12 +179,10 @@
         console.error("Failed to load dropdown data:", err);
       });
   });
-</script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
+ 
   const path = window.location.pathname;
   let filename = path.split("/").pop().split(".")[0];
-  if (!filename || filename === "dev") filename = "index";
+  if (!filename) filename = "index";
 
   const params = new URLSearchParams(window.location.search);
   const type = params.get("type");
@@ -243,7 +213,7 @@
     const el = document.getElementById(id);
     if (el) el.classList.add(bg, text);
   }
-});
+
 </script>
 
 </body>

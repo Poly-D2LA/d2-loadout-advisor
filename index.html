@@ -18,23 +18,28 @@
   <title>D2LA — Destiny 2 Loadout Advisor — Coming Soon</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+     <style>
+    html {
+      background-color: #1f2937; /* Tailwind's gray-800 */
+    }
+  </style>
 </head>
 <body class="text-white min-h-screen flex flex-col bg-gradient-to-br from-gray-800 via-gray-900 to-pink-950">
 
-  <!-- Navbar -->
+  <!-- Navbar 
 <nav class="w-full bg-gradient-to-b from-black/80 via-gray-900/60 to-transparent text-white shadow backdrop-blur-sm border-b border-gray-700" x-data="{ open: false }">
   <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-    <!-- Logo -->
+   
     <div class="text-lg font-bold tracking-wide">D2 Loadout Advisor</div>
 
-    <!-- Desktop Nav -->
+    
     <div class="hidden md:flex space-x-4 text-sm md:text-base">
       <a href="index.html" class="hover:text-blue-300 transition font-semibold">💠 Home</a>
       <a href="raids.html" class="hover:text-purple-300 transition font-semibold">🛡️ Raids</a>
       <a href="dungeons.html" class="hover:text-teal-300 transition font-semibold">🕳️ Dungeons</a>
     </div>
 
-    <!-- Hamburger Button (Mobile) -->
+    
     <button @click="open = !open" class="md:hidden focus:outline-none">
       <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -45,17 +50,23 @@
     </button>
   </div>
 
-  <!-- Mobile Dropdown -->
+  
   <div x-show="open" class="md:hidden px-4 pb-4 space-y-2 text-sm">
     <a href="index.html" class="block hover:text-blue-300 font-semibold">💠 Home</a>
     <a href="raids.html" class="block hover:text-purple-300 font-semibold">🛡️ Raids</a>
     <a href="dungeons.html" class="block hover:text-teal-300 font-semibold">🕳️ Dungeons</a>
   </div>
-</nav>
+</nav>-->
 
   <!-- Main Content -->
     <main class="flex-grow flex flex-col justify-center items-center p-6">
-    <h1 class="text-4xl md:text-5xl font-bold mb-4">✨ Coming Soon ✨</h1>
+   <h1 class="text-4xl md:text-5xl font-bold mb-4 text-center leading-tight">
+  ✨ Coming Soon ✨<br>
+  <span class="block">Destiny 2</span>
+  <span class="block">Loadout Advisor</span><br>
+  ⚔️
+</h1>
+
     <p class="text-gray-300 max-w-md">Loadout advisor is still being forged in the Light.</p>
   </main>
 
