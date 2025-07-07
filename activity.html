@@ -139,20 +139,23 @@
 </div>
 </nav>
 
-<main class="flex-grow p-6">
+<main id="activity-content" class="opacity-0 transition-opacity duration-300 flex-grow p-6">
   <h1 id="activity-title" class="text-3xl md:text-5xl font-bold text-center mb-4 my-5">Loading...</h1>
 
   <!-- Activity Image -->
   <div class="flex justify-center mb-6">
-    <div class="relative z-10 w-full max-w-3xl h-48 bg-gray-700 rounded-lg shadow-lg overflow-visible">
-      <div id="activity-image" class="absolute inset-0 flex items-center justify-center text-xl">[ Loading Graphic... ]</div>
+    <div class="relative z-10 w-full max-w-3xl h-48 bg-gray-700 rounded-lg shadow-lg overflow-hidden">
+      <div id="activity-image" class="absolute inset-0 flex items-center justify-center text-xl rounded-lg overflow-hidden">[ Loading Graphic... ]</div>
     </div>
   </div>
 
-<!-- Difficulty Toggle (moved outside scroll zone) -->
-<div id="difficulty-controls" class="sticky top-0 z-40 backdrop-blur-sm py-4 mb-10">
-  <div class="flex flex-col items-center space-y-2">
-    <span class="text-sm text-gray-200 font-medium">Choose difficulty</span>
+<!-- Difficulty Toggle (sticky, content-width only) -->
+<div id="difficulty-controls"
+     class="sticky top-0 z-40 backdrop-blur-sm py-4 mt-10 mb-5 w-max mx-auto rounded-lg">
+  <div class="flex flex-col items-center space-y-2 px-4">
+    <span class="text-sm text-gray-200 font-medium px-3 py-1 rounded bg-gray-800/80 shadow-sm">
+      Choose difficulty
+    </span>
     <div class="flex justify-center gap-4">
       <button onclick="setDifficulty('Normal', this)" id="normalBtn"
               class="px-4 py-2 rounded bg-blue-600 hover:bg-blue-500 transition">
@@ -166,15 +169,17 @@
   </div>
 </div>
 
+
+
 <!-- Scroll anchor and encounter container -->
 <div id="scroll-anchor" class="h-0"></div>
 
 <div class="flex flex-col items-center space-y-4 mb-6">
-  <span class="text-lg text-gray-200 font-medium text-center">Select encounter</span>
+  <span class="text-lg text-gray-200 font-medium text-center px-3 py-1 rounded bg-gray-800/80 shadow-sm">Select encounter</span>
   <div id="encounter-container" class="space-y-6 max-w-4xl w-full"></div>
 </div>
 
-  </main>
+  
 
 <div id="tipModal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 hidden">
   <div id="tipModalBox" class="bg-gray-900 text-white p-6 rounded-lg max-w-md w-full relative">
@@ -187,7 +192,7 @@
     </div>
   </div>
 </div>
-
+  </main>
 
   <!-- Sticky Footer -->
   <footer class="w-full text-gray-500 text-[0.6rem] text-center py-1 border-t border-gray-800 bg-gradient-to-t from-black/70 via-gray-900/50 to-transparent backdrop-blur-sm leading-tight">
@@ -267,14 +272,14 @@ function setDifficulty(level, buttonElement) {
       }
     }
 
-    document.getElementById("normalBtn").classList.toggle("opacity-60", level !== "Normal");
+    document.getElementById("normalBtn").classList.toggle("opacity-70", level !== "Normal");
 
     if (masterBtn) {
       if (type === "dungeon") {
         masterBtn.style.display = "none";
       } else {
         masterBtn.style.display = "";
-        masterBtn.classList.toggle("opacity-60", level !== "Master");
+        masterBtn.classList.toggle("opacity-70", level !== "Master");
       }
     }
   });
@@ -375,7 +380,7 @@ ${encounter.image ? `
                 const icon = iconMap[label];
 
 return `
-  <li class="space-y-1">
+  <li class="space-y-2">
     <div>
       <span class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded ${badge} whitespace-nowrap">
         ${icon ? `<img src="${icon}" alt="${label} icon" class="h-4 w-4 inline-block" />` : ""}
@@ -391,13 +396,13 @@ return `
         <div class="text-sm sm:text-base text-white font-medium tracking-wide break-words">
           ${match.item}
         </div>
-        <div class="border-t border-yellow-400 opacity-70 w-3/4 mt-2"></div>
+        <div class="border-t border-gray-400 opacity-40 w-1/2 mt-2 mb-3"></div>
       </div>
 
       <!-- Alternative Section -->
       ${match.alt ? `
       <div>
-        <div class="text-xs text-gray-300 uppercase mt-1">Alternative</div>
+        <div class="text-xs text-gray-200 uppercase mt-1">Alternative</div>
         <div class="text-sm sm:text-base text-white font-medium tracking-wide break-words">
           ${match.alt}
         </div>
@@ -418,7 +423,7 @@ return `
                       ${currentDifficulty}
                     </span>
                   </h3>
-                  <ul class="list-none ml-2 space-y-3 text-gray-300">
+                  <ul class="list-none ml-2 space-y-3 text-gray-300 mt-4">
                     ${renderedItems}
                   </ul>
                 </div>`;
@@ -519,16 +524,20 @@ fetch("data.json")
 
       document.getElementById("activity-title").textContent = activity.displayName;
       document.getElementById("activity-image").innerHTML =
-        `<img src="${activity.image}" alt="${activity.displayName}" class="w-full h-full object-cover" />`;
+        `<img src="${activity.image}" alt="${activity.displayName}" class="w-full h-full object-cover rounded-lg" />`;
 
       currentLoadouts = activity.encounters;
       renderEncounters();
 
-      // ✅ Hide Master button immediately for dungeons
-      if (type === "dungeon") {
-        const masterBtn = document.getElementById("masterBtn");
-        if (masterBtn) masterBtn.style.display = "none";
-      }
+document.getElementById("activity-content").classList.remove("opacity-0");
+
+
+// ✅ Hide the entire difficulty selector for dungeons
+if (type === "dungeon") {
+  const difficultyControls = document.getElementById("difficulty-controls");
+  if (difficultyControls) difficultyControls.style.display = "none";
+}
+
     })
     .catch(err => {
       console.error(err);

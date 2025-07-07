@@ -5,10 +5,221 @@
   "displayName": "Vault of Glass",
   "image": "images/vault-of-glass/banner.jpg",
   "encounters": {
-    "confluxes": {
-      "displayName": "Confluxes",
-      "icon": "⚡",
-      "image": "images/vault-of-glass/confluxes.jpg",
+    "raisespire": {
+      "displayName": "Raise The Spire",
+      "icon": "🗼",
+      "image": "images/vault-of-glass/raisespire.jpg",
+      "loadouts": {
+        "Normal": {
+          "Hunter": [
+            {
+              "label": "Exotic Armour",
+              "item": "Graviton Forfeit",
+              "alt": "Alternative Exotic"
+            },
+            {
+              "label": "Primary",
+              "item": "Arbalest",
+              "alt": "Scout Rifle"
+            },
+            {
+              "label": "Energy",
+              "item": "IKELOS SMG",
+              "alt": "Riptide"
+            },
+            {
+              "label": "Heavy",
+              "item": "Falling Guillotine",
+              "alt": "Thunderlord"
+            },
+            {
+              "label": "Super",
+              "item": "Well of Radiance",
+              "alt": "Nova Bomb"
+            }
+            
+          ],
+          "Titan": [
+                      {
+              "label": "Exotic Armour",
+              "item": "Graviton Forfeit",
+              "alt": "Alternative Exotic"
+            },
+            {
+              "label": "Primary",
+              "item": "Arbalest",
+              "alt": "Scout Rifle"
+            },
+            {
+              "label": "Energy",
+              "item": "IKELOS SMG",
+              "alt": "Riptide"
+            },
+            {
+              "label": "Heavy",
+              "item": "Falling Guillotine",
+              "alt": "Thunderlord"
+            },
+            {
+              "label": "Super",
+              "item": "Well of Radiance",
+              "alt": "Nova Bomb"
+            }
+          ],
+          "Warlock": [
+                      {
+              "label": "Exotic Armour",
+              "item": "Graviton Forfeit",
+              "alt": "Alternative Exotic"
+            },
+            {
+              "label": "Primary",
+              "item": "Arbalest",
+              "alt": "Scout Rifle"
+            },
+            {
+              "label": "Energy",
+              "item": "IKELOS SMG",
+              "alt": "Riptide"
+            },
+            {
+              "label": "Heavy",
+              "item": "Falling Guillotine",
+              "alt": "Thunderlord"
+            },
+            {
+              "label": "Super",
+              "item": "Well of Radiance",
+              "alt": "Nova Bomb"
+            }
+          ]
+        }
+      }
+    },
+    "confluxesoracles": {
+      "displayName": "Confluxes + Oracles",
+      "icon": "✨",
+      "image": "images/vault-of-glass/confluxesoracles.jpg",
+      "loadouts": {
+        "Normal": {
+          "Hunter": [
+            {
+              "label": "Exotic Armour",
+              "item": "Graviton Forfeit",
+              "alt": "Alternative Exotic"
+            },
+            {
+              "label": "Primary",
+              "item": "Arbalest",
+              "alt": "Scout Rifle"
+            },
+            {
+              "label": "Heavy",
+              "item": "Falling Guillotine",
+              "alt": "Thunderlord"
+            }
+          ],
+          "Titan": [
+            {
+              "label": "Exotic Armour",
+              "item": "Cuirass of the Falling Star",
+              "alt": "Alternative Exotic"
+            },
+            {
+              "label": "Primary",
+              "item": "Auto Rifle",
+              "alt": "Arbalest"
+            },
+            {
+              "label": "Heavy",
+              "item": "Rocket Launcher",
+              "alt": "Thunderlord"
+            }
+          ],
+          "Warlock": [
+            {
+              "label": "Exotic Armour",
+              "item": "Lunafaction Boots",
+              "alt": "Alternative Exotic"
+            },
+            {
+              "label": "Primary",
+              "item": "Witherhoard",
+              "alt": "Arbalest"
+            },
+            {
+              "label": "Heavy",
+              "item": "Machine Gun",
+              "alt": "Thunderlord"
+            }
+          ]
+        }
+      }
+    },
+    "templar": {
+      "displayName": "Templar",
+      "icon": "⌛",
+      "image": "images/vault-of-glass/templar.jpg",
+      "loadouts": {
+        "Normal": {
+          "Hunter": [
+            {
+              "label": "Exotic Armour",
+              "item": "Graviton Forfeit",
+              "alt": "Alternative Exotic"
+            },
+            {
+              "label": "Primary",
+              "item": "Arbalest",
+              "alt": "Scout Rifle"
+            },
+            {
+              "label": "Heavy",
+              "item": "Falling Guillotine",
+              "alt": "Thunderlord"
+            }
+          ],
+          "Titan": [
+            {
+              "label": "Exotic Armour",
+              "item": "Cuirass of the Falling Star",
+              "alt": "Alternative Exotic"
+            },
+            {
+              "label": "Primary",
+              "item": "Auto Rifle",
+              "alt": "Arbalest"
+            },
+            {
+              "label": "Heavy",
+              "item": "Rocket Launcher",
+              "alt": "Thunderlord"
+            }
+          ],
+          "Warlock": [
+            {
+              "label": "Exotic Armour",
+              "item": "Lunafaction Boots",
+              "alt": "Alternative Exotic"
+            },
+            {
+              "label": "Primary",
+              "item": "Witherhoard",
+              "alt": "Arbalest"
+            },
+            {
+              "label": "Heavy",
+              "item": "Machine Gun",
+              "alt": "Thunderlord"
+            }
+          ]
+        }
+      }
+    },
+    "gatekeepers": {
+      "displayName": "Gatekeepers",
+      "icon": "✋",
+      "image": "images/vault-of-glass/gatekeepers.jpg",
       "loadouts": {
         "Normal": {
           "Hunter": [
