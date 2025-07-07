@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loadout Generator</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #111827;
+      color: #f9fafb;
+      padding: 2rem;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 0.375rem;
+      border: 1px solid #374151;
+      background: #1f2937;
+      color: #f9fafb;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      border: none;
+      cursor: pointer;
+      margin-right: 0.5rem;
+    }
+    button:hover {
+      background: #3b82f6;
+    }
+    pre {
+      background: #1e293b;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      margin-top: 2rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .section {
+      border: 1px solid #374151;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .section h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 1.125rem;
+      color: #93c5fd;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="text-xl font-bold mb-4">Loadout JSON Generator</h1>
+<p class="text-gray-300 mb-6">
+  Create, edit, and export curated Destiny 2 encounter loadouts for raids and dungeons.
+  <br><br> When pasting in encounter JSON code - add "{" at the start and "}" at the end.<br><br>
+</p>
+
+
+  <form id="loadout-form">
+    <label for="activity">Activity Key (e.g. prophecy)</label>
+    <input type="text" name="activity" required />
+
+    <label for="encounter">Encounter Key (e.g. phalanx)</label>
+    <input type="text" name="encounter" required />
+
+    <label for="displayName">Encounter Display Name</label>
+    <input type="text" name="displayName" required />
+
+    <label for="icon">Encounter Icon (emoji or text)</label>
+    <input type="text" name="icon" placeholder="🌀" />
+
+    <label for="image">Encounter Image Path</label>
+    <input type="text" name="image" placeholder="images/prophecy/phalanx.jpg" />
+
+    <div id="loadout-sections"></div>
+
+    <button type="submit">Add Encounter</button>
+    <button type="button" onclick="exportJSON()">Export JSON</button>
+  </form>
+
+  <h2 class="text-lg font-bold mt-10 mb-2">Paste Existing Encounter JSON</h2>
+  <textarea id="json-input" rows="10" placeholder="Paste encounter JSON here..."></textarea>
+  <button onclick="loadFromJSON()" style="margin-top: 1rem;">Load into Form</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    const classes = ["Hunter", "Titan", "Warlock"];
+    const difficulties = ["Normal", "Master"];
+    const slots = ["Exotic Armour", "Primary", "Energy", "Heavy", "Super"];
+
+    const container = document.getElementById("loadout-sections");
+    const output = document.getElementById("output");
+    const form = document.getElementById("loadout-form");
+
+    const fullData = {};
+
+    function buildFormFields() {
+      container.innerHTML = "";
+      difficulties.forEach(difficulty => {
+        classes.forEach(cls => {
+          const section = document.createElement("div");
+          section.className = "section";
+          section.innerHTML = `
+            <h3>${difficulty} – ${cls}</h3>
+            ${slots.map(slot => `
+              <label>${slot} – Recommended</label>
+              <input type="text" name="${difficulty}-${cls}-${slot}" placeholder="e.g. Witherhoard" />
+              <label>${slot} – Alternative</label>
+              <input type="text" name="${difficulty}-${cls}-${slot}Alt" placeholder="e.g. Arbalest" />
+            `).join("")}
+          `;
+          container.appendChild(section);
+        });
+      });
+    }
+
+    buildFormFields(); // Initial build
+
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      const activity = formData.get("activity").trim();
+      const encounterKey = formData.get("encounter").trim();
+      const displayName = formData.get("displayName").trim();
+      const icon = formData.get("icon").trim();
+      const image = formData.get("image").trim();
+
+      if (!fullData[activity]) {
+        fullData[activity] = { encounters: {} };
+      }
+
+      const encounter = {
+        displayName,
+        icon,
+        image,
+        loadouts: {}
+      };
+
+      difficulties.forEach(difficulty => {
+        encounter.loadouts[difficulty] = {};
+        classes.forEach(cls => {
+          const loadout = slots.map(slot => ({
+            label: slot,
+            item: form.elements[`${difficulty}-${cls}-${slot}`]?.value || "",
+            alt: form.elements[`${difficulty}-${cls}-${slot}Alt`]?.value || ""
+          }));
+          encounter.loadouts[difficulty][cls] = loadout;
+        });
+      });
+
+      fullData[activity].encounters[encounterKey] = encounter;
+
+      output.textContent = JSON.stringify(fullData, null, 2);
+      alert(`Encounter "${displayName}" added to ${activity}. You can now add another or export.`);
+
+      form.reset();
+      buildFormFields(); // ✅ Rebuild fields after reset
+    });
+
+    function exportJSON() {
+      const blob = new Blob([JSON.stringify(fullData, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "loadouts.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function loadFromJSON() {
+  const input = document.getElementById("json-input").value;
+  try {
+    const parsed = JSON.parse(input);
+    const activityKey = Object.keys(parsed)[0];
+    const activity = parsed[activityKey];
+    const encounterKeys = Object.keys(activity.encounters || {});
+
+    if (encounterKeys.length === 0) {
+      alert("No encounters found in this activity.");
+      return;
+    }
+
+    // Prompt user to choose which encounter to load
+    const encounterKey = prompt(
+      `Which encounter do you want to load?\n\n${encounterKeys.join("\n")}`
+    );
+
+    if (!encounterKey || !activity.encounters[encounterKey]) {
+      alert("Invalid encounter key selected.");
+      return;
+    }
+
+    const encounter = activity.encounters[encounterKey];
+
+    form.reset();
+    buildFormFields();
+
+    form.elements["activity"].value = activityKey;
+    form.elements["encounter"].value = encounterKey;
+    form.elements["displayName"].value = encounter.displayName || "";
+    form.elements["icon"].value = encounter.icon || "";
+    form.elements["image"].value = encounter.image || "";
+
+    difficulties.forEach(difficulty => {
+      classes.forEach(cls => {
+        const loadout = encounter.loadouts?.[difficulty]?.[cls];
+        if (!loadout) return;
+        loadout.forEach(({ label, item, alt }) => {
+          const base = `${difficulty}-${cls}-${label}`;
+          if (form.elements[base]) form.elements[base].value = item || "";
+          if (form.elements[base + "Alt"]) form.elements[base + "Alt"].value = alt || "";
+        });
+      });
+    });
+
+    alert(`Encounter "${encounter.displayName}" loaded into form.`);
+  } catch (err) {
+    alert("Invalid JSON. Please make sure you're pasting a valid activity block.");
+    console.error(err);
+  }
+}
+
+  </script>
+
+</body>
+</html>
