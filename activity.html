@@ -150,16 +150,29 @@
   </div>
 
 <!-- Difficulty Toggle (moved outside scroll zone) -->
-<div id="difficulty-controls" class="sticky top-0 z-40 backdrop-blur-sm py-4 mb-4">
-  <div class="flex justify-center gap-4">
-    <button onclick="setDifficulty('Normal', this)" id="normalBtn" class="px-4 py-2 rounded bg-blue-600 hover:bg-blue-500 transition">Normal</button>
-    <button onclick="setDifficulty('Master', this)" id="masterBtn" class="px-4 py-2 rounded bg-red-600 hover:bg-red-500 transition">Master</button>
+<div id="difficulty-controls" class="sticky top-0 z-40 backdrop-blur-sm py-4 mb-10">
+  <div class="flex flex-col items-center space-y-2">
+    <span class="text-sm text-gray-200 font-medium">Choose difficulty</span>
+    <div class="flex justify-center gap-4">
+      <button onclick="setDifficulty('Normal', this)" id="normalBtn"
+              class="px-4 py-2 rounded bg-blue-600 hover:bg-blue-500 transition">
+        Normal
+      </button>
+      <button onclick="setDifficulty('Master', this)" id="masterBtn"
+              class="px-4 py-2 rounded bg-red-600 hover:bg-red-500 transition">
+        Master
+      </button>
+    </div>
   </div>
 </div>
 
 <!-- Scroll anchor and encounter container -->
 <div id="scroll-anchor" class="h-0"></div>
-<div id="encounter-container" class="space-y-6 max-w-4xl w-full mx-auto"></div>
+
+<div class="flex flex-col items-center space-y-4 mb-6">
+  <span class="text-lg text-gray-200 font-medium text-center">Select encounter</span>
+  <div id="encounter-container" class="space-y-6 max-w-4xl w-full"></div>
+</div>
 
   </main>
 

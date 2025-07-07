@@ -142,6 +142,7 @@
 <main class="flex-grow p-6">
 
 <h1 class="text-3xl font-bold text-center mb-8 my-5">Choose a Dungeon</h1>
+
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl w-full mx-auto">
 
   <a href="activity.html?type=dungeon&name=shattered-throne"
@@ -231,9 +232,36 @@
       </h2>
     </div>
   </a>
-
+  
+  <a href="activity.html?type=dungeon&name=vespers-host"
+   class="block w-full h-40 rounded-lg overflow-hidden shadow-lg group bg-gray-900 border border-gray-700 relative">
+  <div class="w-full h-full bg-gray-800 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+       style="background-image: url('images/vespers-host/banner.jpg');"></div>
+  <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center text-center">
+    <h2 class="text-white text-4xl font-bold tracking-wide max-w-xs sm:max-w-sm md:max-w-md">
+      Vesper’s Host
+    </h2>
+  </div>
+</a>
+<!-- I know this is the last item so I have added a div container to center it as it's on it's own on the last line -->
+<div class="col-span-full flex justify-center">
+  <a href="activity.html?type=dungeon&name=sundered-doctrine"
+     class="block h-40 w-full sm:w-[calc(50%-0.5rem)] md:w-[calc(33.333%-0.5rem)] rounded-lg overflow-hidden shadow-lg group bg-gray-900 border border-gray-700 relative">
+    <div class="w-full h-full bg-gray-800 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+         style="background-image: url('images/sundered-doctrine/banner.jpg');"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center text-center">
+      <h2 class="text-white text-4xl font-bold tracking-wide max-w-xs sm:max-w-sm md:max-w-md">
+        Sundered Doctrine
+      </h2>
+    </div>
+  </a>
 </div>
-  </main>
+
+
+  
+</div>
+  
+</main>
 
   <!-- Sticky Footer -->
   <footer class="w-full text-gray-500 text-[0.6rem] text-center py-1 border-t border-gray-800 bg-gradient-to-t from-black/70 via-gray-900/50 to-transparent backdrop-blur-sm leading-tight">
