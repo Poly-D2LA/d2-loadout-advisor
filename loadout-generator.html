@@ -99,12 +99,20 @@
 <input type="file" id="json-upload" accept=".json" />
 <div id="encounter-selector" style="margin-top: 1rem;"></div>
 <button type="button" onclick="loadFromFile()" style="margin-top: 1rem;">Load JSON File</button>
+<button type="button" onclick="transformToDataJson()" style="margin-top: 1rem;">Transform to data.json Format</button>
+
+
 
 
 
   <pre id="output"></pre>
 
   <script>
+console.log("✅ Script loaded. transformToDataJson is defined:", typeof transformToDataJson);
+console.log("✅ Script loaded. loadFromFile is defined:", typeof loadFromFile);
+
+let uploadedData = null;    
+
     const classes = ["Hunter", "Titan", "Warlock"];
     const difficulties = ["Normal", "Master"];
     const slots = ["Exotic Armour", "Primary", "Energy", "Heavy", "Super"];
@@ -114,6 +122,43 @@
     const form = document.getElementById("loadout-form");
 
     const fullData = {};
+
+function loadFromFile() {
+  const fileInput = document.getElementById("json-upload");
+  const file = fileInput.files[0];
+
+  if (!file) {
+    alert("Please select a JSON file to upload.");
+    return;
+  }
+
+  console.log("📂 File selected:", file.name);
+
+  const reader = new FileReader();
+
+  reader.onload = function (e) {
+    try {
+      const text = e.target.result;
+      console.log("📄 File content loaded:", text.slice(0, 100)); // preview first 100 chars
+
+      uploadedData = JSON.parse(text);
+      console.log("✅ uploadedData set:", uploadedData);
+
+      showEncounterSelector(uploadedData);
+    } catch (err) {
+      alert("❌ Invalid JSON file.");
+      console.error("❌ JSON parse error:", err);
+    }
+  };
+
+  reader.onerror = function (e) {
+    console.error("❌ FileReader error:", e);
+    alert("❌ Failed to read file.");
+  };
+
+  reader.readAsText(file);
+}
+
 
     function buildFormFields() {
       container.innerHTML = "";
@@ -241,28 +286,7 @@
     console.error(err);
   }
 }
-let uploadedData = null;
 
-function loadFromFile() {
-  const fileInput = document.getElementById("json-upload");
-  const file = fileInput.files[0];
-  if (!file) {
-    alert("Please select a JSON file to upload.");
-    return;
-  }
-
-  const reader = new FileReader();
-  reader.onload = function (e) {
-    try {
-      uploadedData = JSON.parse(e.target.result);
-      showEncounterSelector(uploadedData);
-    } catch (err) {
-      alert("Invalid JSON file.");
-      console.error(err);
-    }
-  };
-  reader.readAsText(file);
-}
 
 function showEncounterSelector(data) {
   const selector = document.getElementById("encounter-selector");
@@ -336,8 +360,58 @@ function loadEncounterFromData(type, activityKey, encounterKey) {
     });
   });
 
+  console.log("✅ Encounter loaded:", encounter);
   alert(`Loaded: ${encounter.displayName} from ${activityKey}`);
 }
+
+
+function transformToDataJson() {
+  console.log("🚀 Running transformToDataJson");
+  console.log("📦 uploadedData is:", uploadedData);
+
+  if (!uploadedData) {
+    alert("Please upload a JSON file first.");
+    return;
+  }
+
+  const result = { raids: {}, dungeons: {} };
+
+  const isStructured = uploadedData.raids || uploadedData.dungeons;
+
+  const source = isStructured ? uploadedData : { raids: uploadedData };
+
+  Object.entries(source).forEach(([typeKey, activities]) => {
+    Object.entries(activities).forEach(([activityKey, activityData]) => {
+      const formattedActivity = {
+        displayName: activityData.displayName || activityKey,
+        image: activityData.image || "",
+        description: activityData.description || "",
+        encounters: {}
+      };
+
+      Object.entries(activityData.encounters || {}).forEach(([encounterKey, encounter]) => {
+        formattedActivity.encounters[encounterKey] = {
+          displayName: "", // blank for manual editing
+          icon: encounter.icon || "",
+          image: encounter.image || "",
+          loadouts: {
+            Normal: encounter.loadouts?.Normal || {},
+            Master: encounter.loadouts?.Master || {}
+          }
+        };
+      });
+
+      result[typeKey][activityKey] = formattedActivity;
+    });
+  });
+
+  output.textContent = JSON.stringify(result, null, 2);
+}
+
+
+
+
+
 
   </script>
 

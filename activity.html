@@ -19,11 +19,13 @@
 <meta name="twitter:image" content="images/websnap.png" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-     <style>
+     
+  <style>
     html {
       background-color: #1f2937; /* Tailwind's gray-800 */
     }
   </style>
+  
 </head>
 <body class="text-white min-h-screen flex flex-col bg-gradient-to-br from-gray-800 via-gray-900 to-pink-950">
 
@@ -181,12 +183,12 @@
 </div>
 
   
-<div id="tipModal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 hidden">
+<div id="tipModal" role="dialog" aria-modal="true" aria-labelledby="tipModalTitle" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 hidden">
   <div id="tipModalBox" class="bg-gray-900 text-white p-6 rounded-lg max-w-md w-full relative">
     <button onclick="closeTipModal()" class="absolute top-2 right-2 text-gray-400 hover:text-white">
       ✕
     </button>
-    <h3 class="text-lg font-bold mb-2">Encounter Tips</h3>
+    <h3 id="tipModalTitle" class="text-lg font-bold mb-2">Encounter Tips</h3>
     <div id="tipModalContent" class="text-sm text-gray-300 space-y-2">
       <!-- Dynamic content goes here -->
     </div>
@@ -207,6 +209,38 @@
 
 
 <script>
+
+const D2LA_CONFIG = {
+  classColors: {
+    Hunter: "text-teal-300",
+    Titan: "text-red-400",
+    Warlock: "text-yellow-300"
+  },
+  classBackgrounds: {
+    Hunter: "bg-teal-600/50",
+    Titan: "bg-red-900/50",
+    Warlock: "bg-yellow-900/40"
+  },
+  classIcons: {
+    Hunter: "images/icons/hunter.svg",
+    Titan: "images/icons/titan.svg",
+    Warlock: "images/icons/warlock.svg"
+  },
+  badgeColors: {
+    "Primary": "bg-slate-500 text-white",
+    "Energy": "bg-green-600 text-white",
+    "Heavy": "bg-purple-700 text-white",
+    "Exotic Armour": "bg-yellow-600 text-white",
+    "Super": "bg-rose-500 text-white"
+  },
+  iconMap: {
+    "Primary": "images/icons/ammo-primary.svg",
+    "Energy": "images/icons/ammo-energy.svg",
+    "Heavy": "images/icons/ammo-heavy.svg"
+  }
+};
+
+
       //  Modal Encounter tips area
   const encounterTips = {
   "substratum": "Use a Well of Radiance during the damage phase to stay alive.",
@@ -216,6 +250,17 @@
   "the-witness": "Use Divinity and Well of Radiance for boss DPS."
   // Add more keyed by encounter ID
 };
+
+function getQueryParam(key, fallback = null) {
+  const value = new URLSearchParams(window.location.search).get(key);
+  return value !== null ? value : fallback;
+}
+
+const type = getQueryParam("type", "raid");
+const name = getQueryParam("name");
+
+let currentLoadouts = {};
+let currentDifficulty = "Normal";
 
 function openTipModal(encounterKey) {
   const modal = document.getElementById("tipModal");
@@ -241,13 +286,6 @@ document.getElementById("tipModal").addEventListener("click", (e) => {
     closeTipModal();
   }
 });
-  
-  const params = new URLSearchParams(window.location.search);
-  const type = params.get("type");
-  const name = params.get("name");
-  let currentLoadouts = {};
-  let currentDifficulty = "Normal";
-  
   
 function setDifficulty(level, buttonElement) {
   const masterBtn = document.getElementById("masterBtn");
@@ -287,6 +325,167 @@ function setDifficulty(level, buttonElement) {
   });
 }
 
+function renderClassLoadout(cls, items, currentDifficulty, classColors, classBackgrounds, classIcons, badgeColors, iconMap) {
+if (!cls || !Array.isArray(items)) {
+  console.warn(`⚠️ Invalid class loadout for "${cls}"`, items);
+  return `
+    <div class="p-6 rounded-md ${classBackgrounds[cls]} border border-gray-700 shadow-sm min-w-0 break-words">
+      <h3 class="text-lg font-bold ${classColors[cls]} mb-2">${cls}</h3>
+      <p class="text-gray-500 italic">No data</p>
+    </div>`;
+}
+
+  const layoutRows = [
+    ["Primary", "Energy"],
+    ["Heavy"],
+    ["Exotic Armour", "Super"]
+  ];
+
+  const renderedItems = layoutRows.map(row => {
+    const isHeavyRow = row.length === 1 && row[0] === "Heavy";
+
+    const columns = row.map(label => {
+      const match = items.find(i => i.label === label);
+      const badge = badgeColors[label] || "bg-gray-600 text-white";
+      const icon = iconMap[label];
+      const recommended = match?.item || "*Guardian preference*";
+      const alternative = match?.alt;
+
+      return `
+        <div class="space-y-2 text-center sm:text-left">
+          <div>
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 text-sm sm:text-xs font-semibold rounded ${badge} whitespace-nowrap mx-auto sm:mx-0">
+              ${icon ? `<img src="${icon}" alt="${label} icon" class="h-4 w-4 inline-block" />` : ""}
+              ${label}
+            </span>
+          </div>
+          <div class="space-y-2">
+            <div>
+              <div class="mb-1 text-xs text-yellow-200 uppercase font-bold tracking-wide" style="text-shadow: 0 0 4px rgba(125, 211, 252, 0.6);">
+                Recommended
+              </div>
+              <div class="text-lg sm:text-sm ${match ? 'text-white' : 'text-gray-400 italic'} font-medium tracking-wide break-words leading-relaxed">
+                ${match
+                  ? recommended
+                  : `<span title="No specific recommendation — choose your favorite!" class="cursor-pointer">${recommended}</span>`}
+              </div>
+              <div class="border-t border-gray-400 opacity-40 w-1/2 mx-auto sm:mx-0 mt-2 mb-3"></div>
+            </div>
+            ${alternative ? `
+            <div>
+              <div class="mb-1 text-xs text-gray-200 uppercase mt-1">Alternative</div>
+              <div class="text-lg sm:text-sm text-white font-medium tracking-wide break-words leading-relaxed">
+                ${alternative}
+              </div>
+            </div>` : ""}
+          </div>
+        </div>
+      `;
+    }).join("");
+
+    return `
+      <div class="${isHeavyRow ? 'relative' : ''} grid grid-cols-1 sm:grid-cols-2 gap-4">
+        ${isHeavyRow ? `
+          <img src="${classIcons[cls]}"
+               alt="${cls} emblem"
+               class="absolute top-1/2 right-4 -translate-y-1/2 h-28 w-28 opacity-20 pointer-events-none select-none hidden lg:block" />
+        ` : ""}
+        ${columns}
+      </div>
+    `;
+  }).join("");
+
+  return `
+    <div class="w-full max-w-[95%] sm:max-w-full p-4 rounded-md ${classBackgrounds[cls]} border border-gray-700 shadow-sm min-w-0 break-words flex flex-col gap-2">
+      <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-4">
+        <h3 class="text-xl sm:text-2xl font-bold ${classColors[cls]} flex flex-col sm:flex-row items-center sm:items-start sm:justify-start gap-2 text-center sm:text-left">
+          <img src="${classIcons[cls]}" alt="${cls} icon" class="h-8 w-8 sm:h-7 sm:w-7 inline-block" />
+          ${cls}
+        </h3>
+        <div class="flex flex-col items-center gap-1 text-sm font-semibold">
+          <div class="text-xs text-gray-400 italic">Select difficulty</div>
+          <div class="flex gap-2">
+            <button onclick="setDifficulty('Normal', this)"
+                    class="cursor-pointer px-2.5 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm rounded-md transition transform hover:scale-105 hover:brightness-110 ${
+                      currentDifficulty === 'Normal'
+                        ? 'bg-blue-700 text-white'
+                        : 'bg-blue-900 text-blue-300 opacity-60 hover:opacity-100'
+                    }">
+              Normal
+            </button>
+            <button onclick="setDifficulty('Master', this)"
+                    class="cursor-pointer px-2.5 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm rounded-md transition transform hover:scale-105 hover:brightness-110 ${
+                      currentDifficulty === 'Master'
+                        ? 'bg-red-700 text-white'
+                        : 'bg-red-900 text-red-300 opacity-60 hover:opacity-100'
+                    }">
+              Master
+            </button>
+          </div>
+        </div>
+      </div>
+      <ul class="list-none space-y-3 text-gray-300 mt-2">
+        ${renderedItems}
+      </ul>
+    </div>
+  `;
+}
+
+
+function renderEncounterSection(key, encounter, loadoutData, currentDifficulty, classColors, classBackgrounds, classIcons, badgeColors, iconMap) {
+  const collapseId = `encounter-${key}`;
+
+  const layoutRows = [
+    ["Primary", "Energy"],
+    ["Heavy"],
+    ["Exotic Armour", "Super"]
+  ];
+
+const renderedClasses = ["Hunter", "Warlock", "Titan"]
+  .map(cls => renderClassLoadout(cls, loadoutData?.[cls], currentDifficulty, 
+    D2LA_CONFIG.classColors, 
+    D2LA_CONFIG.classBackgrounds, 
+    D2LA_CONFIG.classIcons, 
+    D2LA_CONFIG.badgeColors, 
+    D2LA_CONFIG.iconMap))
+ 
+  .join("");
+
+  return `
+    <div class="bg-gray-800 rounded-lg shadow overflow-hidden">
+      <button 
+        onclick="this.blur(); toggleEncounter('${collapseId}')" 
+        class="w-full text-left px-4 py-3 flex justify-between items-center hover:bg-gray-700 transition"
+        aria-expanded="false"
+        aria-controls="${collapseId}"
+        >
+        <h2 class="text-lg font-bold flex items-center gap-2">
+          <span class="text-2xl">${encounter.icon || "📌"}</span> ${encounter.displayName}
+        </h2>
+        <span class="text-gray-400 text-sm toggle-arrow">▼</span>
+      </button>
+      <div id="${collapseId}" class="px-4 pb-4 hidden">
+        ${encounter.image ? `
+        <div class="relative w-full aspect-[3/1] sm:aspect-[5/2] lg:aspect-[16/5] overflow-hidden rounded mt-4 mb-4 bg-gray-700">
+          <img src="${encounter.image}" alt="${encounter.displayName}" class="w-full h-full object-cover object-center" loading="lazy" />
+          <button onclick="openTipModal('${key}')" 
+                  class="absolute top-2 right-2 flex items-center gap-1 text-amber-100 hover:text-white transition transform hover:scale-105"
+                  title="View tips">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-7 sm:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z" />
+            </svg>
+            <span class="hidden sm:inline text-xs font-semibold tracking-wide">Tips</span>
+          </button>
+        </div>` : ""}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 justify-items-center sm:justify-items-stretch">
+          ${renderedClasses}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+
 function renderEncounters() {
   // ✅ Save scroll position
   const scrollY = window.scrollY;
@@ -299,203 +498,55 @@ function renderEncounters() {
   const container = document.getElementById("encounter-container");
   container.replaceChildren();
 
-  const classColors = {
-    Hunter: "text-teal-300",
-    Titan: "text-red-400",
-    Warlock: "text-yellow-300"
-  };
-  const classBackgrounds = {
-    Hunter: "bg-teal-600/50",
-    Titan: "bg-red-900/50",
-    Warlock: "bg-yellow-900/40"
-  };
-  const classIcons = {
-    Hunter: "images/icons/hunter.svg",
-    Titan: "images/icons/titan.svg",
-    Warlock: "images/icons/warlock.svg"
-  };
-  const badgeColors = {
-    "Primary": "bg-slate-500 text-white",
-    "Energy": "bg-green-600 text-white",
-    "Heavy": "bg-purple-700 text-white",
-    "Exotic Armour": "bg-yellow-600 text-white",
-    "Super": "bg-rose-500 text-white"
-  };
-  const iconMap = {
-    "Primary": "images/icons/ammo-primary.svg",
-    "Energy": "images/icons/ammo-energy.svg",
-    "Heavy": "images/icons/ammo-heavy.svg"
-  };
-
-  Object.entries(currentLoadouts).forEach(([key, encounter]) => {
-    const loadoutData = encounter.loadouts?.[currentDifficulty];
-    if (!loadoutData) return;
-
-    const collapseId = `encounter-${key}`;
-    const section = document.createElement("div");
-
-    const badgeOrder = ["Primary", "Energy", "Heavy", "Exotic Armour", "Super"];
-
-section.innerHTML = `
-  <div class="bg-gray-800 rounded-lg shadow overflow-hidden">
-    <button onclick="this.blur(); toggleEncounter('${collapseId}')" class="w-full text-left px-4 py-3 flex justify-between items-center hover:bg-gray-700 transition">
-      <h2 class="text-lg font-bold flex items-center gap-2">
-        <span class="text-2xl">${encounter.icon || "📌"}</span> ${encounter.displayName}
-      </h2>
-      <span class="text-gray-400 text-sm toggle-arrow">▼</span>
-    </button>
-    <div id="${collapseId}" class="px-4 pb-4 hidden">
-${encounter.image ? `
-  <div class="relative w-full aspect-[3/1] sm:aspect-[5/2] lg:aspect-[16/5] overflow-hidden rounded mt-4 mb-4 bg-gray-700">
-    <img src="${encounter.image}" alt="${encounter.displayName}" class="w-full h-full object-cover object-center" loading="lazy" />
-    
-    <button onclick="openTipModal('${key}')" 
-            class="absolute top-2 right-2 flex items-center gap-1 text-amber-100 hover:text-white transition transform hover:scale-105"
-            title="View tips">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-7 sm:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z" />
-      </svg>
-      <span class="hidden sm:inline text-xs font-semibold tracking-wide">Tips</span>
-    </button>
-  </div>` : ""}
-
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 justify-items-center sm:justify-items-stretch">
-${["Hunter", "Warlock", "Titan"].map(cls => {
-  const items = loadoutData?.[cls];
-  if (!items) {
-    return `
-      <div class="p-6 rounded-md ${classBackgrounds[cls]} border border-gray-700 shadow-sm min-w-0 break-words">
-        <h3 class="text-lg font-bold ${classColors[cls]} mb-2">${cls}</h3>
-        <p class="text-gray-500 italic">No data</p>
-      </div>`;
+Object.entries(currentLoadouts).forEach(([key, encounter]) => {
+  const loadoutData = encounter.loadouts?.[currentDifficulty];
+  if (!loadoutData) {
+    console.warn(`⚠️ No loadout data for "${key}" at difficulty "${currentDifficulty}"`);
+    return;
   }
 
-  const layoutRows = [
-    ["Primary", "Energy"],
-    ["Heavy"],
-    ["Exotic Armour", "Super"]
-  ];
+  try {
+    const section = document.createElement("div");
+    section.innerHTML = renderEncounterSection(
+      key,
+      encounter,
+      loadoutData,
+      currentDifficulty,
+      D2LA_CONFIG.classColors,
+      D2LA_CONFIG.classBackgrounds,
+      D2LA_CONFIG.classIcons,
+      D2LA_CONFIG.badgeColors,
+      D2LA_CONFIG.iconMap
+    );
 
-  const renderedItems = layoutRows.map(row => {
-  const isHeavyRow = row.length === 1 && row[0] === "Heavy";
+    container.appendChild(section);
 
-const columns = row.map(label => {
-  const match = items.find(i => i.label === label);
-  const badge = badgeColors[label] || "bg-gray-600 text-white";
-  const icon = iconMap[label];
-
-  const recommended = match?.item || "*Guardian preference*";
-  const alternative = match?.alt;
-
-  return `
-    <div class="space-y-2 text-center sm:text-left">
-      <div>
-        <span class="inline-flex items-center gap-1 px-2 py-0.5 text-sm sm:text-xs font-semibold rounded ${badge} whitespace-nowrap mx-auto sm:mx-0">
-          ${icon ? `<img src="${icon}" alt="${label} icon" class="h-4 w-4 inline-block" />` : ""}
-          ${label}
-        </span>
-      </div>
-      <div class="space-y-2">
-        <div>
-          <div class="mb-1 text-xs text-yellow-200 uppercase font-bold tracking-wide" style="text-shadow: 0 0 4px rgba(125, 211, 252, 0.6);">
-            Recommended
-          </div>
-          <div class="text-lg sm:text-sm ${match ? 'text-white' : 'text-gray-400 italic'} font-medium tracking-wide break-words leading-relaxed">
-          ${match
-          ? recommended
-          : `<span title="No specific recommendation — choose your favorite!" class="cursor-pointer">${recommended}</span>`}
-          </div>
-          <div class="border-t border-gray-400 opacity-40 w-1/2 mx-auto sm:mx-0 mt-2 mb-3"></div>
-        </div>
-        ${alternative ? `
-        <div>
-          <div class="mb-1 text-xs text-gray-200 uppercase mt-1">Alternative</div>
-          <div class="text-lg sm:text-sm text-white font-medium tracking-wide break-words leading-relaxed">
-            ${alternative}
-          </div>
-        </div>` : ""}
-      </div>
-    </div>
-  `;
+  } catch (err) {
+    console.error(`❌ Failed to render encounter "${key}":`, err);
+  }
 });
 
-
-  return `
-    <div class="${isHeavyRow ? 'relative' : ''} grid grid-cols-1 sm:grid-cols-2 gap-4">
-      ${isHeavyRow ? `
-        <img src="${classIcons[cls]}"
-             alt="${cls} emblem"
-             class="absolute top-1/2 right-4 -translate-y-1/2 h-28 w-28 opacity-20 pointer-events-none select-none hidden lg:block" />
-      ` : ""}
-      ${columns.join("")}
-    </div>
-  `;
-}).join("");
-
-
-return `
-  <div class="w-full max-w-[95%] sm:max-w-full p-4 rounded-md ${classBackgrounds[cls]} border border-gray-700 shadow-sm min-w-0 break-words flex flex-col gap-2">
-    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-4">
-      <h3 class="text-xl sm:text-2xl font-bold ${classColors[cls]} flex flex-col sm:flex-row items-center sm:items-start sm:justify-start gap-2 text-center sm:text-left">
-        <img src="${classIcons[cls]}" alt="${cls} icon" class="h-8 w-8 sm:h-7 sm:w-7 inline-block" />
-        ${cls}
-      </h3>
-      <div class="flex flex-col items-center gap-1 text-sm font-semibold">
-        <div class="text-xs text-gray-400 italic">Select difficulty</div>
-        <div class="flex gap-2">
-          <button onclick="setDifficulty('Normal', this)"
-                  title="Click to view Normal loadout"
-                  class="cursor-pointer px-2.5 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm rounded-md transition transform hover:scale-105 hover:brightness-110 ${
-                    currentDifficulty === 'Normal'
-                      ? 'bg-blue-700 text-white'
-                      : 'bg-blue-900 text-blue-300 opacity-60 hover:opacity-100'
-                  }">
-            Normal
-          </button>
-          <button onclick="setDifficulty('Master', this)"
-                  title="Click to view Master loadout"
-                  class="cursor-pointer px-2.5 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm rounded-md transition transform hover:scale-105 hover:brightness-110 ${
-                    currentDifficulty === 'Master'
-                      ? 'bg-red-700 text-white'
-                      : 'bg-red-900 text-red-300 opacity-60 hover:opacity-100'
-                  }">
-            Master
-          </button>
-        </div>
-      </div>
-    </div>
-    <ul class="list-none space-y-3 text-gray-300 mt-2">
-      ${renderedItems}
-    </ul>
-  </div>
-`;
-
-
-
-}).join("")}
-
-          </div>
-        </div>
-      </div>
-    `;
-    container.appendChild(section);
-  });
 
 // ✅ Reopen previously open encounters
 openIds.forEach(id => {
   const el = document.getElementById(id);
-  if (el) el.classList.remove("hidden");
+  if (el) el.classList.add("open");
 });
 
-
 }
-
 
 function toggleEncounter(id) {
   const el = document.getElementById(id);
   if (!el) return;
-  el.classList.toggle("hidden");
+
+  const isHidden = el.classList.toggle("hidden");
+
+  const button = el.previousElementSibling;
+  if (button) {
+    button.setAttribute("aria-expanded", !isHidden);
+    const arrow = button.querySelector(".toggle-arrow");
+    if (arrow) arrow.textContent = isHidden ? "▼" : "▲";
+  }
 }
 
 
@@ -573,12 +624,17 @@ if (type === "dungeon") {
   const difficultyControls = document.getElementById("difficulty-controls");
   if (difficultyControls) difficultyControls.style.display = "none";
 }
-
     })
-    .catch(err => {
-      console.error(err);
-      document.getElementById("activity-title").textContent = "Error loading data";
-    });
+  
+.catch(err => {
+  console.error("❌ Failed to load data.json:", err);
+  document.getElementById("activity-title").textContent = "Error loading data";
+  document.getElementById("encounter-container").innerHTML = `
+    <div class="text-center text-red-400 font-semibold mt-6">
+      Failed to load activity data. Please check your JSON or try again later.
+    </div>`;
+});
+
 
   document.addEventListener("DOMContentLoaded", () => {
   const navMap = {
@@ -590,8 +646,6 @@ if (type === "dungeon") {
 
   const path = window.location.pathname;
   const filename = path.split("/").pop().split(".")[0];
-  const params = new URLSearchParams(window.location.search);
-  const type = params.get("type");
 
   for (const key in navMap) {
     if (path.includes(key)) {
@@ -621,7 +675,7 @@ if (type === "dungeon") {
       if (el) el.classList.add(bg, text);
     }
   });
-  
+
 window.onload = () => {
   const difficultyControls = document.getElementById("difficulty-controls");
   const encounterContainer = document.getElementById("encounter-container");
