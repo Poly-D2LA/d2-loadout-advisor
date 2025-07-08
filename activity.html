@@ -149,9 +149,10 @@
     </div>
   </div>
 
-<!-- Difficulty Toggle (sticky, content-width only) -->
+
 <div id="difficulty-controls"
-     class="sticky top-0 z-40 backdrop-blur-sm py-4 mt-10 mb-5 w-max mx-auto rounded-lg">
+     class="sticky top-0 z-40 backdrop-blur-sm py-4 mt-10 mb-5 w-max mx-auto rounded-lg transition-all duration-300 transform"
+     style="height: auto;">
   <div class="flex flex-col items-center space-y-2 px-4">
     <span class="text-sm text-gray-200 font-medium px-3 py-1 rounded bg-gray-800/80 shadow-sm">
       Choose difficulty
@@ -176,7 +177,7 @@
 
 <div class="flex flex-col items-center space-y-4 mb-6">
   <span class="text-lg text-gray-200 font-medium text-center px-3 py-1 rounded bg-gray-800/80 shadow-sm">Select encounter</span>
-  <div id="encounter-container" class="space-y-6 max-w-4xl w-full"></div>
+  <div id="encounter-container" class="space-y-6 max-w-6xl w-full px-4"></div>
 </div>
 
   
@@ -192,6 +193,8 @@
     </div>
   </div>
 </div>
+
+
   </main>
 
   <!-- Sticky Footer -->
@@ -360,74 +363,112 @@ ${encounter.image ? `
   </div>` : ""}
 
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        ${["Hunter", "Warlock", "Titan"].map(cls => {
-          const items = loadoutData?.[cls];
-          if (!items) {
-            return `
-              <div class="p-4 rounded-md ${classBackgrounds[cls]} border border-gray-700 shadow-sm min-w-0 break-words">
-                <h3 class="text-lg font-bold ${classColors[cls]} mb-2">${cls}</h3>
-                <p class="text-gray-500 italic">No data</p>
-              </div>`;
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+${["Hunter", "Warlock", "Titan"].map(cls => {
+  const items = loadoutData?.[cls];
+  if (!items) {
+    return `
+      <div class="p-6 rounded-md ${classBackgrounds[cls]} border border-gray-700 shadow-sm min-w-0 break-words">
+        <h3 class="text-lg font-bold ${classColors[cls]} mb-2">${cls}</h3>
+        <p class="text-gray-500 italic">No data</p>
+      </div>`;
+  }
 
-              }
+  const layoutRows = [
+    ["Primary", "Energy"],
+    ["Heavy"],
+    ["Exotic Armour", "Super"]
+  ];
 
-              const renderedItems = badgeOrder.map(label => {
-                const match = items.find(i => i.label === label);
-                if (!match) return null;
+  const renderedItems = layoutRows.map(row => {
+  const isHeavyRow = row.length === 1 && row[0] === "Heavy";
 
-                const badge = badgeColors[label] || "bg-gray-600 text-white";
-                const icon = iconMap[label];
+  const columns = row.map(label => {
+    const match = items.find(i => i.label === label);
+    if (!match) {
+      // Return an empty placeholder to preserve layout
+      return `<div class="min-h-[4rem]"></div>`;
+    }
 
-return `
-  <li class="space-y-2">
-    <div>
-      <span class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded ${badge} whitespace-nowrap">
-        ${icon ? `<img src="${icon}" alt="${label} icon" class="h-4 w-4 inline-block" />` : ""}
-        ${label}
-      </span>
-    </div>
-    <div class="pl-4 space-y-2">
-      <!-- Recommended Section -->
-      <div>
-        <div class="text-xs text-yellow-200 uppercase font-bold tracking-wide" style="text-shadow: 0 0 4px rgba(125, 211, 252, 0.6);">
-          Recommended
+    const badge = badgeColors[label] || "bg-gray-600 text-white";
+    const icon = iconMap[label];
+
+    return `
+      <div class="space-y-2 text-center sm:text-left">
+        <div>
+          <span class="inline-flex items-center gap-1 px-2 py-0.5 text-sm sm:text-xs font-semibold rounded ${badge} whitespace-nowrap mx-auto sm:mx-0">
+            ${icon ? `<img src="${icon}" alt="${label} icon" class="h-4 w-4 inline-block" />` : ""}
+            ${label}
+          </span>
         </div>
-        <div class="text-sm sm:text-base text-white font-medium tracking-wide break-words">
-          ${match.item}
+        <div class="space-y-2">
+          <div>
+            <div class="text-xs text-yellow-200 uppercase font-bold tracking-wide" style="text-shadow: 0 0 4px rgba(125, 211, 252, 0.6);">
+              Recommended
+            </div>
+            <div class="text-lg sm:text-sm text-white font-medium tracking-wide break-words leading-relaxed">
+              ${match.item}
+            </div>
+            <div class="border-t border-gray-400 opacity-40 w-1/2 mx-auto sm:mx-0 mt-2 mb-3"></div>
+          </div>
+          ${match.alt ? `
+          <div>
+            <div class="text-xs text-gray-200 uppercase mt-1">Alternative</div>
+            <div class="text-lg sm:text-sm text-white font-medium tracking-wide break-words leading-relaxed">
+              ${match.alt}
+            </div>
+          </div>` : ""}
         </div>
-        <div class="border-t border-gray-400 opacity-40 w-1/2 mt-2 mb-3"></div>
       </div>
+    `;
+  });
 
-      <!-- Alternative Section -->
-      ${match.alt ? `
-      <div>
-        <div class="text-xs text-gray-200 uppercase mt-1">Alternative</div>
-        <div class="text-sm sm:text-base text-white font-medium tracking-wide break-words">
-          ${match.alt}
-        </div>
-      </div>` : ""}
+  return `
+    <div class="${isHeavyRow ? 'relative' : ''} grid grid-cols-1 sm:grid-cols-2 gap-6">
+      ${isHeavyRow ? `
+        <img src="${classIcons[cls]}"
+             alt="${cls} emblem"
+             class="absolute top-1/2 right-4 -translate-y-1/2 h-28 w-28 opacity-20 pointer-events-none select-none hidden lg:block" />
+      ` : ""}
+      ${columns.join("")}
     </div>
-  </li>
-`;
+  `;
+}).join("");
 
 
-              }).filter(Boolean).join("");
+  return `
+     <div class="w-full max-w-[95%] sm:max-w-full p-4 rounded-md ${classBackgrounds[cls]} border border-gray-700 shadow-sm min-w-0 break-words flex flex-col gap-2">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl sm:text-2xl font-bold ${classColors[cls]} flex items-center gap-2">
+          <img src="${classIcons[cls]}" alt="${cls} icon" class="h-6 w-6 sm:h-7 sm:w-7 inline-block" />
+          ${cls}
+        </h3>
+        <div class="flex gap-2 text-sm font-semibold cursor-pointer">
+          <button onclick="setDifficulty('Normal', this)"
+                  class="px-2.5 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm rounded-md transition ${
+                    currentDifficulty === 'Normal'
+                      ? 'bg-blue-700 text-white'
+                      : 'bg-blue-900 text-blue-300 opacity-60 hover:opacity-100'
+                  }">
+            Normal
+          </button>
+          <button onclick="setDifficulty('Master', this)"
+                  class="px-2.5 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm rounded-md transition ${
+                    currentDifficulty === 'Master'
+                      ? 'bg-red-700 text-white'
+                      : 'bg-red-900 text-red-300 opacity-60 hover:opacity-100'
+                  }">
+            Master
+          </button>
+        </div>
+      </div>
+      <ul class="list-none ml-2 space-y-3 text-gray-300 mt-2">
+        ${renderedItems}
+      </ul>
+    </div>
+  `;
+}).join("")}
 
-              return `
-                <div class="p-4 rounded-md ${classBackgrounds[cls]} border border-gray-700 shadow-sm min-w-0 break-words">
-                  <h3 class="text-lg font-bold ${classColors[cls]} mb-2 flex items-center gap-2">
-                    <img src="${classIcons[cls]}" alt="${cls} icon" class="h-5 w-5 inline-block" />
-                    ${cls}
-                    <span class="px-2 py-1 text-xs rounded ${currentDifficulty === "Normal" ? "bg-blue-700" : "bg-red-700"} text-white">
-                      ${currentDifficulty}
-                    </span>
-                  </h3>
-                  <ul class="list-none ml-2 space-y-3 text-gray-300 mt-4">
-                    ${renderedItems}
-                  </ul>
-                </div>`;
-            }).join("")}
           </div>
         </div>
       </div>
@@ -441,17 +482,6 @@ openIds.forEach(id => {
   if (el) el.classList.remove("hidden");
 });
 
-// ✅ Scroll to anchor only if it's off-screen
-requestAnimationFrame(() => {
-  const anchor = document.getElementById("scroll-anchor");
-  if (anchor) {
-    const rect = anchor.getBoundingClientRect();
-    const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
-    if (!isVisible) {
-      anchor.scrollIntoView({ block: "start", behavior: "auto" });
-    }
-  }
-});
 
 }
 
@@ -544,27 +574,26 @@ if (type === "dungeon") {
       document.getElementById("activity-title").textContent = "Error loading data";
     });
 
+  document.addEventListener("DOMContentLoaded", () => {
+  const navMap = {
+    index:    { id: "nav-home",     bg: "bg-blue-600",   text: "text-white" },
+    raids:    { id: "nav-raids",    bg: "bg-purple-600", text: "text-white" },
+    dungeons: { id: "nav-dungeons", bg: "bg-teal-600",   text: "text-white" },
+    about:    { id: "nav-about",    bg: "bg-yellow-600", text: "text-white" }
+  };
+
+  const path = window.location.pathname;
+  const filename = path.split("/").pop().split(".")[0];
+  const params = new URLSearchParams(window.location.search);
+  const type = params.get("type");
+
   for (const key in navMap) {
     if (path.includes(key)) {
       const { id, bg, text } = navMap[key];
       const el = document.getElementById(id);
       if (el) el.classList.add(bg, text);
     }
-   
   }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const path = window.location.pathname;
-    const filename = path.split("/").pop().split(".")[0]; // e.g. "about"
-    const params = new URLSearchParams(window.location.search);
-    const type = params.get("type"); // e.g. "raid"
-
-    const navMap = {
-      index:    { id: "nav-home",     bg: "bg-blue-600",   text: "text-white" },
-      raids:    { id: "nav-raids",    bg: "bg-purple-600", text: "text-white" },
-      dungeons: { id: "nav-dungeons", bg: "bg-teal-600",   text: "text-white" },
-      about:    { id: "nav-about",    bg: "bg-yellow-600", text: "text-white" }
-    };
 
     // Highlight based on filename
     if (navMap[filename]) {
@@ -586,6 +615,37 @@ if (type === "dungeon") {
       if (el) el.classList.add(bg, text);
     }
   });
+  
+window.onload = () => {
+  const difficultyControls = document.getElementById("difficulty-controls");
+  const encounterContainer = document.getElementById("encounter-container");
+  if (!difficultyControls || !encounterContainer) return;
+
+  let lastScrollY = window.scrollY;
+  const fadeThreshold = window.innerWidth < 640 ? 10 : 100;
+
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.scrollY;
+    const encounterTop = encounterContainer.getBoundingClientRect().top + window.scrollY;
+
+    // Fade out when scrolling down past threshold
+    if (currentScroll > fadeThreshold && currentScroll > lastScrollY + 10) {
+      difficultyControls.style.opacity = "0";
+      difficultyControls.style.pointerEvents = "none";
+      difficultyControls.style.transform = "translateY(-10px)";
+    }
+
+    // Fade back in only when near the top of the encounter list
+    if (currentScroll <= encounterTop - 100) {
+      difficultyControls.style.opacity = "1";
+      difficultyControls.style.pointerEvents = "auto";
+      difficultyControls.style.transform = "translateY(0)";
+    }
+
+    lastScrollY = currentScroll;
+  });
+};
+
 
 </script>
   
