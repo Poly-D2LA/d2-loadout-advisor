@@ -94,6 +94,13 @@
   <h2 class="text-lg font-bold mt-10 mb-2">Paste Existing Encounter JSON</h2>
   <textarea id="json-input" rows="10" placeholder="Paste encounter JSON here..."></textarea>
   <button onclick="loadFromJSON()" style="margin-top: 1rem;">Load into Form</button>
+  
+<h2 class="text-lg font-bold mt-10 mb-2">Upload Full data.json File</h2>
+<input type="file" id="json-upload" accept=".json" />
+<div id="encounter-selector" style="margin-top: 1rem;"></div>
+<button type="button" onclick="loadFromFile()" style="margin-top: 1rem;">Load JSON File</button>
+
+
 
   <pre id="output"></pre>
 
@@ -233,6 +240,103 @@
     alert("Invalid JSON. Please make sure you're pasting a valid activity block.");
     console.error(err);
   }
+}
+let uploadedData = null;
+
+function loadFromFile() {
+  const fileInput = document.getElementById("json-upload");
+  const file = fileInput.files[0];
+  if (!file) {
+    alert("Please select a JSON file to upload.");
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    try {
+      uploadedData = JSON.parse(e.target.result);
+      showEncounterSelector(uploadedData);
+    } catch (err) {
+      alert("Invalid JSON file.");
+      console.error(err);
+    }
+  };
+  reader.readAsText(file);
+}
+
+function showEncounterSelector(data) {
+  const selector = document.getElementById("encounter-selector");
+  selector.innerHTML = "";
+
+  const select = document.createElement("select");
+  select.innerHTML = `<option value="">Select an encounter to load</option>`;
+
+  Object.entries(data).forEach(([type, activities]) => {
+    Object.entries(activities).forEach(([activityKey, activity]) => {
+      const encounters = activity.encounters || {};
+      Object.keys(encounters).forEach(encounterKey => {
+        const label = `${type} → ${activityKey} → ${encounterKey}`;
+        const value = `${type}||${activityKey}||${encounterKey}`;
+        select.innerHTML += `<option value="${value}">${label}</option>`;
+      });
+    });
+  });
+
+  select.onchange = function () {
+    const [type, activityKey, encounterKey] = this.value.split("||");
+    if (type && activityKey && encounterKey) {
+      loadEncounterFromData(type, activityKey, encounterKey);
+    }
+  };
+
+  selector.appendChild(select);
+}
+
+
+function loadEncounterFromData(type, activityKey, encounterKey) {
+  const activity = uploadedData?.[type]?.[activityKey];
+  const encounter = activity?.encounters?.[encounterKey];
+  if (!encounter) {
+    alert("Encounter not found.");
+    return;
+  }
+
+  form.reset();
+  buildFormFields();
+
+  form.elements["activity"].value = activityKey;
+  form.elements["encounter"].value = encounterKey;
+  form.elements["displayName"].value = encounter.displayName || "";
+  form.elements["icon"].value = encounter.icon || "";
+  form.elements["image"].value = encounter.image || "";
+
+  difficulties.forEach(difficulty => {
+    const diffKey = Object.keys(encounter.loadouts).find(
+      key => key.toLowerCase() === difficulty.toLowerCase()
+    );
+    if (!diffKey) return;
+
+    classes.forEach(cls => {
+      const classKey = Object.keys(encounter.loadouts[diffKey]).find(
+        key => key.toLowerCase() === cls.toLowerCase()
+      );
+      if (!classKey) return;
+
+      const loadout = encounter.loadouts[diffKey][classKey];
+      if (!loadout) return;
+
+      loadout.forEach(({ label, item, alt }) => {
+        const slot = slots.find(s => s.toLowerCase() === label.toLowerCase());
+        if (!slot) return;
+
+        const base = `${difficulty}-${cls}-${slot}`;
+        if (form.elements[base]) form.elements[base].value = item || "";
+        if (form.elements[base + "Alt"]) form.elements[base + "Alt"].value = alt || "";
+      });
+    });
+  });
+
+  alert(`Loaded: ${encounter.displayName} from ${activityKey}`);
 }
 
   </script>

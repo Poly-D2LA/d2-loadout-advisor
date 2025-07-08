@@ -363,7 +363,7 @@ ${encounter.image ? `
   </div>` : ""}
 
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 justify-items-center sm:justify-items-stretch">
 ${["Hunter", "Warlock", "Titan"].map(cls => {
   const items = loadoutData?.[cls];
   if (!items) {
@@ -383,48 +383,49 @@ ${["Hunter", "Warlock", "Titan"].map(cls => {
   const renderedItems = layoutRows.map(row => {
   const isHeavyRow = row.length === 1 && row[0] === "Heavy";
 
-  const columns = row.map(label => {
-    const match = items.find(i => i.label === label);
-    if (!match) {
-      // Return an empty placeholder to preserve layout
-      return `<div class="min-h-[4rem]"></div>`;
-    }
+const columns = row.map(label => {
+  const match = items.find(i => i.label === label);
+  const badge = badgeColors[label] || "bg-gray-600 text-white";
+  const icon = iconMap[label];
 
-    const badge = badgeColors[label] || "bg-gray-600 text-white";
-    const icon = iconMap[label];
-
-    return `
-      <div class="space-y-2 text-center sm:text-left">
-        <div>
-          <span class="inline-flex items-center gap-1 px-2 py-0.5 text-sm sm:text-xs font-semibold rounded ${badge} whitespace-nowrap mx-auto sm:mx-0">
-            ${icon ? `<img src="${icon}" alt="${label} icon" class="h-4 w-4 inline-block" />` : ""}
-            ${label}
-          </span>
-        </div>
-        <div class="space-y-2">
-          <div>
-            <div class="text-xs text-yellow-200 uppercase font-bold tracking-wide" style="text-shadow: 0 0 4px rgba(125, 211, 252, 0.6);">
-              Recommended
-            </div>
-            <div class="text-lg sm:text-sm text-white font-medium tracking-wide break-words leading-relaxed">
-              ${match.item}
-            </div>
-            <div class="border-t border-gray-400 opacity-40 w-1/2 mx-auto sm:mx-0 mt-2 mb-3"></div>
-          </div>
-          ${match.alt ? `
-          <div>
-            <div class="text-xs text-gray-200 uppercase mt-1">Alternative</div>
-            <div class="text-lg sm:text-sm text-white font-medium tracking-wide break-words leading-relaxed">
-              ${match.alt}
-            </div>
-          </div>` : ""}
-        </div>
-      </div>
-    `;
-  });
+  const recommended = match?.item || "*Guardian preference*";
+  const alternative = match?.alt;
 
   return `
-    <div class="${isHeavyRow ? 'relative' : ''} grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div class="space-y-2 text-center sm:text-left">
+      <div>
+        <span class="inline-flex items-center gap-1 px-2 py-0.5 text-sm sm:text-xs font-semibold rounded ${badge} whitespace-nowrap mx-auto sm:mx-0">
+          ${icon ? `<img src="${icon}" alt="${label} icon" class="h-4 w-4 inline-block" />` : ""}
+          ${label}
+        </span>
+      </div>
+      <div class="space-y-2">
+        <div>
+          <div class="mb-1 text-xs text-yellow-200 uppercase font-bold tracking-wide" style="text-shadow: 0 0 4px rgba(125, 211, 252, 0.6);">
+            Recommended
+          </div>
+          <div class="text-lg sm:text-sm ${match ? 'text-white' : 'text-gray-400 italic'} font-medium tracking-wide break-words leading-relaxed">
+          ${match
+          ? recommended
+          : `<span title="No specific recommendation — choose your favorite!" class="cursor-pointer">${recommended}</span>`}
+          </div>
+          <div class="border-t border-gray-400 opacity-40 w-1/2 mx-auto sm:mx-0 mt-2 mb-3"></div>
+        </div>
+        ${alternative ? `
+        <div>
+          <div class="mb-1 text-xs text-gray-200 uppercase mt-1">Alternative</div>
+          <div class="text-lg sm:text-sm text-white font-medium tracking-wide break-words leading-relaxed">
+            ${alternative}
+          </div>
+        </div>` : ""}
+      </div>
+    </div>
+  `;
+});
+
+
+  return `
+    <div class="${isHeavyRow ? 'relative' : ''} grid grid-cols-1 sm:grid-cols-2 gap-4>
       ${isHeavyRow ? `
         <img src="${classIcons[cls]}"
              alt="${cls} emblem"
@@ -436,16 +437,19 @@ ${["Hunter", "Warlock", "Titan"].map(cls => {
 }).join("");
 
 
-  return `
-     <div class="w-full max-w-[95%] sm:max-w-full p-4 rounded-md ${classBackgrounds[cls]} border border-gray-700 shadow-sm min-w-0 break-words flex flex-col gap-2">
-      <div class="flex justify-between items-center mb-4">
-        <h3 class="text-xl sm:text-2xl font-bold ${classColors[cls]} flex items-center gap-2">
-          <img src="${classIcons[cls]}" alt="${cls} icon" class="h-6 w-6 sm:h-7 sm:w-7 inline-block" />
-          ${cls}
-        </h3>
-        <div class="flex gap-2 text-sm font-semibold cursor-pointer">
+return `
+  <div class="w-full max-w-[95%] sm:max-w-full p-4 rounded-md ${classBackgrounds[cls]} border border-gray-700 shadow-sm min-w-0 break-words flex flex-col gap-2">
+    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-4">
+      <h3 class="text-xl sm:text-2xl font-bold ${classColors[cls]} flex flex-col sm:flex-row items-center sm:items-start sm:justify-start gap-2 text-center sm:text-left">
+        <img src="${classIcons[cls]}" alt="${cls} icon" class="h-8 w-8 sm:h-7 sm:w-7 inline-block" />
+        ${cls}
+      </h3>
+      <div class="flex flex-col items-center gap-1 text-sm font-semibold">
+        <div class="text-xs text-gray-400 italic">Select difficulty</div>
+        <div class="flex gap-2">
           <button onclick="setDifficulty('Normal', this)"
-                  class="px-2.5 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm rounded-md transition ${
+                  title="Click to view Normal loadout"
+                  class="cursor-pointer px-2.5 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm rounded-md transition transform hover:scale-105 hover:brightness-110 ${
                     currentDifficulty === 'Normal'
                       ? 'bg-blue-700 text-white'
                       : 'bg-blue-900 text-blue-300 opacity-60 hover:opacity-100'
@@ -453,7 +457,8 @@ ${["Hunter", "Warlock", "Titan"].map(cls => {
             Normal
           </button>
           <button onclick="setDifficulty('Master', this)"
-                  class="px-2.5 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm rounded-md transition ${
+                  title="Click to view Master loadout"
+                  class="cursor-pointer px-2.5 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm rounded-md transition transform hover:scale-105 hover:brightness-110 ${
                     currentDifficulty === 'Master'
                       ? 'bg-red-700 text-white'
                       : 'bg-red-900 text-red-300 opacity-60 hover:opacity-100'
@@ -462,11 +467,15 @@ ${["Hunter", "Warlock", "Titan"].map(cls => {
           </button>
         </div>
       </div>
-      <ul class="list-none ml-2 space-y-3 text-gray-300 mt-2">
-        ${renderedItems}
-      </ul>
     </div>
-  `;
+    <ul class="list-none space-y-3 text-gray-300 mt-2">
+      ${renderedItems}
+    </ul>
+  </div>
+`;
+
+
+
 }).join("")}
 
           </div>
