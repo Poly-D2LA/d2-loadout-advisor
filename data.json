@@ -5,341 +5,234 @@
   "displayName": "Vault of Glass",
   "image": "images/vault-of-glass/banner.jpg",
   "encounters": {
-    "raisespire": {
-      "displayName": "Raise The Spire",
-      "icon": "🗼",
-      "image": "images/vault-of-glass/raisespire.jpg",
-      "loadouts": {
-        "Normal": {
-          "Hunter": [
-            {
-              "label": "Exotic Armour",
-              "item": "Graviton Forfeit",
-              "alt": "Alternative Exotic"
-            },
-            {
-              "label": "Primary",
-              "item": "Arbalest",
-              "alt": "Scout Rifle"
-            },
-            {
-              "label": "Energy",
-              "item": "IKELOS SMG",
-              "alt": "Riptide"
-            },
-            {
-              "label": "Heavy",
-              "item": "Falling Guillotine",
-              "alt": "Thunderlord"
-            },
-            {
-              "label": "Super",
-              "item": "Well of Radiance",
-              "alt": "Nova Bomb"
-            }
-            
-          ],
-          "Titan": [
-                      {
-              "label": "Exotic Armour",
-              "item": "Graviton Forfeit",
-              "alt": "Alternative Exotic"
-            },
-            {
-              "label": "Primary",
-              "item": "Arbalest",
-              "alt": "Scout Rifle"
-            },
-            {
-              "label": "Energy",
-              "item": "IKELOS SMG",
-              "alt": "Riptide"
-            },
-            {
-              "label": "Heavy",
-              "item": "Falling Guillotine",
-              "alt": "Thunderlord"
-            },
-            {
-              "label": "Super",
-              "item": "Well of Radiance",
-              "alt": "Nova Bomb"
-            }
-          ],
-          "Warlock": [
-                      {
-              "label": "Exotic Armour",
-              "item": "Graviton Forfeit",
-              "alt": "Alternative Exotic"
-            },
-            {
-              "label": "Primary",
-              "item": "Arbalest",
-              "alt": "Scout Rifle"
-            },
-            {
-              "label": "Energy",
-              "item": "IKELOS SMG",
-              "alt": "Riptide"
-            },
-            {
-              "label": "Heavy",
-              "item": "Falling Guillotine",
-              "alt": "Thunderlord"
-            },
-            {
-              "label": "Super",
-              "item": "Well of Radiance",
-              "alt": "Nova Bomb"
-            }
-          ]
-        }
-      }
+   "raisespire": {
+  "displayName": "Raise The Spire",
+  "icon": "🗼",
+  "image": "images/vault-of-glass/raisespire.jpg",
+  "loadouts": {
+    "Normal": {
+      "Hunter": [
+        { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Arbalest", "alt": "Scout Rifle" },
+        { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+        { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+        { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+      ],
+      "Titan": [         
+        { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Arbalest", "alt": "Scout Rifle" },
+        { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+        { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+        { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+               ],
+      "Warlock": [        
+        { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Arbalest", "alt": "Scout Rifle" },
+        { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+        { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+        { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" } 
+      ]
     },
-    "confluxesoracles": {
-      "displayName": "Confluxes + Oracles",
-      "icon": "✨",
-      "image": "images/vault-of-glass/confluxesoracles.jpg",
-      "loadouts": {
-        "Normal": {
-          "Hunter": [
-            {
-              "label": "Exotic Armour",
-              "item": "Graviton Forfeit",
-              "alt": "Alternative Exotic"
-            },
-            {
-              "label": "Primary",
-              "item": "Arbalest",
-              "alt": "Scout Rifle"
-            },
-            {
-              "label": "Heavy",
-              "item": "Falling Guillotine",
-              "alt": "Thunderlord"
-            }
-          ],
-          "Titan": [
-            {
-              "label": "Exotic Armour",
-              "item": "Cuirass of the Falling Star",
-              "alt": "Alternative Exotic"
-            },
-            {
-              "label": "Primary",
-              "item": "Auto Rifle",
-              "alt": "Arbalest"
-            },
-            {
-              "label": "Heavy",
-              "item": "Rocket Launcher",
-              "alt": "Thunderlord"
-            }
-          ],
-          "Warlock": [
-            {
-              "label": "Exotic Armour",
-              "item": "Lunafaction Boots",
-              "alt": "Alternative Exotic"
-            },
-            {
-              "label": "Primary",
-              "item": "Witherhoard",
-              "alt": "Arbalest"
-            },
-            {
-              "label": "Heavy",
-              "item": "Machine Gun",
-              "alt": "Thunderlord"
-            }
-          ]
-        }
-      }
-    },
-    "templar": {
-      "displayName": "Templar",
-      "icon": "⌛",
-      "image": "images/vault-of-glass/templar.jpg",
-      "loadouts": {
-        "Normal": {
-          "Hunter": [
-            {
-              "label": "Exotic Armour",
-              "item": "Graviton Forfeit",
-              "alt": "Alternative Exotic"
-            },
-            {
-              "label": "Primary",
-              "item": "Arbalest",
-              "alt": "Scout Rifle"
-            },
-            {
-              "label": "Heavy",
-              "item": "Falling Guillotine",
-              "alt": "Thunderlord"
-            }
-          ],
-          "Titan": [
-            {
-              "label": "Exotic Armour",
-              "item": "Cuirass of the Falling Star",
-              "alt": "Alternative Exotic"
-            },
-            {
-              "label": "Primary",
-              "item": "Auto Rifle",
-              "alt": "Arbalest"
-            },
-            {
-              "label": "Heavy",
-              "item": "Rocket Launcher",
-              "alt": "Thunderlord"
-            }
-          ],
-          "Warlock": [
-            {
-              "label": "Exotic Armour",
-              "item": "Lunafaction Boots",
-              "alt": "Alternative Exotic"
-            },
-            {
-              "label": "Primary",
-              "item": "Witherhoard",
-              "alt": "Arbalest"
-            },
-            {
-              "label": "Heavy",
-              "item": "Machine Gun",
-              "alt": "Thunderlord"
-            }
-          ]
-        }
-      }
-    },
-    "gatekeepers": {
-      "displayName": "Gatekeepers",
-      "icon": "✋",
-      "image": "images/vault-of-glass/gatekeepers.jpg",
-      "loadouts": {
-        "Normal": {
-          "Hunter": [
-            {
-              "label": "Exotic Armour",
-              "item": "Graviton Forfeit",
-              "alt": "Alternative Exotic"
-            },
-            {
-              "label": "Primary",
-              "item": "Arbalest",
-              "alt": "Scout Rifle"
-            },
-            {
-              "label": "Heavy",
-              "item": "Falling Guillotine",
-              "alt": "Thunderlord"
-            }
-          ],
-          "Titan": [
-            {
-              "label": "Exotic Armour",
-              "item": "Cuirass of the Falling Star",
-              "alt": "Alternative Exotic"
-            },
-            {
-              "label": "Primary",
-              "item": "Auto Rifle",
-              "alt": "Arbalest"
-            },
-            {
-              "label": "Heavy",
-              "item": "Rocket Launcher",
-              "alt": "Thunderlord"
-            }
-          ],
-          "Warlock": [
-            {
-              "label": "Exotic Armour",
-              "item": "Lunafaction Boots",
-              "alt": "Alternative Exotic"
-            },
-            {
-              "label": "Primary",
-              "item": "Witherhoard",
-              "alt": "Arbalest"
-            },
-            {
-              "label": "Heavy",
-              "item": "Machine Gun",
-              "alt": "Thunderlord"
-            }
-          ]
-        }
-      }
-    },
-    "atheon": {
-      "displayName": "Atheon",
-      "icon": "🕰️",
-      "image": "images/vault-of-glass/atheon.jpg",
-      "loadouts": {
-        "Normal": {
-          "Hunter": [
-            {
-              "label": "Exotic Armour",
-              "item": "Star-Eater Scales",
-              "alt": "Alternative Exotic"
-            },
-            {
-              "label": "Primary",
-              "item": "Izanagi’s Burden",
-              "alt": "Arbalest"
-            },
-            {
-              "label": "Heavy",
-              "item": "Cataclysmic",
-              "alt": "Thunderlord"
-            }
-          ],
-          "Titan": [
-            {
-              "label": "Exotic Armour",
-              "item": "Helm of Saint-14",
-              "alt": "Alternative Exotic"
-            },
-            {
-              "label": "Primary",
-              "item": "Divinity",
-              "alt": "Arbalest"
-            },
-            {
-              "label": "Heavy",
-              "item": "Linear Fusion Rifle",
-              "alt": "Thunderlord"
-            }
-          ],
-          "Warlock": [
-            {
-              "label": "Exotic Armour",
-              "item": "Well of Radiance",
-              "alt": "Alternative Exotic"
-            },
-            {
-              "label": "Primary",
-              "item": "Arbalest",
-              "alt": "Scout Rifle"
-            },
-            {
-              "label": "Heavy",
-              "item": "Sleeper Simulant",
-              "alt": "Thunderlord"
-            }
-          ]
-        }
-      }
+    "Master": {
+      "Hunter": [
+        { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Arbalest", "alt": "Scout Rifle" },
+        { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+        { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+        { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+      ],
+      "Titan": [
+        { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Arbalest", "alt": "Scout Rifle" },
+        { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+        { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+        { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+      ],
+      "Warlock": [
+        { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Arbalest", "alt": "Scout Rifle" },
+        { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" },
+        { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" },
+        { "label": "Super", "item": "Well of Radiance", "alt": "Nova Bomb" }
+      ]
     }
   }
 },
 
-     "crota": {
+"confluxesoracles": {
+  "displayName": "Confluxes + Oracles",
+  "icon": "✨",
+  "image": "images/vault-of-glass/confluxesoracles.jpg",
+  "loadouts": {
+    "Normal": {
+      "Hunter": [
+        { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Arbalest", "alt": "Scout Rifle" },
+        { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" }
+      ],
+      "Titan": [
+        { "label": "Exotic Armour", "item": "Cuirass of the Falling Star", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+        { "label": "Heavy", "item": "Rocket Launcher", "alt": "Thunderlord" }
+      ],
+      "Warlock": [
+        { "label": "Exotic Armour", "item": "Lunafaction Boots", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Witherhoard", "alt": "Arbalest" },
+        { "label": "Heavy", "item": "Machine Gun", "alt": "Thunderlord" }
+      ]
+    },
+    "Master": {
+      "Hunter": [
+        { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Arbalest", "alt": "Scout Rifle" },
+        { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" }
+      ],
+      "Titan": [
+        { "label": "Exotic Armour", "item": "Cuirass of the Falling Star", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+        { "label": "Heavy", "item": "Rocket Launcher", "alt": "Thunderlord" }
+      ],
+      "Warlock": [
+        { "label": "Exotic Armour", "item": "Lunafaction Boots", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Witherhoard", "alt": "Arbalest" },
+        { "label": "Heavy", "item": "Machine Gun", "alt": "Thunderlord" }
+      ]
+    }
+  }
+},
+
+    
+"templar": {
+  "displayName": "Templar",
+  "icon": "⌛",
+  "image": "images/vault-of-glass/templar.jpg",
+  "loadouts": {
+    "Normal": {
+      "Hunter": [
+        { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Arbalest", "alt": "Scout Rifle" },
+        { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" }
+      ],
+      "Titan": [
+        { "label": "Exotic Armour", "item": "Cuirass of the Falling Star", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+        { "label": "Heavy", "item": "Rocket Launcher", "alt": "Thunderlord" }
+      ],
+      "Warlock": [
+        { "label": "Exotic Armour", "item": "Lunafaction Boots", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Witherhoard", "alt": "Arbalest" },
+        { "label": "Heavy", "item": "Machine Gun", "alt": "Thunderlord" }
+      ]
+    },
+    "Master": {
+      "Hunter": [
+        { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Arbalest", "alt": "Scout Rifle" },
+        { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" }
+      ],
+      "Titan": [
+        { "label": "Exotic Armour", "item": "Cuirass of the Falling Star", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+        { "label": "Heavy", "item": "Rocket Launcher", "alt": "Thunderlord" }
+      ],
+      "Warlock": [
+        { "label": "Exotic Armour", "item": "Lunafaction Boots", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Witherhoard", "alt": "Arbalest" },
+        { "label": "Heavy", "item": "Machine Gun", "alt": "Thunderlord" }
+      ]
+    }
+  }
+},
+
+    
+"gatekeepers": {
+  "displayName": "Gatekeepers",
+  "icon": "✋",
+  "image": "images/vault-of-glass/gatekeepers.jpg",
+  "loadouts": {
+    "Normal": {
+      "Hunter": [
+        { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Arbalest", "alt": "Scout Rifle" },
+        { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" }
+      ],
+      "Titan": [
+        { "label": "Exotic Armour", "item": "Cuirass of the Falling Star", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+        { "label": "Heavy", "item": "Rocket Launcher", "alt": "Thunderlord" }
+      ],
+      "Warlock": [
+        { "label": "Exotic Armour", "item": "Lunafaction Boots", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Witherhoard", "alt": "Arbalest" },
+        { "label": "Heavy", "item": "Machine Gun", "alt": "Thunderlord" }
+      ]
+    },
+    "Master": {
+      "Hunter": [
+        { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Arbalest", "alt": "Scout Rifle" },
+        { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" }
+      ],
+      "Titan": [
+        { "label": "Exotic Armour", "item": "Cuirass of the Falling Star", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Auto Rifle", "alt": "Arbalest" },
+        { "label": "Heavy", "item": "Rocket Launcher", "alt": "Thunderlord" }
+      ],
+      "Warlock": [
+        { "label": "Exotic Armour", "item": "Lunafaction Boots", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Witherhoard", "alt": "Arbalest" },
+        { "label": "Heavy", "item": "Machine Gun", "alt": "Thunderlord" }
+      ]
+    }
+  }
+},
+
+    
+"atheon": {
+  "displayName": "Atheon",
+  "icon": "🕰️",
+  "image": "images/vault-of-glass/atheon.jpg",
+  "loadouts": {
+    "Normal": {
+      "Hunter": [
+        { "label": "Exotic Armour", "item": "Star-Eater Scales", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Izanagi’s Burden", "alt": "Arbalest" },
+        { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" }
+      ],
+      "Titan": [
+        { "label": "Exotic Armour", "item": "Helm of Saint-14", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Divinity", "alt": "Arbalest" },
+        { "label": "Heavy", "item": "Linear Fusion Rifle", "alt": "Thunderlord" }
+      ],
+      "Warlock": [
+        { "label": "Exotic Armour", "item": "Well of Radiance", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Arbalest", "alt": "Scout Rifle" },
+        { "label": "Heavy", "item": "Sleeper Simulant", "alt": "Thunderlord" }
+      ]
+    },
+    "Master": {
+      "Hunter": [
+        { "label": "Exotic Armour", "item": "Star-Eater Scales", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Izanagi’s Burden", "alt": "Arbalest" },
+        { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" }
+      ],
+      "Titan": [
+        { "label": "Exotic Armour", "item": "Helm of Saint-14", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Divinity", "alt": "Arbalest" },
+        { "label": "Heavy", "item": "Linear Fusion Rifle", "alt": "Thunderlord" }
+      ],
+      "Warlock": [
+        { "label": "Exotic Armour", "item": "Well of Radiance", "alt": "Alternative Exotic" },
+        { "label": "Primary", "item": "Arbalest", "alt": "Scout Rifle" },
+        { "label": "Heavy", "item": "Sleeper Simulant", "alt": "Thunderlord" }
+                            ]
+            }
+          }
+        }
+      }
+    },
+
+"crota": {
   "displayName": "Crota's End",
   "image": "images/crota/banner.jpg",
   "encounters": {
@@ -350,121 +243,167 @@
       "loadouts": {
         "Normal": {
           "Hunter": [
-            {
-              "label": "Exotic Armour",
-              "item": "St0mp-EE5",
-              "alt": "Radiant Dance Machines"
-            },
-            {
-              "label": "Primary",
-              "item": "Riskrunner",
-              "alt": "Arbalest"
-            },
-            {
-              "label": "Heavy",
-              "item": "Thunderlord",
-              "alt": "Machine Gun"
-            }
+            { "label": "Exotic Armour", "item": "St0mp-EE5", "alt": "Radiant Dance Machines" },
+            { "label": "Primary", "item": "Riskrunner", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Thunderlord", "alt": "Machine Gun" }
           ],
           "Titan": [
-            {
-              "label": "Exotic Armour",
-              "item": "Lion Rampant",
-              "alt": "Peacekeepers"
-            },
-            {
-              "label": "Primary",
-              "item": "Auto Rifle",
-              "alt": "Riskrunner"
-            },
-            {
-              "label": "Heavy",
-              "item": "Thunderlord",
-              "alt": "Machine Gun"
-            }
+            { "label": "Exotic Armour", "item": "Lion Rampant", "alt": "Peacekeepers" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Riskrunner" },
+            { "label": "Heavy", "item": "Thunderlord", "alt": "Machine Gun" }
           ],
           "Warlock": [
-            {
-              "label": "Exotic Armour",
-              "item": "Transversive Steps",
-              "alt": "Boots of the Assembler"
-            },
-            {
-              "label": "Primary",
-              "item": "Witherhoard",
-              "alt": "Riskrunner"
-            },
-            {
-              "label": "Heavy",
-              "item": "Machine Gun",
-              "alt": "Thunderlord"
-            }
+            { "label": "Exotic Armour", "item": "Transversive Steps", "alt": "Boots of the Assembler" },
+            { "label": "Primary", "item": "Witherhoard", "alt": "Riskrunner" },
+            { "label": "Heavy", "item": "Machine Gun", "alt": "Thunderlord" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "St0mp-EE5", "alt": "Radiant Dance Machines" },
+            { "label": "Primary", "item": "Riskrunner", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Thunderlord", "alt": "Machine Gun" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Lion Rampant", "alt": "Peacekeepers" },
+            { "label": "Primary", "item": "Auto Rifle", "alt": "Riskrunner" },
+            { "label": "Heavy", "item": "Thunderlord", "alt": "Machine Gun" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Transversive Steps", "alt": "Boots of the Assembler" },
+            { "label": "Primary", "item": "Witherhoard", "alt": "Riskrunner" },
+            { "label": "Heavy", "item": "Machine Gun", "alt": "Thunderlord" }
           ]
         }
       }
     },
-    "crota": {
-      "displayName": "Crota, Son of Oryx",
-      "icon": "🗡️",
-      "image": "images/crota/crota.jpg",
+    "bridge": {
+      "displayName": "The Bridge",
+      "icon": "🌉",
+      "image": "images/crota/bridge.jpg",
       "loadouts": {
         "Normal": {
           "Hunter": [
-            {
-              "label": "Exotic Armour",
-              "item": "Star-Eater Scales",
-              "alt": "Assassin’s Cowl"
-            },
-            {
-              "label": "Primary",
-              "item": "Izanagi’s Burden",
-              "alt": "Arbalest"
-            },
-            {
-              "label": "Heavy",
-              "item": "Lament",
-              "alt": "Cataclysmic"
-            }
+            { "label": "Exotic Armour", "item": "Assassin’s Cowl", "alt": "Graviton Forfeit" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Scout Rifle" },
+            { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" }
           ],
           "Titan": [
-            {
-              "label": "Exotic Armour",
-              "item": "Cuirass of the Falling Star",
-              "alt": "Synthoceps"
-            },
-            {
-              "label": "Primary",
-              "item": "Arbalest",
-              "alt": "Auto Rifle"
-            },
-            {
-              "label": "Heavy",
-              "item": "Lament",
-              "alt": "Thunderlord"
-            }
+            { "label": "Exotic Armour", "item": "Peacekeepers", "alt": "Lion Rampant" },
+            { "label": "Primary", "item": "Riskrunner", "alt": "Auto Rifle" },
+            { "label": "Heavy", "item": "Thunderlord", "alt": "Machine Gun" }
           ],
           "Warlock": [
-            {
-              "label": "Exotic Armour",
-              "item": "Lunafaction Boots",
-              "alt": "Well of Radiance"
-            },
-            {
-              "label": "Primary",
-              "item": "Divinity",
-              "alt": "Arbalest"
-            },
-            {
-              "label": "Heavy",
-              "item": "Cataclysmic",
-              "alt": "Sleeper Simulant"
-            }
+            { "label": "Exotic Armour", "item": "Boots of the Assembler", "alt": "Transversive Steps" },
+            { "label": "Primary", "item": "Witherhoard", "alt": "Pulse Rifle" },
+            { "label": "Heavy", "item": "Machine Gun", "alt": "Linear Fusion Rifle" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Assassin’s Cowl", "alt": "Graviton Forfeit" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Scout Rifle" },
+            { "label": "Heavy", "item": "Falling Guillotine", "alt": "Thunderlord" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Peacekeepers", "alt": "Lion Rampant" },
+            { "label": "Primary", "item": "Riskrunner", "alt": "Auto Rifle" },
+            { "label": "Heavy", "item": "Thunderlord", "alt": "Machine Gun" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Boots of the Assembler", "alt": "Transversive Steps" },
+            { "label": "Primary", "item": "Witherhoard", "alt": "Pulse Rifle" },
+            { "label": "Heavy", "item": "Machine Gun", "alt": "Linear Fusion Rifle" }
           ]
         }
       }
-    }
-  }
-},
+    },
+    "deathsinger": {
+      "displayName": "Ir Yût, Deathsinger",
+      "icon": "🧛",
+      "image": "images/crota/deathsinger.jpg",
+      "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Assassin’s Cowl" },
+            { "label": "Primary", "item": "Outbreak Perfected", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Commemoration", "alt": "Cataclysmic" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Heart of Inmost Light", "alt": "Armamentarium" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Auto Rifle" },
+            { "label": "Heavy", "item": "Thunderlord", "alt": "Machine Gun" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Nezarec’s Sin", "alt": "Lunafaction Boots" },
+            { "label": "Primary", "item": "Witherhoard", "alt": "Pulse Rifle" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Machine Gun" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Graviton Forfeit", "alt": "Assassin’s Cowl" },
+            { "label": "Primary", "item": "Outbreak Perfected", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Commemoration", "alt": "Cataclysmic" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Heart of Inmost Light", "alt": "Armamentarium" },
+            { "label": "Primary", "item": "Arbalest", "alt": "Auto Rifle" },
+            { "label": "Heavy", "item": "Thunderlord", "alt": "Machine Gun" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Nezarec’s Sin", "alt": "Lunafaction Boots" },
+            { "label": "Primary", "item": "Witherhoard", "alt": "Pulse Rifle" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Machine Gun" }
+          ]
+        }
+      }
+    },
+   "crota": {
+  "displayName": "Crota, Son of Oryx",
+  "icon": "🗡️",
+  "image": "images/crota/crota.jpg",
+  "loadouts": {
+    "Normal": {
+      "Hunter": [
+        { "label": "Exotic Armour", "item": "Star-Eater Scales", "alt": "Assassin’s Cowl" },
+        { "label": "Primary", "item": "Izanagi’s Burden", "alt": "Arbalest" },
+        { "label": "Heavy", "item": "Lament", "alt": "Cataclysmic" }
+      ],
+      "Titan": [
+        { "label": "Exotic Armour", "item": "Cuirass of the Falling Star", "alt": "Synthoceps" },
+        { "label": "Primary", "item": "Arbalest", "alt": "Auto Rifle" },
+        { "label": "Heavy", "item": "Lament", "alt": "Thunderlord" }
+      ],
+      "Warlock": [
+        { "label": "Exotic Armour", "item": "Lunafaction Boots", "alt": "Well of Radiance" },
+        { "label": "Primary", "item": "Divinity", "alt": "Arbalest" },
+        { "label": "Heavy", "item": "Cataclysmic", "alt": "Sleeper Simulant" }
+      ]
+    },
+    "Master": {
+      "Hunter": [
+        { "label": "Exotic Armour", "item": "Star-Eater Scales", "alt": "Assassin’s Cowl" },
+        { "label": "Primary", "item": "Izanagi’s Burden", "alt": "Arbalest" },
+        { "label": "Heavy", "item": "Lament", "alt": "Cataclysmic" }
+      ],
+      "Titan": [
+        { "label": "Exotic Armour", "item": "Cuirass of the Falling Star", "alt": "Synthoceps" },
+        { "label": "Primary", "item": "Arbalest", "alt": "Auto Rifle" },
+        { "label": "Heavy", "item": "Lament", "alt": "Thunderlord" }
+      ],
+      "Warlock": [
+        { "label": "Exotic Armour", "item": "Lunafaction Boots", "alt": "Well of Radiance" },
+        { "label": "Primary", "item": "Divinity", "alt": "Arbalest" },
+        { "label": "Heavy", "item": "Cataclysmic", "alt": "Sleeper Simulant" }
+                            ]
+            }
+          }
+        }
+      }
+    },
+
+
 
     "kings-fall": {
       "displayName": "King's Fall",
@@ -1263,7 +1202,7 @@
     },
     "morgeth": {
       "displayName": "Morgeth, the Spirekeeper",
-      "icon": "🪨",
+      "icon": "👹",
       "image": "images/last-wish/morgeth.jpg",
        "loadouts": {
         "Normal": {
