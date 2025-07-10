@@ -160,11 +160,11 @@
       Choose difficulty
     </span>
     <div class="flex justify-center gap-4">
-      <button type="button" onclick="setDifficulty('Normal', this)" id="normalBtn"
+      <button type="button" onclick="setDifficulty('Normal', this, true)" id="normalBtn"
               class="px-4 py-2 rounded bg-blue-600 hover:bg-blue-500 transition">
         Normal
       </button>
-      <button type="button" onclick="setDifficulty('Master', this)" id="masterBtn"
+      <button type="button" onclick="setDifficulty('Master', this, true)" id="masterBtn"
               class="px-4 py-2 rounded bg-red-600 hover:bg-red-500 transition">
         Master
       </button>
@@ -172,6 +172,10 @@
   </div>
 </div>
 
+<div id="difficulty-toast"
+     class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-4 py-2 rounded-md shadow-lg text-sm font-semibold z-50 hidden transition-opacity duration-500 opacity-0 backdrop-blur-md border border-gray-700">
+  Loadouts updated for difficulty
+</div>
 
 
 <!-- Scroll anchor and encounter container -->
@@ -251,6 +255,9 @@ const D2LA_CONFIG = {
   // Add more keyed by encounter ID
 };
 
+let ignoreScrollRestore = false;
+let reopenEncounterId = null;
+
 function getQueryParam(key, fallback = null) {
   const value = new URLSearchParams(window.location.search).get(key);
   return value !== null ? value : fallback;
@@ -287,34 +294,35 @@ document.getElementById("tipModal").addEventListener("click", (e) => {
   }
 });
   
-function setDifficulty(level, buttonElement) {
-  const masterBtn = document.getElementById("masterBtn");
-
+function setDifficulty(level, buttonElement, suppressScroll = false) {
   if (type === "dungeon" && level === "Master") return;
-
   if (buttonElement) buttonElement.blur();
 
-  // 🧠 Capture open encounter BEFORE DOM changes
   const openDiv = document.querySelector("#encounter-container > div > div:not(.hidden)");
   const openId = openDiv?.id;
 
-  // 🧼 Clear classes before next frame
-  document.getElementById("normalBtn").classList.toggle("opacity-70", level !== "Normal");
-  if (masterBtn) {
-    if (type === "dungeon") {
-      masterBtn.style.display = "none";
-    } else {
-      masterBtn.style.display = "";
+  // ✅ Only update top buttons if the click came from them
+  if (buttonElement?.id === "normalBtn" || buttonElement?.id === "masterBtn") {
+    document.getElementById("normalBtn").classList.toggle("opacity-70", level !== "Normal");
+
+    const masterBtn = document.getElementById("masterBtn");
+    if (masterBtn) {
+      masterBtn.style.display = type === "dungeon" ? "none" : "";
       masterBtn.classList.toggle("opacity-70", level !== "Master");
     }
   }
 
-  // ✅ Update difficulty and render ONCE
+  if (suppressScroll) ignoreScrollRestore = true;
+
   requestAnimationFrame(() => {
     currentDifficulty = level;
-    renderEncounters(openId); // use saved encounter ID
+    showDifficultyToast(level);
+    renderEncounters(openId);
   });
 }
+
+
+
 
 
 
@@ -398,7 +406,7 @@ if (!cls || !Array.isArray(items)) {
         <div class="flex flex-col items-center gap-1 text-sm font-semibold">
           <div class="text-xs text-gray-400 italic">Select difficulty</div>
           <div class="flex gap-2">
-            <button type="button" onclick="setDifficulty('Normal', this)"
+            <button type="button" onclick="setDifficulty('Normal', this, true)"
                     class="cursor-pointer px-2.5 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm rounded-md transition transform hover:scale-105 hover:brightness-110 ${
                       currentDifficulty === 'Normal'
                         ? 'bg-blue-700 text-white'
@@ -406,7 +414,7 @@ if (!cls || !Array.isArray(items)) {
                     }">
               Normal
             </button>
-            <button type="button" onclick="setDifficulty('Master', this)"
+            <button type="button" onclick="setDifficulty('Master', this, true)"
                     class="cursor-pointer px-2.5 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm rounded-md transition transform hover:scale-105 hover:brightness-110 ${
                       currentDifficulty === 'Master'
                         ? 'bg-red-700 text-white'
@@ -480,59 +488,63 @@ const renderedClasses = ["Hunter", "Warlock", "Titan"]
 
 
 function renderEncounters(reopenId = null) {
-  // ✅ Save scroll position
-  const scrollY = window.scrollY;
+  const container = document.getElementById("encounter-container");
 
-  // ✅ Save IDs of open encounters
-  const openIds = Array.from(document.querySelectorAll('[id^="encounter-"]'))
+  // ✅ Collect open encounter IDs before replacing
+  const previouslyOpen = Array.from(container.querySelectorAll("div[id^='encounter-']"))
     .filter(el => !el.classList.contains("hidden"))
     .map(el => el.id);
 
-  const container = document.getElementById("encounter-container");
   container.replaceChildren();
 
-Object.entries(currentLoadouts).forEach(([key, encounter]) => {
-  const loadoutData = encounter.loadouts?.[currentDifficulty];
-  if (!loadoutData) {
-    console.warn(`⚠️ No loadout data for "${key}" at difficulty "${currentDifficulty}"`);
-    return;
-  }
+  Object.entries(currentLoadouts).forEach(([key, encounter]) => {
+    const loadoutData = encounter.loadouts?.[currentDifficulty];
+    if (!loadoutData) {
+      console.warn(`⚠️ No loadout data for "${key}" at difficulty "${currentDifficulty}"`);
+      return;
+    }
 
-  try {
-    const section = document.createElement("div");
-    section.innerHTML = renderEncounterSection(
-      key,
-      encounter,
-      loadoutData,
-      currentDifficulty,
-      D2LA_CONFIG.classColors,
-      D2LA_CONFIG.classBackgrounds,
-      D2LA_CONFIG.classIcons,
-      D2LA_CONFIG.badgeColors,
-      D2LA_CONFIG.iconMap
-    );
-
-    container.appendChild(section);
-
-  } catch (err) {
-    console.error(`❌ Failed to render encounter "${key}":`, err);
-  }
-});
-
-
-// ✅ Reopen previously open encounters
-if (reopenId) {
-  requestAnimationFrame(() => {
-    const el = document.getElementById(reopenId);
-    if (el) {
-      el.classList.remove("hidden");
-      const arrow = el.previousElementSibling?.querySelector(".toggle-arrow");
-      if (arrow) arrow.textContent = "▲";
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    try {
+      const section = document.createElement("div");
+      section.innerHTML = renderEncounterSection(
+        key,
+        encounter,
+        loadoutData,
+        currentDifficulty,
+        D2LA_CONFIG.classColors,
+        D2LA_CONFIG.classBackgrounds,
+        D2LA_CONFIG.classIcons,
+        D2LA_CONFIG.badgeColors,
+        D2LA_CONFIG.iconMap
+      );
+      container.appendChild(section);
+    } catch (err) {
+      console.error(`❌ Failed to render encounter "${key}":`, err);
     }
   });
+
+  // ✅ Reopen previously open encounters
+  requestAnimationFrame(() => {
+    previouslyOpen.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.remove("hidden");
+        const arrow = el.previousElementSibling?.querySelector(".toggle-arrow");
+        if (arrow) arrow.textContent = "▲";
+
+        // 🔒 Prevent scroll if suppressing
+        if (!ignoreScrollRestore && reopenId === id) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    });
+
+    // ✅ Reset flags
+    ignoreScrollRestore = false;
+    reopenEncounterId = null;
+  });
 }
-}
+
 
 
 
@@ -548,7 +560,16 @@ function toggleEncounter(id) {
     const arrow = button.querySelector(".toggle-arrow");
     if (arrow) arrow.textContent = isHidden ? "▼" : "▲";
   }
+
+  // ✅ Reset sticky scroll anchor if collapsing
+  if (isHidden) {
+    requestAnimationFrame(() => {
+      window.scrollBy(0, -1); // Gently unstick the scroll position
+    });
+  }
 }
+
+
 
 
   function updateMeta(activity) {
@@ -645,6 +666,24 @@ if (type === "dungeon") {
     about:    { id: "nav-about",    bg: "bg-yellow-600", text: "text-white" }
   };
 
+  const backToTopBtn = document.getElementById("backToTopBtn");
+
+  if (backToTopBtn) {
+    window.addEventListener("scroll", () => {
+      const scrolled = window.scrollY;
+
+      if (scrolled > 300) {
+        backToTopBtn.style.opacity = "1";
+        backToTopBtn.style.pointerEvents = "auto";
+        backToTopBtn.style.transform = "scale(1)";
+      } else {
+        backToTopBtn.style.opacity = "0";
+        backToTopBtn.style.pointerEvents = "none";
+        backToTopBtn.style.transform = "scale(0.9)";
+      }
+    });
+  }
+
   const path = window.location.pathname;
   const filename = path.split("/").pop().split(".")[0];
 
@@ -676,6 +715,31 @@ if (type === "dungeon") {
       if (el) el.classList.add(bg, text);
     }
   });
+  
+function showDifficultyToast(level) {
+  const toast = document.getElementById("difficulty-toast");
+  if (!toast) return;
+
+  toast.textContent = `Loadouts updated for ${level} difficulty`;
+
+  // ✅ Set border color by difficulty
+  toast.classList.remove("border-red-500", "border-blue-500");
+  toast.classList.add(level === "Master" ? "border-red-500" : "border-blue-500");
+
+  // ✅ Show it
+  toast.classList.remove("hidden");
+  toast.classList.add("opacity-100");
+
+  setTimeout(() => {
+    toast.classList.remove("opacity-100");
+  }, 2000);
+
+  setTimeout(() => {
+    toast.classList.add("hidden");
+  }, 2500);
+}
+
+
 
 window.onload = () => {
   const difficultyControls = document.getElementById("difficulty-controls");
@@ -708,7 +772,22 @@ window.onload = () => {
 };
 
 
+function scrollToTop() {
+  ignoreScrollRestore = true;
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
 </script>
-  
+<button id="backToTopBtn"
+        onclick="scrollToTop()"
+        type="button"
+        aria-label="Scroll to top"
+        class="fixed bottom-6 right-6 z-50 bg-gray-600/80 hover:bg-gradient-to-tr from-gray-700 via-purple-700 to-purple-600 text-gray-200 px-3 py-2 sm:px-2.5 sm:py-1.5 rounded-full shadow-lg transition-all duration-300 opacity-0 pointer-events-none scale-90 hover:scale-100 hover:brightness-105 backdrop-blur-md border border-white/10">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-4 sm:w-4 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+  </svg>
+</button>
+
+
 </body>
 </html>

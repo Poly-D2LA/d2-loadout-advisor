@@ -232,7 +232,7 @@
       }
     },
 
-"crota": {
+    "crota": {
   "displayName": "Crota's End",
   "image": "images/crota/banner.jpg",
   "encounters": {
@@ -402,8 +402,6 @@
         }
       }
     },
-
-
 
     "kings-fall": {
       "displayName": "King's Fall",

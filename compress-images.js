@@ -4,14 +4,12 @@ const sharp = require("sharp");
 
 const inputDir = "./images";
 const backupDir = "./images-backup";
-const extensions = [".jpg", ".jpeg", ".png", ".webp"];
+const extensions = [".jpg", ".jpeg", ".png", ".webp", ".avif"];
 
-// Ensure backup base exists
 if (!fs.existsSync(backupDir)) {
   fs.mkdirSync(backupDir, { recursive: true });
 }
 
-// Recursively walk through directories
 function walk(dir) {
   fs.readdirSync(dir, { withFileTypes: true }).forEach(entry => {
     const fullPath = path.join(dir, entry.name);
@@ -27,21 +25,29 @@ function walk(dir) {
 
       // Backup original
       fs.copyFileSync(fullPath, backupPath);
-      console.log(`📁 Backed up: ${relPath}`);
+      console.log(`📦 Backed up: ${relPath}`);
 
-      // Compress and overwrite
-sharp(fullPath)
-  .toFormat(ext === ".png" ? "png" : "jpeg", {
-    quality: 70,
-    progressive: true
-  })
-  .toFile(fullPath + ".temp") // write to temp file first
-  .then(() => {
-    fs.renameSync(fullPath + ".temp", fullPath); // overwrite original
-    console.log(`✅ Compressed and replaced: ${relPath}`);
-  })
-  .catch(err => console.error(`❌ Error: ${relPath}`, err));
+      let format = "jpeg"; // default conversion target
+      let outputPath = fullPath;
 
+      if (ext === ".png") {
+        format = "png";
+        outputPath = fullPath;
+      } else {
+        outputPath = fullPath.replace(ext, ".jpg");
+      }
+
+      sharp(fullPath)
+        .toFormat(format, {
+          quality: 70,
+          progressive: true
+        })
+        .toFile(outputPath + ".temp")
+        .then(() => {
+          fs.renameSync(outputPath + ".temp", outputPath);
+          console.log(`✅ Compressed${ext !== ".png" ? " & converted" : ""}: ${path.relative(inputDir, outputPath)}`);
+        })
+        .catch(err => console.error(`❌ Error processing ${relPath}:`, err));
     }
   });
 }
