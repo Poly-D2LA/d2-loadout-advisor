@@ -2449,9 +2449,50 @@
   "displayName": "The Shattered Throne",
   "image": "images/shattered-throne/banner.jpg",
   "encounters": {
+     "erebus-labyrinth": {
+      "displayName": "Erebus Labyrinth",
+      "icon": "🕋",
+      "image": "images/shattered-throne/erebus.jpg",
+      "loadouts": {
+        "Normal": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Omnioculus", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Witherhoard", "alt": "Arbalest" },
+            { "label": "Energy", "item": "IKELOS SMG", "alt": "Riptide" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Hoarfrost-Z", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Fighting Lion", "alt": "Arbalest" },
+            { "label": "Energy", "item": "Auto Rifle", "alt": "Riptide" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Lunafaction Boots", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Tractor Cannon", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Retrofit Escapade", "alt": "Thunderlord" }
+          ]
+        },
+        "Master": {
+          "Hunter": [
+            { "label": "Exotic Armour", "item": "Gyrfalcon’s Hauberk", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Wish-Ender", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Gjallarhorn", "alt": "Thunderlord" }
+          ],
+          "Titan": [
+            { "label": "Exotic Armour", "item": "Path of Burning Steps", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Trinity Ghoul", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Cataclysmic", "alt": "Thunderlord" }
+          ],
+          "Warlock": [
+            { "label": "Exotic Armour", "item": "Mantle of Battle Harmony", "alt": "Alternative Exotic" },
+            { "label": "Primary", "item": "Witherhoard", "alt": "Arbalest" },
+            { "label": "Heavy", "item": "Forbearance", "alt": "Thunderlord" }
+          ]
+        }
+      }
+    },
     "vorgeth": {
       "displayName": "Vorgeth, the Boundless Hunger",
-      "icon": "🕷️",
+      "icon": "👹",
       "image": "images/shattered-throne/vorgeth.jpg",
       "loadouts": {
         "Normal": {
@@ -2897,7 +2938,7 @@
         "kelcho": {
           "displayName": "Kell Echo",
           "icon": "🌀",
-          "image": "images/prophecy/boss.jpg",
+          "image": "images/prophecy/kell.jpg",
           "loadouts": {
             "Normal": {
               "Hunter": [
