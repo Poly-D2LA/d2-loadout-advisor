@@ -19,11 +19,36 @@
 <meta name="twitter:image" content="images/websnap.png" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
      
   <style>
     html {
       background-color: #1f2937; /* Tailwind's gray-800 */
     }
+    .swiper-pagination-bullet {
+  background-color: white !important;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+
+@keyframes toastPulse {
+  0%   { opacity: 0; transform: translate(-50%, -60%); }
+  15%  { opacity: 1; transform: translate(-50%, -50%); }
+  85%  { opacity: 1; transform: translate(-50%, -50%); }
+  100% { opacity: 0; transform: translate(-50%, -40%); }
+}
+
+#difficulty-toast {
+  animation: toastPulse 2.5s ease-in-out forwards;
+}
+
+}
+
   </style>
   
 </head>
@@ -173,7 +198,9 @@
 </div>
 
 <div id="difficulty-toast"
-     class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-4 py-2 rounded-md shadow-lg text-sm font-semibold z-50 hidden transition-opacity duration-500 opacity-0 backdrop-blur-md border border-gray-700">
+     class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+            bg-gray-900 text-white px-4 py-2 rounded-md shadow-lg text-sm font-semibold z-50
+            hidden transition-opacity duration-500 opacity-0 backdrop-blur-md border border-gray-700">
   Loadouts updated for difficulty
 </div>
 
@@ -255,6 +282,8 @@ const D2LA_CONFIG = {
   // Add more keyed by encounter ID
 };
 
+const swiperPositions = {};
+  
 let ignoreScrollRestore = false;
 let reopenEncounterId = null;
 
@@ -397,7 +426,7 @@ if (!cls || !Array.isArray(items)) {
   }).join("");
 
   return `
-    <div class="w-full max-w-[95%] sm:max-w-full p-4 rounded-md ${classBackgrounds[cls]} border border-gray-700 shadow-sm min-w-0 break-words flex flex-col gap-2">
+    <div class="w-full max-w-sm mx-auto px-4 sm:max-w-full p-4 rounded-md ${classBackgrounds[cls]} border border-gray-700 shadow-sm min-w-0 break-words flex flex-col gap-2">
       <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-4">
         <h3 class="text-xl sm:text-2xl font-bold ${classColors[cls]} flex flex-col sm:flex-row items-center sm:items-start sm:justify-start gap-2 text-center sm:text-left">
           <img src="${classIcons[cls]}" alt="${cls} icon" class="h-8 w-8 sm:h-7 sm:w-7 inline-block" />
@@ -442,32 +471,51 @@ function renderEncounterSection(key, encounter, loadoutData, currentDifficulty, 
     ["Exotic Armour", "Super"]
   ];
 
-const renderedClasses = ["Hunter", "Warlock", "Titan"]
-  .map(cls => renderClassLoadout(cls, loadoutData?.[cls], currentDifficulty, 
-    D2LA_CONFIG.classColors, 
-    D2LA_CONFIG.classBackgrounds, 
-    D2LA_CONFIG.classIcons, 
-    D2LA_CONFIG.badgeColors, 
-    D2LA_CONFIG.iconMap))
- 
-  .join("");
+const renderedSwiperSlides = ["Hunter", "Warlock", "Titan"]
+  .map(cls => `
+    <div class="swiper-slide">
+      ${renderClassLoadout(
+        cls,
+        loadoutData?.[cls],
+        currentDifficulty,
+        D2LA_CONFIG.classColors,
+        D2LA_CONFIG.classBackgrounds,
+        D2LA_CONFIG.classIcons,
+        D2LA_CONFIG.badgeColors,
+        D2LA_CONFIG.iconMap
+      )}
+    </div>
+  `).join("");
 
-  return `
-    <div class="bg-gray-800 rounded-lg shadow overflow-hidden">
-      <button type="button"  
-        onclick="this.blur(); toggleEncounter('${collapseId}')" 
-        class="w-full text-left px-4 py-3 flex justify-between items-center hover:bg-gray-700 transition"
-        aria-expanded="false"
-        aria-controls="${collapseId}"
-        >
-        <h2 class="text-lg font-bold flex items-center gap-2">
-          <span class="text-2xl">${encounter.icon || "📌"}</span> ${encounter.displayName}
-        </h2>
-        <span class="text-gray-400 text-sm toggle-arrow">▼</span>
-      </button>
-      <div id="${collapseId}" class="px-4 pb-4 hidden">
-        ${encounter.image ? `
-        <div class="relative w-full aspect-[3/1] sm:aspect-[5/2] lg:aspect-[16/5] overflow-hidden rounded mt-4 mb-4 bg-gray-700">
+const renderedClasses = ["Hunter", "Warlock", "Titan"]
+  .map(cls => renderClassLoadout(
+    cls,
+    loadoutData?.[cls],
+    currentDifficulty,
+    D2LA_CONFIG.classColors,
+    D2LA_CONFIG.classBackgrounds,
+    D2LA_CONFIG.classIcons,
+    D2LA_CONFIG.badgeColors,
+    D2LA_CONFIG.iconMap
+  )).join("");
+
+
+return `
+  <div class="bg-gray-800 rounded-lg shadow overflow-hidden">
+    <button type="button"  
+      onclick="this.blur(); toggleEncounter('${collapseId}')" 
+      class="w-full text-left px-4 py-3 flex justify-between items-center hover:bg-gray-700 transition"
+      aria-expanded="false"
+      aria-controls="${collapseId}"
+    >
+      <h2 class="text-lg font-bold flex items-center gap-2">
+        <span class="text-2xl">${encounter.icon || "📌"}</span> ${encounter.displayName}
+      </h2>
+      <span class="text-gray-400 text-sm toggle-arrow">▼</span>
+    </button>
+    <div id="${collapseId}" class="px-4 pb-4 hidden">
+      ${encounter.image ? `
+        <div class="relative w-full aspect-[5/2] sm:aspect-[5/2] lg:aspect-[16/5] overflow-hidden rounded mt-4 mb-6 bg-gray-700">
           <img src="${encounter.image}" alt="${encounter.displayName}" class="w-full h-full object-cover object-center" loading="lazy" />
           <button type="button" onclick="openTipModal('${key}')" 
                   class="absolute top-2 right-2 flex items-center gap-1 text-amber-100 hover:text-white transition transform hover:scale-105"
@@ -478,12 +526,27 @@ const renderedClasses = ["Hunter", "Warlock", "Titan"]
             <span class="hidden sm:inline text-xs font-semibold tracking-wide">Tips</span>
           </button>
         </div>` : ""}
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 justify-items-center sm:justify-items-stretch">
-          ${renderedClasses}
-        </div>
-      </div>
+
+<!-- 📱 Mobile Swipe Layout -->
+<div class="swiper-wrapper-container mb-4">
+  <div class="swiper-container">
+
+    <!-- 👋 Swipe Hint Instead of Dots -->
+<div class="swipe-hint text-center text-xs font-medium text-gray-300 mb-6">
+  Swipe to view each class
+</div>
+
+    <div class="swiper-wrapper">
+      ${renderedSwiperSlides}
     </div>
-  `;
+  </div>
+</div>
+
+<!-- 💻 Desktop Grid Layout -->
+<div class="grid-wrapper grid grid-cols-2 lg:grid-cols-3 gap-2 justify-items-center">
+  ${renderedClasses}
+</div>
+`;
 }
 
 
@@ -532,7 +595,6 @@ function renderEncounters(reopenId = null) {
         const arrow = el.previousElementSibling?.querySelector(".toggle-arrow");
         if (arrow) arrow.textContent = "▲";
 
-        // 🔒 Prevent scroll if suppressing
         if (!ignoreScrollRestore && reopenId === id) {
           el.scrollIntoView({ behavior: "smooth", block: "start" });
         }
@@ -542,8 +604,32 @@ function renderEncounters(reopenId = null) {
     // ✅ Reset flags
     ignoreScrollRestore = false;
     reopenEncounterId = null;
+
+    // ✅ Re-init Swiper for every visible .swiper-container
+    document.querySelectorAll(".swiper-container").forEach(container => {
+      const encounterId = container.closest("div[id^='encounter-']")?.id;
+
+      const swiper = new Swiper(container, {
+        loop: true,
+        spaceBetween: 16,
+        threshold: 10,
+        touchRatio: 1.2,
+        initialSlide: swiperPositions[encounterId] ?? 0,
+
+        on: {
+          slideChange: function () {
+            if (encounterId) swiperPositions[encounterId] = this.realIndex;
+          }
+        }
+      });
+    });
+
+    // ✅ Apply layout toggle AFTER DOM is ready
+    updateLayoutMode();
   });
 }
+
+
 
 
 
@@ -715,7 +801,7 @@ if (type === "dungeon") {
       if (el) el.classList.add(bg, text);
     }
   });
-  
+
 function showDifficultyToast(level) {
   const toast = document.getElementById("difficulty-toast");
   if (!toast) return;
@@ -771,11 +857,42 @@ window.onload = () => {
   });
 };
 
+function updateLayoutMode() {
+  const swiperWraps = document.querySelectorAll(".swiper-wrapper-container");
+  const gridWraps = document.querySelectorAll(".grid-wrapper");
+
+  const isMobileLike = window.innerWidth < 845 || window.innerHeight > window.innerWidth;
+  
+  const hintText = document.querySelectorAll(".swipe-hint");
+
+hintText.forEach(el => {
+  el.style.display = isMobileLike ? "block" : "none";
+});
+
+
+  swiperWraps.forEach(el => {
+    el.style.display = isMobileLike ? "block" : "none";
+    el.style.opacity = isMobileLike ? "1" : "0";
+    el.style.visibility = isMobileLike ? "visible" : "hidden";
+  });
+
+  gridWraps.forEach(el => {
+    el.style.display = isMobileLike ? "none" : "grid";
+    el.style.opacity = isMobileLike ? "0" : "1";
+    el.style.visibility = isMobileLike ? "hidden" : "visible";
+  });
+}
+
+window.addEventListener("resize", updateLayoutMode);
+document.addEventListener("DOMContentLoaded", updateLayoutMode);
+
 
 function scrollToTop() {
   ignoreScrollRestore = true;
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
+
 
 </script>
 <button id="backToTopBtn"
