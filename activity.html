@@ -65,7 +65,9 @@
 <nav class="relative z-50 w-full bg-gradient-to-b from-black/80 via-gray-900/60 to-transparent text-white shadow backdrop-blur-sm border-b border-gray-700" x-data="{ open: false }">
   <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-start space-x-8">
     <!-- Logo -->
-    <div class="text-lg font-bold tracking-wide">D2 Loadout Advisor</div>
+    <a href="index.html" class="text-lg font-bold tracking-wide hover:text-orange-300 transition">
+  D2 Loadout Advisor
+</a>
 
    <!-- Desktop Nav -->
 <div class="hidden md:flex space-x-3 text-sm md:text-base items-center relative">
@@ -137,39 +139,60 @@
 
 <!-- Mobile Dropdown -->
 <div x-show="open" class="md:hidden px-4 pb-4 space-y-4 text-lg">
+
   <!-- General Links -->
   <div class="pl-3 space-y-1 border-l border-gray-600">
-<a href="index.html" class="flex items-center gap-0 hover:text-blue-300 font-semibold ">
-  <span class="text-lg w-6 text-center">💠</span> <span>Home</span>
-</a>
-<a href="about.html" class="flex items-center gap-0 hover:text-yellow-300 font-semibold ">
-  <span class="text-base w-6 text-center">❔</span><span>About</span>
-</a>
+    <a href="index.html" class="flex items-center gap-0 hover:text-blue-300 font-semibold ">
+      <span class="text-lg w-6 text-center">💠</span> <span>Home</span>
+    </a>
+    <a href="about.html" class="flex items-center gap-0 hover:text-yellow-300 font-semibold ">
+      <span class="text-base w-6 text-center">❔</span><span>About</span>
+    </a>
   </div>
 
+  <!-- Raids Section (Collapsible) -->
+  <div x-data="{ raidOpen: false }">
+    <button @click="raidOpen = !raidOpen"
+        class="w-full flex items-center justify-between text-purple-300 font-semibold uppercase tracking-wide text-sm mb-1 border-b border-purple-500 pb-1">
+  <span class="flex items-center gap-1">
+    <span class="text-xl w-6 text-center">🛡️</span> <span>Raids</span>
+  </span>
+  <svg class="w-4 h-4 transform transition-transform duration-300"
+       :class="{ 'rotate-180': raidOpen }"
+       xmlns="http://www.w3.org/2000/svg"
+       fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+  </svg>
+</button>
 
-  <!-- Raids Section -->
-  <div>
-    <div class="flex items-center gap-0 text-purple-300 font-semibold uppercase tracking-wide text-s mb-1 border-b border-purple-500 pb-1">
-      <span class="text-xl w-6 text-center">🛡️</span> <span>Raids</span>
-    </div>
-    <div id="raidDropdownMobile" class="space-y-1 pl-3 border-l border-purple-500">
+    <div id="raidDropdownMobile" x-show="raidOpen" class="space-y-1 pl-3 border-l border-purple-500 mt-2">
       <a href="raids.html" class="block hover:text-purple-200 font-semibold text-lg">Overview</a>
       <!-- Raid links injected here -->
     </div>
   </div>
 
-  <!-- Dungeons Section -->
-  <div>
-    <div class="flex items-center gap-0 text-teal-300 font-semibold uppercase tracking-wide text-s mb-1 border-b border-teal-500 pb-1">
-      <span class="text-xl w-6 text-center">🗝️</span> <span>Dungeons</span>
-    </div>
-    <div id="dungeonDropdownMobile" class="space-y-1 pl-3 border-l border-teal-500">
+  <!-- Dungeons Section (Collapsible) -->
+  <div x-data="{ dungeonOpen: false }">
+    <button @click="dungeonOpen = !dungeonOpen"
+        class="w-full flex items-center justify-between text-teal-300 font-semibold uppercase tracking-wide text-sm mb-1 border-b border-teal-500 pb-1">
+  <span class="flex items-center gap-1">
+    <span class="text-xl w-6 text-center">🗝️</span> <span>Dungeons</span>
+  </span>
+  <svg class="w-4 h-4 transform transition-transform duration-300"
+       :class="{ 'rotate-180': dungeonOpen }"
+       xmlns="http://www.w3.org/2000/svg"
+       fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+  </svg>
+</button>
+    <div id="dungeonDropdownMobile" x-show="dungeonOpen" class="space-y-1 pl-3 border-l border-teal-500 mt-2">
       <a href="dungeons.html" class="block hover:text-teal-200 font-semibold">Overview</a>
       <!-- Dungeon links injected here -->
     </div>
   </div>
+
 </div>
+
 </nav>
 
 <main id="activity-content" class="opacity-0 transition-opacity duration-300 flex-grow p-6">

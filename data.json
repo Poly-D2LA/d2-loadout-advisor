@@ -1649,7 +1649,7 @@
     },
     "atraks-1": {
       "displayName": "Atraks-1, Fallen Exo",
-      "icon": "🧬",
+      "icon": "🤖",
       "image": "images/deep-stone-crypt/atraks.jpg",
             "loadouts": {
         "Normal": {
@@ -1747,7 +1747,7 @@
     },
     "taniks": {
       "displayName": "Taniks, the Abomination",
-      "icon": "💀",
+      "icon": "🧬",
       "image": "images/deep-stone-crypt/taniks.jpg",
             "loadouts": {
         "Normal": {
@@ -3618,7 +3618,7 @@
     },
     "locus": {
       "displayName": "Locus of Wailing Grief",
-      "icon": "🪦",
+      "icon": "👹",
       "image": "images/warlords-ruin/locus.jpg",
       "loadouts": {
         "Normal": {
@@ -3705,10 +3705,10 @@
   "displayName": "Vesper’s Host",
   "image": "images/vespers-host/banner.jpg",
   "encounters": {
-    "threshold": {
-      "displayName": "Threshold of Whispers",
+    "activation": {
+      "displayName": "Activation",
       "icon": "🌫️",
-      "image": "images/vespers-host/threshold.jpg",
+      "image": "images/vespers-host/activation.jpg",
       "loadouts": {
         "Normal": {
           "Hunter": [
@@ -3746,10 +3746,10 @@
         }
       }
     },
-    "mirror": {
-      "displayName": "The Mirror Labyrinth",
-      "icon": "🪞",
-      "image": "images/vespers-host/mirror.jpg",
+    "raneiks": {
+      "displayName": "Raneiks Unified",
+      "icon": "🧿",
+      "image": "images/vespers-host/raneiks.jpg",
       "loadouts": {
         "Normal": {
           "Hunter": [
@@ -3787,10 +3787,10 @@
         }
       }
     },
-    "vesper": {
-      "displayName": "Vesper, Host of Echoes",
+    "puppet": {
+      "displayName": "The Corrupted Puppeteer",
       "icon": "🌀",
-      "image": "images/vespers-host/vesper.jpg",
+      "image": "images/vespers-host/puppet.jpg",
       "loadouts": {
         "Normal": {
           "Hunter": [
