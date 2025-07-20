@@ -27,6 +27,15 @@
 </body>
 </html>
 <script>
+const urlParams = new URLSearchParams(window.location.search);
+const token = urlParams.get("access");
+
+if (token !== "superSecretToken123") {
+  document.body.innerHTML = "<h2>🔐 Editor Restricted</h2>";
+  throw new Error("Not permitted");
+}
+
+
 let data = {};
 const labels = ["Primary", "Energy", "Heavy", "Exotic Armour", "Super"];
 const classes = ["Hunter", "Titan", "Warlock"];
