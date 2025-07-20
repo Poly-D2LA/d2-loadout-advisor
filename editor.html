@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Loadout Editor</title>
+  <link rel="stylesheet" href="editor.css" />
+</head>
+<body>
+  <div class="editor-container">
+    <h1>Destiny Loadout Editor</h1>
+
+    <section class="selectors">
+      <select id="typeSelect"></select>
+      <select id="activitySelect"></select>
+      <select id="encounterSelect"></select>
+      <select id="difficultySelect"></select>
+    </section>
+
+    <section class="loadout-fields" id="loadoutFields">
+      <!-- Class blocks inserted here by JS -->
+    </section>
+
+    <button id="saveBtn">💾 Save Changes</button>
+  </div>
+
+  <script src="editor.js"></script>
+</body>
+</html>
+<script>
+let data = {};
+const labels = ["Primary", "Energy", "Heavy", "Exotic Armour", "Super"];
+const classes = ["Hunter", "Titan", "Warlock"];
+
+async function loadJson() {
+  const res = await fetch("data.json");
+  data = await res.json();
+  populateSelectors();
+}
+
+function populateSelectors() {
+  const typeSelect = document.getElementById("typeSelect");
+  const activitySelect = document.getElementById("activitySelect");
+  const encounterSelect = document.getElementById("encounterSelect");
+  const difficultySelect = document.getElementById("difficultySelect");
+
+  Object.keys(data).forEach(type => {
+    typeSelect.innerHTML += `<option value="${type}">${type}</option>`;
+  });
+
+  typeSelect.addEventListener("change", () => {
+    const type = typeSelect.value;
+    const activities = Object.keys(data[type] || {});
+    activitySelect.innerHTML = activities.map(key => `<option value="${key}">${data[type][key].displayName}</option>`).join("");
+    activitySelect.dispatchEvent(new Event("change"));
+  });
+
+  activitySelect.addEventListener("change", () => {
+    const type = typeSelect.value;
+    const activityKey = activitySelect.value;
+    const encounters = Object.keys(data[type][activityKey].encounters || {});
+    encounterSelect.innerHTML = encounters.map(key => {
+      const name = data[type][activityKey].encounters[key].displayName;
+      return `<option value="${key}">${name}</option>`;
+    }).join("");
+    encounterSelect.dispatchEvent(new Event("change"));
+  });
+
+  encounterSelect.addEventListener("change", () => {
+    difficultySelect.innerHTML = ["Normal", "Master"].map(d => `<option value="${d}">${d}</option>`).join("");
+    difficultySelect.dispatchEvent(new Event("change"));
+  });
+
+  difficultySelect.addEventListener("change", () => {
+    renderClassLoadouts();
+  });
+
+  typeSelect.dispatchEvent(new Event("change"));
+}
+
+function renderClassLoadouts() {
+  const type = typeSelect.value;
+  const activityKey = activitySelect.value;
+  const encounterKey = encounterSelect.value;
+  const difficulty = difficultySelect.value;
+
+  const container = document.getElementById("loadoutFields");
+  container.innerHTML = "";
+
+  classes.forEach(className => {
+    const block = document.createElement("div");
+    block.className = `class-block class-${className}`;
+    block.setAttribute("data-class", className);
+    block.innerHTML = `<h2>${className}</h2>`;
+
+    const loadouts = data[type][activityKey].encounters[encounterKey].loadouts?.[difficulty]?.[className] || [];
+
+    labels.forEach(label => {
+      const found = loadouts.find(entry => entry.label === label) || {};
+      block.innerHTML += `
+        <div class="loadout-row" data-label="${label}">
+          <h3>${label}</h3>
+          <input class="itemInput" placeholder="Item" value="${found.item || ""}" />
+          <input class="altInput" placeholder="Alternative" value="${found.alt || ""}" />
+        </div>
+      `;
+    });
+
+    container.appendChild(block);
+  });
+}
+
+document.getElementById("saveBtn").addEventListener("click", () => {
+  const type = typeSelect.value;
+  const activityKey = activitySelect.value;
+  const encounterKey = encounterSelect.value;
+  const difficulty = difficultySelect.value;
+
+  data[type][activityKey].encounters[encounterKey].loadouts ||= {};
+  data[type][activityKey].encounters[encounterKey].loadouts[difficulty] ||= {};
+
+  const classBlocks = document.querySelectorAll(".class-block");
+  classBlocks.forEach(block => {
+    const className = block.getAttribute("data-class");
+    const entries = [];
+
+    block.querySelectorAll(".loadout-row").forEach(row => {
+      const label = row.getAttribute("data-label");
+      const item = row.querySelector(".itemInput").value;
+      const alt = row.querySelector(".altInput").value;
+
+      entries.push({ label, item, alt });
+    });
+
+    data[type][activityKey].encounters[encounterKey].loadouts[difficulty][className] = entries;
+  });
+
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "data.json";
+  a.click();
+
+  alert("✅ Loadouts updated and saved!");
+});
+
+loadJson();
+
+</script>
