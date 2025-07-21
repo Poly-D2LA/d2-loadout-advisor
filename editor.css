@@ -3,7 +3,7 @@ body {
   background-color: #111;
   color: #eee;
   margin: 0;
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
 .editor-container {
@@ -18,15 +18,7 @@ body {
 h1 {
   font-size: 2rem;
   margin-bottom: 1rem;
-}
-
-.selectors select {
-  margin: 0.5rem;
-  padding: 0.5rem;
-  border-radius: 6px;
-  background: #222;
-  color: #fff;
-  border: none;
+  text-align: center;
 }
 
 .selectors {
@@ -36,18 +28,29 @@ h1 {
   margin-bottom: 2rem;
 }
 
+.selectors select {
+  flex: 1;
+  min-width: 150px;
+  padding: 0.6rem;
+  border-radius: 6px;
+  background: #222;
+  color: #fff;
+  border: none;
+  box-sizing: border-box;
+}
+
 .loadout-fields {
   display: flex;
-  gap: 1rem;
   flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .class-block {
-  flex: 1;
-  min-width: 280px;
+  flex: 1 1 100%;
   background: #2a2a2a;
   padding: 1rem;
   border-radius: 8px;
+  box-sizing: border-box;
 }
 
 .class-block h2 {
@@ -68,27 +71,29 @@ h1 {
 }
 
 .loadout-row {
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
 }
 
 .loadout-row h3 {
-  margin: 0 0 0.3rem 0;
+  margin: 0 0 0.4rem 0;
   font-size: 1rem;
   color: #ffd700;
 }
 
 .itemInput, .altInput {
   width: 100%;
-  padding: 0.4rem;
-  margin-bottom: 0.2rem;
+  padding: 0.6rem;
+  margin-bottom: 0.4rem;
   border-radius: 5px;
   border: none;
   background: #333;
   color: #fff;
+  box-sizing: border-box;
 }
 
 #saveBtn {
-  padding: 0.8rem 1.5rem;
+  width: 100%;
+  padding: 1rem;
   background: #0078d4;
   color: white;
   border: none;
@@ -96,8 +101,44 @@ h1 {
   font-size: 1rem;
   cursor: pointer;
   margin-top: 2rem;
+  box-sizing: border-box;
 }
 
 #saveBtn:hover {
   background: #005fa3;
+}
+
+/* Responsive Tweaks */
+@media (min-width: 768px) {
+  .class-block {
+    flex: 1 1 calc(33.333% - 1rem);
+    min-width: 280px;
+  }
+
+  #saveBtn {
+    width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .selectors {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .selectors select {
+    width: 100%;
+  }
+
+  .itemInput, .altInput {
+    font-size: 0.9rem;
+  }
+
+  #saveBtn {
+    font-size: 0.9rem;
+  }
 }
