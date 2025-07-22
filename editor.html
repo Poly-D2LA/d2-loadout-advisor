@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Loadout Editor</title>
   <link rel="stylesheet" href="editor.css" />
 </head>
+
 <body>
   <div class="editor-container">
     <h1>Destiny Loadout Editor</h1>
@@ -19,139 +21,249 @@
     <section class="loadout-fields" id="loadoutFields">
       <!-- Class blocks inserted here by JS -->
     </section>
+    
+    <section id="sessionSummary" class="summary-panel">
+      <h2>📝 Edited This Session</h2>
+      <ul id="summaryList"></ul>
+    </section>
 
     <button id="saveBtn">💾 Save Changes</button>
   </div>
 
-  <script src="editor.js"></script>
-</body>
-</html>
 <script>
-/*const urlParams = new URLSearchParams(window.location.search);
-const token = urlParams.get("access");
+  let data = {};
+  const labels = ["Primary", "Energy", "Heavy", "Exotic Armour", "Super"];
+  const classes = ["Hunter", "Titan", "Warlock"];
+  const sessionChanges = {};
 
-if (token !== "superSecretToken123") {
-  document.body.innerHTML = "<h2>🔐 Editor Restricted</h2>";
-  throw new Error("Not permitted");
-}*/
+  function isMobile() {
+    return window.matchMedia("(max-width: 768px)").matches;
+  }
 
-let data = {};
-const labels = ["Primary", "Energy", "Heavy", "Exotic Armour", "Super"];
-const classes = ["Hunter", "Titan", "Warlock"];
+  async function loadJson() {
+    const res = await fetch("data.json");
+    data = await res.json();
+    populateSelectors();
+  }
 
-async function loadJson() {
-  const res = await fetch("data.json");
-  data = await res.json();
-  populateSelectors();
-}
+  function populateSelectors() {
+    const typeSelect = document.getElementById("typeSelect");
+    const activitySelect = document.getElementById("activitySelect");
+    const encounterSelect = document.getElementById("encounterSelect");
+    const difficultySelect = document.getElementById("difficultySelect");
 
-function populateSelectors() {
-  const typeSelect = document.getElementById("typeSelect");
-  const activitySelect = document.getElementById("activitySelect");
-  const encounterSelect = document.getElementById("encounterSelect");
-  const difficultySelect = document.getElementById("difficultySelect");
+    Object.keys(data).forEach(type => {
+      typeSelect.innerHTML += `<option value="${type}">${type}</option>`;
+    });
 
-  Object.keys(data).forEach(type => {
-    typeSelect.innerHTML += `<option value="${type}">${type}</option>`;
-  });
+    typeSelect.addEventListener("change", () => {
+      const type = typeSelect.value;
+      const activities = Object.keys(data[type] || {});
+      activitySelect.innerHTML = activities.map(key =>
+        `<option value="${key}">${data[type][key].displayName}</option>`
+      ).join("");
+      activitySelect.dispatchEvent(new Event("change"));
+    });
 
-  typeSelect.addEventListener("change", () => {
-    const type = typeSelect.value;
-    const activities = Object.keys(data[type] || {});
-    activitySelect.innerHTML = activities.map(key => `<option value="${key}">${data[type][key].displayName}</option>`).join("");
-    activitySelect.dispatchEvent(new Event("change"));
-  });
+    activitySelect.addEventListener("change", () => {
+      const type = typeSelect.value;
+      const activityKey = activitySelect.value;
+      const encounters = Object.keys(data[type][activityKey].encounters || {});
+      encounterSelect.innerHTML = encounters.map(key => {
+        const name = data[type][activityKey].encounters[key].displayName;
+        return `<option value="${key}">${name}</option>`;
+      }).join("");
+      encounterSelect.dispatchEvent(new Event("change"));
+    });
 
-  activitySelect.addEventListener("change", () => {
+    encounterSelect.addEventListener("change", () => {
+      difficultySelect.innerHTML = ["Normal", "Master"].map(d =>
+        `<option value="${d}">${d}</option>`
+      ).join("");
+      difficultySelect.dispatchEvent(new Event("change"));
+    });
+
+    difficultySelect.addEventListener("change", () => {
+      renderClassLoadouts();
+    });
+
+    typeSelect.dispatchEvent(new Event("change"));
+  }
+
+  function handleInputChange(className, label, itemInput, altInput) {
     const type = typeSelect.value;
     const activityKey = activitySelect.value;
-    const encounters = Object.keys(data[type][activityKey].encounters || {});
-    encounterSelect.innerHTML = encounters.map(key => {
-      const name = data[type][activityKey].encounters[key].displayName;
-      return `<option value="${key}">${name}</option>`;
-    }).join("");
-    encounterSelect.dispatchEvent(new Event("change"));
+    const encounterKey = encounterSelect.value;
+    const difficulty = difficultySelect.value;
+    const activityName = data[type][activityKey].displayName;
+    const encounterName = data[type][activityKey].encounters[encounterKey].displayName;
+    const pathKey = `${activityName} > ${encounterName} [${difficulty}]`;
+
+    sessionChanges[pathKey] ||= {};
+    sessionChanges[pathKey][className] ||= 0;
+
+    const currentItem = itemInput.value.trim();
+    const currentAlt = altInput.value.trim();
+
+    const originalLoadouts = data[type][activityKey].encounters[encounterKey].loadouts?.[difficulty]?.[className] || [];
+    const originalEntry = originalLoadouts.find(e => e.label === label) || {};
+    const originalItem = (originalEntry.item || "").trim();
+    const originalAlt = (originalEntry.alt || "").trim();
+
+    const row = itemInput.closest(".loadout-row");
+
+    const alreadyEdited = row.classList.contains("edited");
+
+    const isEdited = currentItem !== originalItem || currentAlt !== originalAlt;
+
+    if (isEdited && !alreadyEdited) {
+      row.classList.add("edited");
+      sessionChanges[pathKey][className]++;
+    } else if (!isEdited && alreadyEdited) {
+      row.classList.remove("edited");
+      sessionChanges[pathKey][className]--;
+
+      if (sessionChanges[pathKey][className] <= 0) {
+        delete sessionChanges[pathKey][className];
+      }
+    }
+
+    if (Object.keys(sessionChanges[pathKey]).length === 0) {
+      delete sessionChanges[pathKey];
+    }
+
+    renderSessionSummary();
+  }
+
+  function renderSessionSummary() {
+    const summaryList = document.getElementById("summaryList");
+    summaryList.innerHTML = "";
+
+    Object.entries(sessionChanges).forEach(([path, classData]) => {
+      const edits = Object.entries(classData).map(
+        ([className, count]) => `${className}: ${count} edits`
+      ).join(", ");
+      const li = document.createElement("li");
+      li.textContent = `• ${path} – ${edits}`;
+      summaryList.appendChild(li);
+    });
+  }
+
+  function renderClassLoadouts() {
+    const type = typeSelect.value;
+    const activityKey = activitySelect.value;
+    const encounterKey = encounterSelect.value;
+    const difficulty = difficultySelect.value;
+
+    const container = document.getElementById("loadoutFields");
+    container.innerHTML = "";
+
+    classes.forEach((className, index) => {
+      const block = document.createElement("div");
+      block.className = `class-block class-${className}`;
+      block.setAttribute("data-class", className);
+
+      const header = document.createElement("h2");
+      header.textContent = className;
+      block.appendChild(header);
+
+      const loadoutContent = document.createElement("div");
+      loadoutContent.className = "loadout-content";
+
+      const loadouts = data[type][activityKey].encounters[encounterKey].loadouts?.[difficulty]?.[className] || [];
+
+      labels.forEach(label => {
+        const found = loadouts.find(entry => entry.label === label) || {};
+
+        const row = document.createElement("div");
+        row.className = "loadout-row";
+        row.setAttribute("data-label", label);
+
+        const labelEl = document.createElement("h3");
+        labelEl.textContent = label;
+
+        const itemInput = document.createElement("input");
+        itemInput.className = "itemInput";
+        itemInput.placeholder = "Item";
+        itemInput.value = found.item || "";
+
+        const altInput = document.createElement("input");
+        altInput.className = "altInput";
+        altInput.placeholder = "Alternative";
+        altInput.value = found.alt || "";
+
+        itemInput.addEventListener("input", () => {
+          handleInputChange(className, label, itemInput, altInput);
+        });
+
+        altInput.addEventListener("input", () => {
+          handleInputChange(className, label, itemInput, altInput);
+        });
+
+        row.appendChild(labelEl);
+        row.appendChild(itemInput);
+        row.appendChild(altInput);
+        loadoutContent.appendChild(row);
+      });
+
+      block.appendChild(loadoutContent);
+      container.appendChild(block);
+
+      if (isMobile()) {
+        if (index > 0) block.classList.add("collapsed");
+
+        header.style.cursor = "pointer";
+        header.setAttribute("data-bound", "true");
+        header.addEventListener("click", () => {
+          block.classList.toggle("collapsed");
+        });
+      }
+    });
+  }
+
+  window.addEventListener("resize", () => {
+    document.querySelectorAll(".class-block").forEach(block => {
+      const header = block.querySelector("h2");
+      const isAlreadyBound = header.getAttribute("data-bound");
+
+      if (isMobile()) {
+        header.style.cursor = "pointer";
+        if (!isAlreadyBound) {
+          header.setAttribute("data-bound", "true");
+          header.addEventListener("click", () => {
+            block.classList.toggle("collapsed");
+          });
+        }
+      } else {
+        header.style.cursor = "default";
+        block.classList.remove("collapsed");
+      }
+    });
   });
 
-  encounterSelect.addEventListener("change", () => {
-    difficultySelect.innerHTML = ["Normal", "Master"].map(d => `<option value="${d}">${d}</option>`).join("");
-    difficultySelect.dispatchEvent(new Event("change"));
-  });
-
-  difficultySelect.addEventListener("change", () => {
+  document.getElementById("saveBtn").addEventListener("click", () => {
+    // ensure latest state stored
     renderClassLoadouts();
+
+    const type = typeSelect.value;
+    const activityKey = activitySelect.value;
+    const encounterKey = encounterSelect.value;
+    const difficulty = difficultySelect.value;
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "data.json";
+    a.click();
+
+    alert("✅ Loadouts updated and saved!");
   });
 
-  typeSelect.dispatchEvent(new Event("change"));
-}
-
-function renderClassLoadouts() {
-  const type = typeSelect.value;
-  const activityKey = activitySelect.value;
-  const encounterKey = encounterSelect.value;
-  const difficulty = difficultySelect.value;
-
-  const container = document.getElementById("loadoutFields");
-  container.innerHTML = "";
-
-  classes.forEach(className => {
-    const block = document.createElement("div");
-    block.className = `class-block class-${className}`;
-    block.setAttribute("data-class", className);
-    block.innerHTML = `<h2>${className}</h2>`;
-
-    const loadouts = data[type][activityKey].encounters[encounterKey].loadouts?.[difficulty]?.[className] || [];
-
-    labels.forEach(label => {
-      const found = loadouts.find(entry => entry.label === label) || {};
-      block.innerHTML += `
-        <div class="loadout-row" data-label="${label}">
-          <h3>${label}</h3>
-          <input class="itemInput" placeholder="Item" value="${found.item || ""}" />
-          <input class="altInput" placeholder="Alternative" value="${found.alt || ""}" />
-        </div>
-      `;
-    });
-
-    container.appendChild(block);
-  });
-}
-
-document.getElementById("saveBtn").addEventListener("click", () => {
-  const type = typeSelect.value;
-  const activityKey = activitySelect.value;
-  const encounterKey = encounterSelect.value;
-  const difficulty = difficultySelect.value;
-
-  data[type][activityKey].encounters[encounterKey].loadouts ||= {};
-  data[type][activityKey].encounters[encounterKey].loadouts[difficulty] ||= {};
-
-  const classBlocks = document.querySelectorAll(".class-block");
-  classBlocks.forEach(block => {
-    const className = block.getAttribute("data-class");
-    const entries = [];
-
-    block.querySelectorAll(".loadout-row").forEach(row => {
-      const label = row.getAttribute("data-label");
-      const item = row.querySelector(".itemInput").value;
-      const alt = row.querySelector(".altInput").value;
-
-      entries.push({ label, item, alt });
-    });
-
-    data[type][activityKey].encounters[encounterKey].loadouts[difficulty][className] = entries;
-  });
-
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "data.json";
-  a.click();
-
-  alert("✅ Loadouts updated and saved!");
-});
-
-loadJson();
-
+  loadJson();
 </script>
+
+
+
+</body>
+</html>

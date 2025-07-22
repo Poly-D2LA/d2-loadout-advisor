@@ -46,7 +46,7 @@ h1 {
 }
 
 .class-block {
-  flex: 1 1 100%;
+  flex: 1 1 calc(33.333% - 1rem);
   background: #2a2a2a;
   padding: 1rem;
   border-radius: 8px;
@@ -108,21 +108,11 @@ h1 {
   background: #005fa3;
 }
 
-/* Responsive Tweaks */
-@media (min-width: 768px) {
-  .class-block {
-    flex: 1 1 calc(33.333% - 1rem);
-    min-width: 280px;
-  }
-
-  #saveBtn {
-    width: auto;
-  }
-}
-
-@media (max-width: 480px) {
+/* 📱 Mobile Breakpoint: force vertical stacking + collapse styling */
+@media (max-width: 768px) {
   h1 {
     font-size: 1.5rem;
+    text-align: center;
   }
 
   .selectors {
@@ -140,5 +130,141 @@ h1 {
 
   #saveBtn {
     font-size: 0.9rem;
+    width: 100%;
+  }
+
+  .loadout-fields {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    gap: 1.2rem;
+  }
+
+  .class-block {
+    flex: none !important;
+    width: 100% !important;
+    display: block !important;
+    margin-bottom: 0;
+    border: 2px dashed limegreen; /* ✅ Mobile debug aid */
+  }
+
+  .class-block.collapsed .loadout-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.2s ease;
+  }
+
+  .loadout-content {
+    transition: max-height 0.3s ease, opacity 0.2s ease;
+    max-height: 1000px;
+    opacity: 1;
+  }
+
+  .class-block h2 {
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+  }
+
+  .class-block h2::after {
+    content: " ⯆";
+    font-size: 0.9rem;
+    margin-left: 6px;
+    opacity: 0.7;
+  }
+
+  .class-block.collapsed h2::after {
+    content: " ⯈";
   }
 }
+
+.class-Hunter {
+  background-color: #264e4e; /* darker teal */
+}
+
+.class-Titan {
+  background-color: #5c3f3f; /* darker rose */
+}
+
+.class-Warlock {
+  background-color: #5e4d26; /* darker gold */
+}
+
+/* 🎯 Input highlight on focus by class type */
+.class-Hunter input:focus {
+  outline: none;
+  border: 2px solid #B2D8D8;
+  box-shadow: 0 0 4px #B2D8D8aa;
+}
+
+.class-Titan input:focus {
+  outline: none;
+  border: 2px solid #E3B3B3;
+  box-shadow: 0 0 4px #E3B3B3aa;
+}
+
+.class-Warlock input:focus {
+  outline: none;
+  border: 2px solid #F9E6AA;
+  box-shadow: 0 0 4px #F9E6AAaa;
+}
+
+/* 🎯 Label color coding */
+.loadout-row[data-label="Primary"] h3 {
+  color: #d3d3d3; /* White */
+}
+
+.loadout-row[data-label="Energy"] h3 {
+  color: #32cd32; /* LimeGreen */
+}
+
+.loadout-row[data-label="Heavy"] h3 {
+  color: #ba8be0; /* MediumPurple */
+}
+
+.loadout-row[data-label="Exotic Armour"] h3 {
+  color: #ffd700; /* Gold */
+}
+
+.loadout-row[data-label="Super"] h3 {
+  color: #ff69b4; /* HotPink */
+}
+
+/* 🧾 Session Summary Panel */
+.summary-panel {
+  background: #181818;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border-left: 4px solid #00bcd4;
+  border-radius: 8px;
+  color: #eee;
+  font-size: 0.9rem;
+}
+
+.summary-panel h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+  color: #00bcd4;
+}
+
+.summary-panel ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.summary-panel li {
+  margin: 0.3rem 0;
+  line-height: 1.4;
+}
+
+/* ✅ Highlight edited rows */
+.loadout-row.edited {
+  background-color: #252525;
+  border-left: 4px solid #00bcd4;
+  padding-left: 0.5rem;
+}
+
+
+
+

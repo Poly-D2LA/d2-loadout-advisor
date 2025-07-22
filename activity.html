@@ -50,7 +50,15 @@
 }
 
 #difficulty-toast {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   animation: toastPulse 2.5s ease-in-out forwards;
+  font-size: 1rem;           /* Increase text size */
+  padding: 0.75rem 1rem;     /* More breathing room */
+  min-width: 200px;          /* Ensure it’s not too narrow */
+  max-width: 300px;          /* Prevent overflow on small screens */
+  text-align: center;        /* Center text nicely */
 }
 
 }
@@ -230,8 +238,9 @@
      class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
             bg-gray-900 text-white px-4 py-2 rounded-md shadow-lg text-sm font-semibold z-50
             hidden transition-opacity duration-500 opacity-0 backdrop-blur-md border border-gray-700">
-  Loadouts updated for difficulty
+  <span class="w-full text-center">Loadouts updated for difficulty</span>
 </div>
+
 
 
 <!-- Scroll anchor and encounter container -->
@@ -358,11 +367,10 @@ function setDifficulty(level, buttonElement, suppressScroll = false) {
 
   const openDiv = document.querySelector("#encounter-container > div > div:not(.hidden)");
   const openId = openDiv?.id;
+  const scrollYBefore = window.scrollY;
 
-  // ✅ Only update top buttons if the click came from them
   if (buttonElement?.id === "normalBtn" || buttonElement?.id === "masterBtn") {
     document.getElementById("normalBtn").classList.toggle("opacity-70", level !== "Normal");
-
     const masterBtn = document.getElementById("masterBtn");
     if (masterBtn) {
       masterBtn.style.display = type === "dungeon" ? "none" : "";
@@ -376,11 +384,13 @@ function setDifficulty(level, buttonElement, suppressScroll = false) {
     currentDifficulty = level;
     showDifficultyToast(level);
     renderEncounters(openId);
+
+    // ✅ Delay scroll restoration slightly to prevent mobile reflow jump
+    setTimeout(() => {
+      window.scrollTo({ top: scrollYBefore, behavior: "instant" });
+    }, 50);
   });
 }
-
-
-
 
 
 
