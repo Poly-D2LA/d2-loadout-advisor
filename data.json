@@ -5882,6 +5882,7 @@
         "encounter1": {
           "displayName": "?",
           "icon": "🌀",
+          "hasMaster": false,
           "image": "images/desert-perpetual/encounter1.jpg",
           "loadouts": {
             "Normal": {
